@@ -1,0 +1,69 @@
+{
+  "model": "HistGradientBoostingClassifier (none / 4 components, 48 h horizon)",
+  "dataset": "Azure PdM telemetry: 876,100 machine-hours, 761 labelled failures",
+  "train_period": "2015-01-01 .. 2015-08-29",
+  "test_period": "2015-09-01 .. 2015-12-31",
+  "alert_threshold": 0.5,
+  "components": {
+    "bearing": {
+      "azure_component": "comp4",
+      "test_failures": 57,
+      "event_recall": 1.0,
+      "median_lead_h": 24.0,
+      "false_alarms_per_machine_year": 3.492061
+    },
+    "drive": {
+      "azure_component": "comp2",
+      "test_failures": 91,
+      "event_recall": 0.967033,
+      "median_lead_h": 24.0,
+      "false_alarms_per_machine_year": 1.343101
+    },
+    "electrical": {
+      "azure_component": "comp1",
+      "test_failures": 51,
+      "event_recall": 0.941176,
+      "median_lead_h": 24.0,
+      "false_alarms_per_machine_year": 1.193867
+    },
+    "coolant": {
+      "azure_component": "comp3",
+      "test_failures": 40,
+      "event_recall": 1.0,
+      "median_lead_h": 32.0,
+      "false_alarms_per_machine_year": 5.849949
+    }
+  },
+  "signatures_z_24h_before_failure": {
+    "bearing": {
+      "volt": -0.002166,
+      "rotate": -0.041808,
+      "pressure": 0.002991,
+      "vibration": 1.387002
+    },
+    "drive": {
+      "volt": 0.014693,
+      "rotate": -1.116803,
+      "pressure": 0.02196,
+      "vibration": 0.023382
+    },
+    "electrical": {
+      "volt": 0.984719,
+      "rotate": -0.01575,
+      "pressure": -0.021602,
+      "vibration": -0.023504
+    },
+    "coolant": {
+      "volt": 0.022102,
+      "rotate": -0.010753,
+      "pressure": 1.64414,
+      "vibration": -0.012272
+    }
+  },
+  "failures_per_machine_year": {
+    "drive": 2.59,
+    "electrical": 1.92,
+    "bearing": 1.79,
+    "coolant": 1.31
+  }
+}

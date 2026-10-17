@@ -1,0 +1,14 @@
+# Run the whole product with Docker Desktop:  docker compose up --build   then open http://localhost:8080
+services:
+  opex:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      ENV: development          # allows a missing SECRET_KEY locally; production on Cloud Run
+    volumes:
+      - opex-data:/app/storage
+volumes:
+  opex-data:

@@ -1,0 +1,29 @@
+{
+  "model": "HistGradientBoostingClassifier (5 classes: none, TWF, HDF, PWF, OSF)",
+  "dataset": "AI4I 2020, 10,000 rows, stratified 80/20 split",
+  "test_rows": 2000,
+  "roc_auc_any_failure": 0.996302,
+  "pr_auc_any_failure": 0.949791,
+  "alert_threshold": 0.413761,
+  "precision_at_threshold": 0.936508,
+  "recall_at_threshold": 0.893939,
+  "mode_accuracy_on_failures": 0.969697,
+  "per_mode": {
+    "TWF": {
+      "test_cases": 9,
+      "recall": 0.111111
+    },
+    "HDF": {
+      "test_cases": 23,
+      "recall": 1.0
+    },
+    "PWF": {
+      "test_cases": 18,
+      "recall": 0.944444
+    },
+    "OSF": {
+      "test_cases": 16,
+      "recall": 1.0
+    }
+  }
+}

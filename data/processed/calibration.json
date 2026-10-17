@@ -1,0 +1,248 @@
+{
+  "line": {
+    "failure_stop_share": {
+      "value": 0.097817,
+      "unit": "share of planned time",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "sum of FAILURE stop minutes / planned minutes"
+    },
+    "other_unplanned_share": {
+      "value": 0.089287,
+      "unit": "share of planned time",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "materials + operational + unplanned setup stops / planned minutes (AI does not fix these)"
+    },
+    "planned_stop_share": {
+      "value": 0.08624,
+      "unit": "share of planned time",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "planned stops counted inside OEE (changeovers, cleaning) / planned minutes"
+    },
+    "repair_log_sigma": {
+      "value": 0.816405,
+      "unit": "log-minutes",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "standard deviation of log(failure stop duration) - spread of repair times"
+    },
+    "base_performance": {
+      "value": 0.929342,
+      "unit": "ratio",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "mean shift performance before improvement"
+    },
+    "base_quality": {
+      "value": 0.983479,
+      "unit": "ratio",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "mean shift quality rate before improvement"
+    },
+    "reference_oee_before": {
+      "value": 0.590697,
+      "unit": "ratio",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "mean shift OEE before Lean Six Sigma"
+    },
+    "reference_oee_after": {
+      "value": 0.643029,
+      "unit": "ratio",
+      "source": "Zenodo 17855209 (real serial line, 62 shifts, 635 stops)",
+      "method": "mean shift OEE after Lean Six Sigma"
+    }
+  },
+  "components": {
+    "bearing": {
+      "failures_per_year": {
+        "value": 1.79,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "count of comp4 failures / 100 machines / 1 year"
+      },
+      "detection_recall": {
+        "value": 1.0,
+        "unit": "share of failures",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures), test months Sep-Dec",
+        "method": "failures with a >=50% precursor alert 2-48 h before (held-out months)"
+      },
+      "false_alarms_per_year": {
+        "value": 3.492061,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "alert episodes not followed by a failure, held-out months"
+      },
+      "signature_z": {
+        "value": {
+          "volt": -0.002166,
+          "rotate": -0.041808,
+          "pressure": 0.002991,
+          "vibration": 1.387002
+        },
+        "unit": "sigma",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "mean 24 h z-score of each sensor before this component failed"
+      }
+    },
+    "drive": {
+      "failures_per_year": {
+        "value": 2.59,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "count of comp2 failures / 100 machines / 1 year"
+      },
+      "detection_recall": {
+        "value": 0.967033,
+        "unit": "share of failures",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures), test months Sep-Dec",
+        "method": "failures with a >=50% precursor alert 2-48 h before (held-out months)"
+      },
+      "false_alarms_per_year": {
+        "value": 1.343101,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "alert episodes not followed by a failure, held-out months"
+      },
+      "signature_z": {
+        "value": {
+          "volt": 0.014693,
+          "rotate": -1.116803,
+          "pressure": 0.02196,
+          "vibration": 0.023382
+        },
+        "unit": "sigma",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "mean 24 h z-score of each sensor before this component failed"
+      }
+    },
+    "electrical": {
+      "failures_per_year": {
+        "value": 1.92,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "count of comp1 failures / 100 machines / 1 year"
+      },
+      "detection_recall": {
+        "value": 0.941176,
+        "unit": "share of failures",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures), test months Sep-Dec",
+        "method": "failures with a >=50% precursor alert 2-48 h before (held-out months)"
+      },
+      "false_alarms_per_year": {
+        "value": 1.193867,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "alert episodes not followed by a failure, held-out months"
+      },
+      "signature_z": {
+        "value": {
+          "volt": 0.984719,
+          "rotate": -0.01575,
+          "pressure": -0.021602,
+          "vibration": -0.023504
+        },
+        "unit": "sigma",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "mean 24 h z-score of each sensor before this component failed"
+      }
+    },
+    "coolant": {
+      "failures_per_year": {
+        "value": 1.31,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "count of comp3 failures / 100 machines / 1 year"
+      },
+      "detection_recall": {
+        "value": 1.0,
+        "unit": "share of failures",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures), test months Sep-Dec",
+        "method": "failures with a >=50% precursor alert 2-48 h before (held-out months)"
+      },
+      "false_alarms_per_year": {
+        "value": 5.849949,
+        "unit": "per machine-year",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "alert episodes not followed by a failure, held-out months"
+      },
+      "signature_z": {
+        "value": {
+          "volt": 0.022102,
+          "rotate": -0.010753,
+          "pressure": 1.64414,
+          "vibration": -0.012272
+        },
+        "unit": "sigma",
+        "source": "Azure PdM (100 machines x 8,760 h, 761 failures)",
+        "method": "mean 24 h z-score of each sensor before this component failed"
+      }
+    }
+  },
+  "degradation": {
+    "life_weibull_shape": {
+      "value": 4.408681,
+      "unit": "k",
+      "source": "NASA C-MAPSS FD001 (100 engines run to failure)",
+      "method": "Weibull fit of normalised lifetimes"
+    },
+    "degradation_b": {
+      "value": 3.75,
+      "unit": "-",
+      "source": "NASA C-MAPSS FD001 (100 engines run to failure)",
+      "method": "fit of mean health index: damage(u) = (e^(b u) - 1) / (e^b - 1), u = life fraction"
+    },
+    "degradation_onset": {
+      "value": 0.4625,
+      "unit": "life fraction",
+      "source": "NASA C-MAPSS FD001 (100 engines run to failure)",
+      "method": "life fraction where average damage passes 10% (first visible sign)"
+    },
+    "rul_relative_error_sd": {
+      "value": 0.203828,
+      "unit": "relative",
+      "source": "NASA C-MAPSS FD001 (100 engines run to failure)",
+      "method": "spread of (predicted - true)/true RUL when 10-60 cycles remain (out-of-fold)"
+    },
+    "rul_test_rmse_cycles": {
+      "value": 13.002476,
+      "unit": "cycles",
+      "source": "NASA C-MAPSS FD001 (100 engines run to failure)",
+      "method": "RMSE on NASA's 100 test engines"
+    }
+  },
+  "machining": {
+    "tool_failure_wear_mean": {
+      "value": 216.369565,
+      "unit": "min",
+      "source": "AI4I 2020 (10,000 machining records)",
+      "method": "mean tool wear at tool-wear failures"
+    },
+    "tool_failure_wear_sd": {
+      "value": 12.257168,
+      "unit": "min",
+      "source": "AI4I 2020 (10,000 machining records)",
+      "method": "spread of tool wear at tool-wear failures"
+    },
+    "air_temp_c": {
+      "value": 26.85493,
+      "unit": "\u00b0C",
+      "source": "AI4I 2020 (10,000 machining records)",
+      "method": "mean air temperature"
+    },
+    "process_delta_c": {
+      "value": 10.00063,
+      "unit": "\u00b0C",
+      "source": "AI4I 2020 (10,000 machining records)",
+      "method": "mean process - air temperature"
+    },
+    "failure_model_precision": {
+      "value": 0.936508,
+      "unit": "ratio",
+      "source": "AI4I 2020 (10,000 machining records)",
+      "method": "held-out precision at alert threshold"
+    },
+    "failure_model_recall": {
+      "value": 0.893939,
+      "unit": "ratio",
+      "source": "AI4I 2020 (10,000 machining records)",
+      "method": "held-out recall at alert threshold"
+    }
+  }
+}

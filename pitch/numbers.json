@@ -1,0 +1,230 @@
+{
+ "delta": {
+  "downtime_avoided_h": 10011.5625,
+  "failures_avoided": 665.0,
+  "good_parts_gained": 140943.79525183327,
+  "defects_avoided": 8643.051397224248,
+  "energy_saved_mwh": 507.3061104808912,
+  "co2_avoided_t": 342.4316245746013,
+  "oee_points": 0.9828700642816601,
+  "production_protected_inr": 44514250.05879307,
+  "maintenance_savings_inr": 22208315.804817244,
+  "scrap_savings_inr": 5515915.143803,
+  "energy_savings_inr": 4692581.521948248,
+  "total_benefit_inr": 76931062.52936156,
+  "opex_cost_inr": 5880000,
+  "net_benefit_inr": 71051062.52936156,
+  "roi_multiple": 12.083514035605708,
+  "payback_months": 3,
+  "breakdowns_reduction": 0.7446808510638299,
+  "downtime_reduction": 0.6295165755661247,
+  "maintenance_cost_reduction": 0.25987743801114604
+ },
+ "kpis": {
+  "without": {
+   "oee": 0.7165584354055493,
+   "availability": 0.8110654119261338,
+   "performance": 0.9063561818884347,
+   "quality": 0.9747580500127638,
+   "unplanned_downtime_h": 13206.5625,
+   "planned_stop_h": 0.0,
+   "failures": 893.0,
+   "planned_repairs": 0.0,
+   "alerts": 0.0,
+   "false_alarms": 0.0,
+   "defect_rate": 0.025241949987235102,
+   "energy_mwh": 10189.48855125105,
+   "co2_t": 6877.904772094459,
+   "maintenance_cost_inr": 85456882.96290168,
+   "collateral_cost_inr": 25650000.0,
+   "energy_cost_inr": 94252769.09907222,
+   "scrap_cost_inr": 166852229.96900052,
+   "contribution_inr": 3248792106.441141,
+   "good_parts": 10218983.246863058,
+   "defects": 264626.7594654212,
+   "energy_kwh_per_part": 0.9971137348110379
+  },
+  "with": {
+   "oee": 0.7263871360483659,
+   "availability": 0.8194788024053308,
+   "performance": 0.9083034882589974,
+   "quality": 0.9758867878515486,
+   "unplanned_downtime_h": 3195.0,
+   "planned_stop_h": 1697.8125,
+   "failures": 228.0,
+   "planned_repairs": 696.0,
+   "alerts": 821.0,
+   "false_alarms": 1364.0,
+   "defect_rate": 0.02411321214845201,
+   "energy_mwh": 9682.182440770159,
+   "co2_t": 6535.473147519858,
+   "maintenance_cost_inr": 63248567.15808444,
+   "collateral_cost_inr": 5300000.0,
+   "energy_cost_inr": 89560187.57712397,
+   "scrap_cost_inr": 161336314.82519752,
+   "contribution_inr": 3293306356.499934,
+   "good_parts": 10359927.042114891,
+   "defects": 255983.70806819695,
+   "energy_kwh_per_part": 0.934580176231977
+  }
+ },
+ "costs": {
+  "one_time_inr": 1680000,
+  "yearly_inr": 840000,
+  "sensor_kits_inr": 1080000,
+  "implementation_inr": 600000,
+  "cloud_per_year_inr": 240000,
+  "support_per_year_inr": 600000
+ },
+ "yearly": [
+  {
+   "year": 1,
+   "without": {
+    "oee": 0.7162914748485557,
+    "downtime_h": 3009.375,
+    "failures": 177,
+    "maintenance_cost_inr": 16901310.655125815,
+    "energy_mwh": 2035.4004017513403
+   },
+   "with": {
+    "oee": 0.7269085675305262,
+    "downtime_h": 775.3125,
+    "failures": 45,
+    "maintenance_cost_inr": 12348009.111230725,
+    "energy_mwh": 1937.8485001260435
+   }
+  },
+  {
+   "year": 2,
+   "without": {
+    "oee": 0.7180118062613975,
+    "downtime_h": 2696.25,
+    "failures": 186,
+    "maintenance_cost_inr": 17069002.914560333,
+    "energy_mwh": 2046.3256360113323
+   },
+   "with": {
+    "oee": 0.728763962195795,
+    "downtime_h": 575.625,
+    "failures": 44,
+    "maintenance_cost_inr": 12695591.542221833,
+    "energy_mwh": 1945.3815573962777
+   }
+  },
+  {
+   "year": 3,
+   "without": {
+    "oee": 0.7145316236274307,
+    "downtime_h": 2561.25,
+    "failures": 179,
+    "maintenance_cost_inr": 16616207.434808588,
+    "energy_mwh": 2044.3547667308903
+   },
+   "with": {
+    "oee": 0.725306847852552,
+    "downtime_h": 539.0625,
+    "failures": 51,
+    "maintenance_cost_inr": 12754744.147777084,
+    "energy_mwh": 1940.2542667826096
+   }
+  },
+  {
+   "year": 4,
+   "without": {
+    "oee": 0.7156187777164303,
+    "downtime_h": 2551.875,
+    "failures": 173,
+    "maintenance_cost_inr": 16862540.427235864,
+    "energy_mwh": 2021.0711698907814
+   },
+   "with": {
+    "oee": 0.7244755132257353,
+    "downtime_h": 669.375,
+    "failures": 46,
+    "maintenance_cost_inr": 12658378.721341524,
+    "energy_mwh": 1918.2114535862968
+   }
+  },
+  {
+   "year": 5,
+   "without": {
+    "oee": 0.7183342988836552,
+    "downtime_h": 2387.8125,
+    "failures": 178,
+    "maintenance_cost_inr": 18007821.531171035,
+    "energy_mwh": 2042.3365768667168
+   },
+   "with": {
+    "oee": 0.7264638452629254,
+    "downtime_h": 635.625,
+    "failures": 42,
+    "maintenance_cost_inr": 12791843.63551324,
+    "energy_mwh": 1940.4866628789448
+   }
+  }
+ ],
+ "calculations": [
+  {
+   "label": "Component lives",
+   "formula": "Weibull(k from NASA C-MAPSS) with mean = operating hours per year / failures per year (Azure PdM)",
+   "value": "k = 4.41; failures/machine-year: bearing 1.79, drive 2.59, electrical 1.92, coolant 1.31"
+  },
+  {
+   "label": "Chance a failure is prevented",
+   "formula": "model recall (Azure PdM, held-out months) x sensor coverage x people approving the advice",
+   "value": "bearing 1.00 x 0.90 x 0.85 = 76%"
+  },
+  {
+   "label": "Warning timing",
+   "formula": "alert when predicted life left <= parts lead time; prediction error ~ N(mean, sd) from NASA C-MAPSS",
+   "value": "relative error sd = 0.20"
+  },
+  {
+   "label": "OEE",
+   "formula": "Availability (run h / planned h) x Performance (ideal h / run h) x Quality (good / made)",
+   "value": "71.7% -> 72.6%"
+  },
+  {
+   "label": "Production protected",
+   "formula": "extra good parts x contribution margin per part",
+   "value": "140,944 parts = \u20b9445.1 lakh"
+  },
+  {
+   "label": "Maintenance savings",
+   "formula": "parts + technician hours (x1.5 overtime after a breakdown) + secondary damage + inspections",
+   "value": "\u20b9222.1 lakh"
+  },
+  {
+   "label": "Energy",
+   "formula": "kWh x tariff; CO2 = MWh x grid factor",
+   "value": "507 MWh x \u20b99.25/kWh = \u20b946.9 lakh; 342 t CO2 at 0.675 t/MWh"
+  },
+  {
+   "label": "Cost of OpEx",
+   "formula": "sensor kits + implementation + (cloud + support) x years",
+   "value": "\u20b958.8 lakh"
+  },
+  {
+   "label": "Return on investment",
+   "formula": "(total benefit - cost of OpEx) / cost of OpEx",
+   "value": "12.1x, payback in month 3"
+  }
+ ],
+ "benchmarks": {
+  "breakdowns_reduction": {
+   "ours": 0.7446808510638299,
+   "doe_low": 0.7,
+   "doe_high": 0.75
+  },
+  "downtime_reduction": {
+   "ours": 0.6295165755661247,
+   "doe_low": 0.35,
+   "doe_high": 0.45
+  },
+  "maintenance_cost_reduction": {
+   "ours": 0.25987743801114604,
+   "doe_low": 0.25,
+   "doe_high": 0.3
+  }
+ }
+}

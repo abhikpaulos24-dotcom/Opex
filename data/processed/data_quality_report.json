@@ -1,0 +1,80 @@
+{
+  "datasets": [
+    {
+      "name": "AI4I 2020 machining sensors",
+      "source": "UCI ML Repository #601 (CC BY 4.0)",
+      "rows_in": 10000,
+      "columns": 14,
+      "missing_cells": 0,
+      "duplicate_rows": 0,
+      "steps": [
+        "Renamed columns to snake_case, dropped row index UDI",
+        "Kelvin to Celsius; derived power = torque x angular speed; tool wear x torque (overstrain)",
+        "Rebuilt a single failure_mode label from TWF/HDF/PWF/OSF; fixed 27 rows whose machine_failure flag disagreed with the mode flags; random failures (RNF) treated as unpredictable"
+      ],
+      "rows_out": 10000,
+      "label_counts": {
+        "none": 9670,
+        "HDF": 115,
+        "PWF": 91,
+        "OSF": 78,
+        "TWF": 46
+      }
+    },
+    {
+      "name": "NASA C-MAPSS FD001 run-to-failure",
+      "source": "NASA Prognostics Data Repository (public domain)",
+      "rows_in": 20631,
+      "columns": 26,
+      "missing_cells": 0,
+      "duplicate_rows": 0,
+      "steps": [
+        "Dropped 7 constant channels: setting3, s1, s5, s10, s16, s18, s19",
+        "Labelled remaining useful life per cycle (train: life - cycle; test: NASA ground truth)"
+      ],
+      "rows_out": 20631,
+      "engines": 100,
+      "life_cycles": {
+        "mean": 206.31,
+        "std": 46.342749,
+        "min": 128.0,
+        "max": 362.0
+      }
+    },
+    {
+      "name": "Microsoft Azure Predictive Maintenance",
+      "source": "Azure AI Gallery sample (MIT)",
+      "rows_in": 761,
+      "columns": 3,
+      "missing_cells": 0,
+      "duplicate_rows": 0,
+      "steps": [
+        "Telemetry: 0 duplicate machine-hour rows found (dropped at training time)"
+      ],
+      "failures": 761,
+      "maintenance_records": 3286,
+      "failures_by_component": {
+        "comp2": 259,
+        "comp1": 192,
+        "comp4": 179,
+        "comp3": 131
+      },
+      "telemetry_rows": 876100,
+      "telemetry_missing_cells": 0
+    },
+    {
+      "name": "Zenodo 17855209 line OEE & downtime",
+      "source": "Zenodo, Ntoas et al. 2025 (CC BY 4.0)",
+      "rows_in": 635,
+      "columns": 10,
+      "missing_cells": 25,
+      "duplicate_rows": 0,
+      "steps": [
+        "Parsed dates, normalised stop groups, dropped 0 stops with no duration",
+        "Operator notes are in Greek and are not used; only categories and durations are"
+      ],
+      "rows_out": 635,
+      "shifts": 65
+    }
+  ]
+}

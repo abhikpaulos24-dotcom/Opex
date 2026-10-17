@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "opex",
+      "runtimeExecutable": "/Users/bhanzu/IdeaProjects/ABC/.venv/bin/uvicorn",
+      "runtimeArgs": ["app.main:app", "--app-dir", "/Users/bhanzu/IdeaProjects/ABC/backend", "--port", "8000"],
+      "port": 8000
+    }
+  ]
+}

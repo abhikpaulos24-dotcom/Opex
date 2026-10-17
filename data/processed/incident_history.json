@@ -1,0 +1,3690 @@
+{
+  "incidents": [
+    {
+      "id": "INC-2025001",
+      "date": "2025-10-02 06:00",
+      "machine_id": "M-24",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 3.5,
+      "cost_inr": 36600.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": -0.7,
+        "rpm": -0.27,
+        "coolant_pressure": -0.29,
+        "voltage": 0.65,
+        "process_temp": -0.16,
+        "cycle_time": -0.16
+      }
+    },
+    {
+      "id": "INC-2025002",
+      "date": "2025-10-04 06:00",
+      "machine_id": "M-20",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 30.1,
+      "cost_inr": 73500.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.12,
+        "rpm": -1.39,
+        "coolant_pressure": 0.02,
+        "voltage": 0.14,
+        "process_temp": -0.12,
+        "cycle_time": 0.84
+      }
+    },
+    {
+      "id": "INC-2025003",
+      "date": "2025-10-05 06:00",
+      "machine_id": "M-23",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 4.5,
+      "cost_inr": 62000.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.12,
+        "rpm": -1.31,
+        "coolant_pressure": -0.04,
+        "voltage": -0.27,
+        "process_temp": 0.18,
+        "cycle_time": 1.06
+      }
+    },
+    {
+      "id": "INC-2025004",
+      "date": "2025-10-05 06:00",
+      "machine_id": "M-01",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 14.7,
+      "cost_inr": 91600.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.14,
+        "rpm": -0.11,
+        "coolant_pressure": 0.34,
+        "voltage": -0.15,
+        "process_temp": 0.96,
+        "cycle_time": 0.49
+      }
+    },
+    {
+      "id": "INC-2025005",
+      "date": "2025-10-07 06:00",
+      "machine_id": "M-12",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 20.2,
+      "cost_inr": 44100.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.18,
+        "rpm": 0.64,
+        "coolant_pressure": -0.1,
+        "voltage": 0.83,
+        "process_temp": -0.07,
+        "cycle_time": 0.05
+      }
+    },
+    {
+      "id": "INC-2025006",
+      "date": "2025-10-07 06:00",
+      "machine_id": "M-12",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 1.5,
+      "cost_inr": 60700.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.22,
+        "rpm": -1.06,
+        "coolant_pressure": 0.6,
+        "voltage": 0.08,
+        "process_temp": 0.53,
+        "cycle_time": 0.88
+      }
+    },
+    {
+      "id": "INC-2025007",
+      "date": "2025-10-07 06:00",
+      "machine_id": "M-03",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 22.2,
+      "cost_inr": 70000.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.41,
+        "rpm": -1.15,
+        "coolant_pressure": -0.04,
+        "voltage": -0.06,
+        "process_temp": -0.55,
+        "cycle_time": 1.06
+      }
+    },
+    {
+      "id": "INC-2025008",
+      "date": "2025-10-09 06:00",
+      "machine_id": "M-05",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 3.4,
+      "cost_inr": 61500.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.09,
+        "rpm": -1.25,
+        "coolant_pressure": -0.1,
+        "voltage": -0.05,
+        "process_temp": 0.22,
+        "cycle_time": 0.42
+      }
+    },
+    {
+      "id": "INC-2025009",
+      "date": "2025-10-13 06:00",
+      "machine_id": "M-19",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 3.1,
+      "cost_inr": 86400.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.06,
+        "rpm": 0.03,
+        "coolant_pressure": -0.09,
+        "voltage": 0.81,
+        "process_temp": -0.15,
+        "cycle_time": 0.08
+      }
+    },
+    {
+      "id": "INC-2025010",
+      "date": "2025-10-16 06:00",
+      "machine_id": "M-17",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 1.8,
+      "cost_inr": 18800.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.34,
+        "rpm": -0.33,
+        "coolant_pressure": -1.19,
+        "voltage": 0.28,
+        "process_temp": 0.76,
+        "cycle_time": 0.33
+      }
+    },
+    {
+      "id": "INC-2025011",
+      "date": "2025-10-17 06:00",
+      "machine_id": "M-16",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 4.7,
+      "cost_inr": 87100.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": -0.54,
+        "rpm": -0.4,
+        "coolant_pressure": -0.1,
+        "voltage": 0.89,
+        "process_temp": -0.05,
+        "cycle_time": 0.13
+      }
+    },
+    {
+      "id": "INC-2025012",
+      "date": "2025-10-17 06:00",
+      "machine_id": "M-04",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 2.9,
+      "cost_inr": 141300.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.62,
+        "rpm": -0.97,
+        "coolant_pressure": -0.45,
+        "voltage": -0.18,
+        "process_temp": -0.02,
+        "cycle_time": 0.45
+      }
+    },
+    {
+      "id": "INC-2025013",
+      "date": "2025-10-19 06:00",
+      "machine_id": "M-20",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 45.5,
+      "cost_inr": 325500.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.09,
+        "rpm": -0.05,
+        "coolant_pressure": 0.17,
+        "voltage": 0.17,
+        "process_temp": 0.6,
+        "cycle_time": 0.56
+      }
+    },
+    {
+      "id": "INC-2025014",
+      "date": "2025-10-19 06:00",
+      "machine_id": "M-10",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 2.9,
+      "cost_inr": 61300.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.25,
+        "rpm": -0.98,
+        "coolant_pressure": -0.63,
+        "voltage": 0.39,
+        "process_temp": -0.05,
+        "cycle_time": 0.56
+      }
+    },
+    {
+      "id": "INC-2025015",
+      "date": "2025-10-20 06:00",
+      "machine_id": "M-11",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 3.8,
+      "cost_inr": 61700.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.33,
+        "rpm": -1.01,
+        "coolant_pressure": 0.29,
+        "voltage": 0.06,
+        "process_temp": 0.47,
+        "cycle_time": 1.17
+      }
+    },
+    {
+      "id": "INC-2025016",
+      "date": "2025-10-20 06:00",
+      "machine_id": "M-15",
+      "component": "bearing",
+      "root_cause": "Lubrication starvation",
+      "confirmed": false,
+      "downtime_h": 44.2,
+      "cost_inr": 324900.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.36,
+        "rpm": 0.39,
+        "coolant_pressure": 0.05,
+        "voltage": 0.02,
+        "process_temp": 0.62,
+        "cycle_time": 0.71
+      }
+    },
+    {
+      "id": "INC-2025017",
+      "date": "2025-10-20 06:00",
+      "machine_id": "M-15",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 10.0,
+      "cost_inr": 64500.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.37,
+        "rpm": -0.92,
+        "coolant_pressure": 0.08,
+        "voltage": 0.1,
+        "process_temp": -0.56,
+        "cycle_time": 0.77
+      }
+    },
+    {
+      "id": "INC-2025018",
+      "date": "2025-10-20 06:00",
+      "machine_id": "M-23",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 30.8,
+      "cost_inr": 318900.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.58,
+        "rpm": -0.27,
+        "coolant_pressure": 0.02,
+        "voltage": -0.72,
+        "process_temp": 1.1,
+        "cycle_time": 0.6
+      }
+    },
+    {
+      "id": "INC-2025019",
+      "date": "2025-10-23 06:00",
+      "machine_id": "M-21",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 16.8,
+      "cost_inr": 25600.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.57,
+        "rpm": 0.2,
+        "coolant_pressure": -1.72,
+        "voltage": 0.26,
+        "process_temp": 0.62,
+        "cycle_time": -0.09
+      }
+    },
+    {
+      "id": "INC-2025020",
+      "date": "2025-10-24 06:00",
+      "machine_id": "M-07",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 3.1,
+      "cost_inr": 61400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.7,
+        "rpm": -1.37,
+        "coolant_pressure": -0.23,
+        "voltage": -0.07,
+        "process_temp": -0.21,
+        "cycle_time": 1.16
+      }
+    },
+    {
+      "id": "INC-2025021",
+      "date": "2025-10-24 06:00",
+      "machine_id": "M-07",
+      "component": "bearing",
+      "root_cause": "Lubrication starvation",
+      "confirmed": false,
+      "downtime_h": 33.3,
+      "cost_inr": 320000.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.18,
+        "rpm": -0.56,
+        "coolant_pressure": 0.35,
+        "voltage": 0.33,
+        "process_temp": 1.15,
+        "cycle_time": 1.15
+      }
+    },
+    {
+      "id": "INC-2025022",
+      "date": "2025-10-30 06:00",
+      "machine_id": "M-18",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 29.6,
+      "cost_inr": 318300.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.13,
+        "rpm": -0.09,
+        "coolant_pressure": -0.42,
+        "voltage": -0.43,
+        "process_temp": 1.19,
+        "cycle_time": 0.6
+      }
+    },
+    {
+      "id": "INC-2025023",
+      "date": "2025-10-31 06:00",
+      "machine_id": "M-14",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 3.9,
+      "cost_inr": 141700.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.05,
+        "rpm": -1.31,
+        "coolant_pressure": 0.22,
+        "voltage": 0.56,
+        "process_temp": 0.25,
+        "cycle_time": 0.43
+      }
+    },
+    {
+      "id": "INC-2025024",
+      "date": "2025-11-03 06:00",
+      "machine_id": "M-20",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 5.3,
+      "cost_inr": 20400.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.1,
+        "rpm": 0.4,
+        "coolant_pressure": -1.79,
+        "voltage": -0.21,
+        "process_temp": 1.2,
+        "cycle_time": 0.14
+      }
+    },
+    {
+      "id": "INC-2025025",
+      "date": "2025-11-06 06:00",
+      "machine_id": "M-22",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 0.5,
+      "cost_inr": 18200.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.13,
+        "rpm": -0.24,
+        "coolant_pressure": -1.56,
+        "voltage": 0.06,
+        "process_temp": 1.25,
+        "cycle_time": 0.31
+      }
+    },
+    {
+      "id": "INC-2025026",
+      "date": "2025-11-06 06:00",
+      "machine_id": "M-03",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 2.3,
+      "cost_inr": 36000.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.49,
+        "rpm": 0.11,
+        "coolant_pressure": 0.29,
+        "voltage": 1.12,
+        "process_temp": 0.41,
+        "cycle_time": -0.06
+      }
+    },
+    {
+      "id": "INC-2025027",
+      "date": "2025-11-08 06:00",
+      "machine_id": "M-07",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 7.6,
+      "cost_inr": 38400.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": 0.26,
+        "rpm": -0.34,
+        "coolant_pressure": -0.63,
+        "voltage": 1.29,
+        "process_temp": -0.12,
+        "cycle_time": 0.01
+      }
+    },
+    {
+      "id": "INC-2025028",
+      "date": "2025-11-15 06:00",
+      "machine_id": "M-17",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 1.6,
+      "cost_inr": 60700.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.4,
+        "rpm": -1.51,
+        "coolant_pressure": -0.37,
+        "voltage": -0.09,
+        "process_temp": 0.21,
+        "cycle_time": 0.11
+      }
+    },
+    {
+      "id": "INC-2025029",
+      "date": "2025-11-16 06:00",
+      "machine_id": "M-04",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 23.2,
+      "cost_inr": 95400.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.38,
+        "rpm": -0.34,
+        "coolant_pressure": 0.22,
+        "voltage": 0.96,
+        "process_temp": -0.36,
+        "cycle_time": 0.65
+      }
+    },
+    {
+      "id": "INC-2025030",
+      "date": "2025-11-16 06:00",
+      "machine_id": "M-24",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 8.8,
+      "cost_inr": 38900.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.28,
+        "rpm": 0.06,
+        "coolant_pressure": 0.08,
+        "voltage": 1.41,
+        "process_temp": -0.04,
+        "cycle_time": 0.4
+      }
+    },
+    {
+      "id": "INC-2025031",
+      "date": "2025-11-19 06:00",
+      "machine_id": "M-11",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 11.3,
+      "cost_inr": 23100.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.32,
+        "rpm": -0.24,
+        "coolant_pressure": -1.75,
+        "voltage": 0.59,
+        "process_temp": 1.0,
+        "cycle_time": 0.13
+      }
+    },
+    {
+      "id": "INC-2025032",
+      "date": "2025-11-23 06:00",
+      "machine_id": "M-05",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 20.4,
+      "cost_inr": 44200.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.65,
+        "rpm": 0.09,
+        "coolant_pressure": -0.22,
+        "voltage": 1.21,
+        "process_temp": -0.25,
+        "cycle_time": 0.44
+      }
+    },
+    {
+      "id": "INC-2025033",
+      "date": "2025-11-27 06:00",
+      "machine_id": "M-19",
+      "component": "bearing",
+      "root_cause": "Lubrication starvation",
+      "confirmed": false,
+      "downtime_h": 10.3,
+      "cost_inr": 309600.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.22,
+        "rpm": -0.23,
+        "coolant_pressure": 0.05,
+        "voltage": 0.0,
+        "process_temp": 0.61,
+        "cycle_time": 0.97
+      }
+    },
+    {
+      "id": "INC-2025034",
+      "date": "2025-11-30 06:00",
+      "machine_id": "M-14",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 6.0,
+      "cost_inr": 37700.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.64,
+        "rpm": -0.15,
+        "coolant_pressure": -0.1,
+        "voltage": 0.9,
+        "process_temp": 0.19,
+        "cycle_time": -0.27
+      }
+    },
+    {
+      "id": "INC-2025035",
+      "date": "2025-12-01 06:00",
+      "machine_id": "M-16",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 6.7,
+      "cost_inr": 21000.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.07,
+        "rpm": -0.21,
+        "coolant_pressure": -2.05,
+        "voltage": -0.33,
+        "process_temp": 1.01,
+        "cycle_time": -0.19
+      }
+    },
+    {
+      "id": "INC-2025036",
+      "date": "2025-12-02 06:00",
+      "machine_id": "M-09",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 4.7,
+      "cost_inr": 37100.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.0,
+        "rpm": 0.3,
+        "coolant_pressure": 0.33,
+        "voltage": 1.45,
+        "process_temp": 0.01,
+        "cycle_time": -0.23
+      }
+    },
+    {
+      "id": "INC-2025037",
+      "date": "2025-12-04 06:00",
+      "machine_id": "M-01",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 1.7,
+      "cost_inr": 35800.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": 0.07,
+        "rpm": 0.32,
+        "coolant_pressure": 0.02,
+        "voltage": 1.34,
+        "process_temp": 0.35,
+        "cycle_time": 0.31
+      }
+    },
+    {
+      "id": "INC-2025038",
+      "date": "2025-12-05 06:00",
+      "machine_id": "M-08",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 3.3,
+      "cost_inr": 141500.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.17,
+        "rpm": -1.0,
+        "coolant_pressure": 0.05,
+        "voltage": 0.08,
+        "process_temp": 0.4,
+        "cycle_time": 0.65
+      }
+    },
+    {
+      "id": "INC-2025039",
+      "date": "2025-12-15 06:00",
+      "machine_id": "M-17",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 3.2,
+      "cost_inr": 19400.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.04,
+        "rpm": 0.28,
+        "coolant_pressure": -1.67,
+        "voltage": -0.05,
+        "process_temp": 1.51,
+        "cycle_time": 0.01
+      }
+    },
+    {
+      "id": "INC-2025040",
+      "date": "2025-12-17 06:00",
+      "machine_id": "M-02",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 7.2,
+      "cost_inr": 63300.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.36,
+        "rpm": -1.33,
+        "coolant_pressure": -0.12,
+        "voltage": 0.66,
+        "process_temp": 0.16,
+        "cycle_time": 1.08
+      }
+    },
+    {
+      "id": "INC-2025041",
+      "date": "2025-12-17 06:00",
+      "machine_id": "M-02",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 5.0,
+      "cost_inr": 37200.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.08,
+        "rpm": 0.19,
+        "coolant_pressure": 0.56,
+        "voltage": 0.78,
+        "process_temp": 0.28,
+        "cycle_time": 0.19
+      }
+    },
+    {
+      "id": "INC-2025042",
+      "date": "2025-12-18 06:00",
+      "machine_id": "M-20",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 3.2,
+      "cost_inr": 61400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.28,
+        "rpm": -1.12,
+        "coolant_pressure": -0.1,
+        "voltage": -0.68,
+        "process_temp": 0.28,
+        "cycle_time": 0.96
+      }
+    },
+    {
+      "id": "INC-2025043",
+      "date": "2025-12-19 06:00",
+      "machine_id": "M-23",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 36.0,
+      "cost_inr": 101200.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 0.99,
+        "rpm": 0.4,
+        "coolant_pressure": 0.08,
+        "voltage": 0.3,
+        "process_temp": 1.32,
+        "cycle_time": 0.64
+      }
+    },
+    {
+      "id": "INC-2025044",
+      "date": "2025-12-20 06:00",
+      "machine_id": "M-08",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 15.0,
+      "cost_inr": 91700.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.63,
+        "rpm": -0.11,
+        "coolant_pressure": -0.02,
+        "voltage": -0.03,
+        "process_temp": 0.9,
+        "cycle_time": 1.13
+      }
+    },
+    {
+      "id": "INC-2025045",
+      "date": "2025-12-21 06:00",
+      "machine_id": "M-22",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 39.4,
+      "cost_inr": 102700.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.34,
+        "rpm": -0.12,
+        "coolant_pressure": 0.1,
+        "voltage": -0.27,
+        "process_temp": 0.75,
+        "cycle_time": 0.78
+      }
+    },
+    {
+      "id": "INC-2025046",
+      "date": "2025-12-21 06:00",
+      "machine_id": "M-22",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 49.8,
+      "cost_inr": 162400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.15,
+        "rpm": -1.15,
+        "coolant_pressure": -0.21,
+        "voltage": 0.62,
+        "process_temp": 0.5,
+        "cycle_time": 0.93
+      }
+    },
+    {
+      "id": "INC-2025047",
+      "date": "2025-12-21 06:00",
+      "machine_id": "M-12",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 6.1,
+      "cost_inr": 62700.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.68,
+        "rpm": -1.02,
+        "coolant_pressure": -0.05,
+        "voltage": 0.11,
+        "process_temp": 0.19,
+        "cycle_time": 1.22
+      }
+    },
+    {
+      "id": "INC-2025048",
+      "date": "2025-12-29 06:00",
+      "machine_id": "M-18",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 29.1,
+      "cost_inr": 48100.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.03,
+        "rpm": 0.61,
+        "coolant_pressure": -0.24,
+        "voltage": 1.19,
+        "process_temp": -0.2,
+        "cycle_time": 0.65
+      }
+    },
+    {
+      "id": "INC-2025049",
+      "date": "2025-12-30 06:00",
+      "machine_id": "M-17",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 20.4,
+      "cost_inr": 69200.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.01,
+        "rpm": -0.84,
+        "coolant_pressure": 0.35,
+        "voltage": -0.32,
+        "process_temp": -0.0,
+        "cycle_time": 0.38
+      }
+    },
+    {
+      "id": "INC-2025050",
+      "date": "2025-12-30 06:00",
+      "machine_id": "M-17",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 45.6,
+      "cost_inr": 105500.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.43,
+        "rpm": -0.07,
+        "coolant_pressure": -0.11,
+        "voltage": -0.21,
+        "process_temp": 0.78,
+        "cycle_time": 0.58
+      }
+    },
+    {
+      "id": "INC-2025051",
+      "date": "2025-12-31 06:00",
+      "machine_id": "M-04",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 2.1,
+      "cost_inr": 60900.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.48,
+        "rpm": -1.7,
+        "coolant_pressure": -0.06,
+        "voltage": -0.11,
+        "process_temp": 0.25,
+        "cycle_time": 0.51
+      }
+    },
+    {
+      "id": "INC-2025052",
+      "date": "2025-12-31 06:00",
+      "machine_id": "M-24",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 77.1,
+      "cost_inr": 119700.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.34,
+        "rpm": -0.35,
+        "coolant_pressure": 0.21,
+        "voltage": 0.03,
+        "process_temp": 0.85,
+        "cycle_time": 0.91
+      }
+    },
+    {
+      "id": "INC-2025053",
+      "date": "2025-12-31 06:00",
+      "machine_id": "M-16",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 2.4,
+      "cost_inr": 36100.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.49,
+        "rpm": 0.16,
+        "coolant_pressure": 0.11,
+        "voltage": 0.94,
+        "process_temp": 0.4,
+        "cycle_time": 0.47
+      }
+    },
+    {
+      "id": "INC-2025054",
+      "date": "2026-01-02 06:00",
+      "machine_id": "M-20",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 5.7,
+      "cost_inr": 20500.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": -0.34,
+        "rpm": -0.25,
+        "coolant_pressure": -1.18,
+        "voltage": 0.45,
+        "process_temp": 0.68,
+        "cycle_time": -0.25
+      }
+    },
+    {
+      "id": "INC-2025055",
+      "date": "2026-01-02 06:00",
+      "machine_id": "M-10",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 38.2,
+      "cost_inr": 77200.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.13,
+        "rpm": -1.59,
+        "coolant_pressure": -0.01,
+        "voltage": -0.37,
+        "process_temp": -0.26,
+        "cycle_time": 1.07
+      }
+    },
+    {
+      "id": "INC-2025056",
+      "date": "2026-01-03 06:00",
+      "machine_id": "M-23",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 3.1,
+      "cost_inr": 36400.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.23,
+        "rpm": -0.04,
+        "coolant_pressure": 0.21,
+        "voltage": 1.23,
+        "process_temp": -0.0,
+        "cycle_time": 0.11
+      }
+    },
+    {
+      "id": "INC-2025057",
+      "date": "2026-01-05 06:00",
+      "machine_id": "M-22",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 3.5,
+      "cost_inr": 19600.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.51,
+        "rpm": 0.18,
+        "coolant_pressure": -1.98,
+        "voltage": 0.02,
+        "process_temp": 1.11,
+        "cycle_time": 0.24
+      }
+    },
+    {
+      "id": "INC-2025058",
+      "date": "2026-01-06 06:00",
+      "machine_id": "M-21",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 17.3,
+      "cost_inr": 312800.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.94,
+        "rpm": 0.37,
+        "coolant_pressure": -0.16,
+        "voltage": -0.03,
+        "process_temp": 0.52,
+        "cycle_time": 0.87
+      }
+    },
+    {
+      "id": "INC-2025059",
+      "date": "2026-01-07 06:00",
+      "machine_id": "M-05",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 6.1,
+      "cost_inr": 37800.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.79,
+        "rpm": 0.01,
+        "coolant_pressure": -0.61,
+        "voltage": 0.78,
+        "process_temp": 0.13,
+        "cycle_time": -0.28
+      }
+    },
+    {
+      "id": "INC-2025060",
+      "date": "2026-01-09 06:00",
+      "machine_id": "M-13",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 2.6,
+      "cost_inr": 19200.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.27,
+        "rpm": -0.12,
+        "coolant_pressure": -1.54,
+        "voltage": -0.03,
+        "process_temp": 0.63,
+        "cycle_time": 0.34
+      }
+    },
+    {
+      "id": "INC-2025061",
+      "date": "2026-01-09 06:00",
+      "machine_id": "M-13",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 8.1,
+      "cost_inr": 308600.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.24,
+        "rpm": -0.46,
+        "coolant_pressure": -0.24,
+        "voltage": 0.19,
+        "process_temp": 0.41,
+        "cycle_time": 0.78
+      }
+    },
+    {
+      "id": "INC-2025062",
+      "date": "2026-01-11 06:00",
+      "machine_id": "M-19",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 7.0,
+      "cost_inr": 88100.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.6,
+        "rpm": -0.15,
+        "coolant_pressure": 0.07,
+        "voltage": -0.34,
+        "process_temp": 1.29,
+        "cycle_time": 1.13
+      }
+    },
+    {
+      "id": "INC-2025063",
+      "date": "2026-01-15 06:00",
+      "machine_id": "M-24",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 14.6,
+      "cost_inr": 24600.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.54,
+        "rpm": -0.32,
+        "coolant_pressure": -1.35,
+        "voltage": 0.54,
+        "process_temp": 0.99,
+        "cycle_time": 0.47
+      }
+    },
+    {
+      "id": "INC-2025064",
+      "date": "2026-01-16 06:00",
+      "machine_id": "M-02",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 13.8,
+      "cost_inr": 66200.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.16,
+        "rpm": -1.17,
+        "coolant_pressure": -0.02,
+        "voltage": 0.14,
+        "process_temp": -0.36,
+        "cycle_time": 1.08
+      }
+    },
+    {
+      "id": "INC-2025065",
+      "date": "2026-01-17 06:00",
+      "machine_id": "M-20",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 9.4,
+      "cost_inr": 309200.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.04,
+        "rpm": -0.45,
+        "coolant_pressure": 0.1,
+        "voltage": -0.2,
+        "process_temp": 0.19,
+        "cycle_time": 1.04
+      }
+    },
+    {
+      "id": "INC-2025066",
+      "date": "2026-01-18 06:00",
+      "machine_id": "M-11",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 5.6,
+      "cost_inr": 62500.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.07,
+        "rpm": -1.26,
+        "coolant_pressure": 0.61,
+        "voltage": 0.06,
+        "process_temp": -0.13,
+        "cycle_time": 0.83
+      }
+    },
+    {
+      "id": "INC-2025067",
+      "date": "2026-01-18 06:00",
+      "machine_id": "M-11",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 30.8,
+      "cost_inr": 31900.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.24,
+        "rpm": 0.11,
+        "coolant_pressure": -1.81,
+        "voltage": -0.11,
+        "process_temp": 1.4,
+        "cycle_time": 0.36
+      }
+    },
+    {
+      "id": "INC-2025068",
+      "date": "2026-01-18 06:00",
+      "machine_id": "M-01",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 6.9,
+      "cost_inr": 63100.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.26,
+        "rpm": -0.96,
+        "coolant_pressure": 0.12,
+        "voltage": 0.45,
+        "process_temp": 0.09,
+        "cycle_time": 1.36
+      }
+    },
+    {
+      "id": "INC-2025069",
+      "date": "2026-01-19 06:00",
+      "machine_id": "M-08",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 3.2,
+      "cost_inr": 61400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.05,
+        "rpm": -1.53,
+        "coolant_pressure": -0.13,
+        "voltage": 0.17,
+        "process_temp": 0.54,
+        "cycle_time": 0.6
+      }
+    },
+    {
+      "id": "INC-2025070",
+      "date": "2026-01-20 06:00",
+      "machine_id": "M-22",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 24.9,
+      "cost_inr": 71200.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.02,
+        "rpm": -1.22,
+        "coolant_pressure": -0.24,
+        "voltage": -0.34,
+        "process_temp": 0.12,
+        "cycle_time": 0.28
+      }
+    },
+    {
+      "id": "INC-2025071",
+      "date": "2026-01-22 06:00",
+      "machine_id": "M-07",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 3.7,
+      "cost_inr": 36700.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.02,
+        "rpm": -0.21,
+        "coolant_pressure": -0.28,
+        "voltage": 0.57,
+        "process_temp": 0.66,
+        "cycle_time": -0.3
+      }
+    },
+    {
+      "id": "INC-2025072",
+      "date": "2026-02-05 06:00",
+      "machine_id": "M-21",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 22.3,
+      "cost_inr": 45000.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.44,
+        "rpm": 0.16,
+        "coolant_pressure": -0.09,
+        "voltage": 0.64,
+        "process_temp": 0.41,
+        "cycle_time": 0.62
+      }
+    },
+    {
+      "id": "INC-2025073",
+      "date": "2026-02-06 06:00",
+      "machine_id": "M-07",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 27.0,
+      "cost_inr": 97200.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.3,
+        "rpm": 0.27,
+        "coolant_pressure": 0.1,
+        "voltage": 0.6,
+        "process_temp": 0.73,
+        "cycle_time": 0.96
+      }
+    },
+    {
+      "id": "INC-2025074",
+      "date": "2026-02-12 06:00",
+      "machine_id": "M-18",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 35.6,
+      "cost_inr": 321000.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.01,
+        "rpm": 0.59,
+        "coolant_pressure": -0.22,
+        "voltage": -0.66,
+        "process_temp": 0.86,
+        "cycle_time": 0.76
+      }
+    },
+    {
+      "id": "INC-2025075",
+      "date": "2026-02-13 06:00",
+      "machine_id": "M-17",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 2.8,
+      "cost_inr": 86300.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.13,
+        "rpm": -0.02,
+        "coolant_pressure": 0.2,
+        "voltage": 1.46,
+        "process_temp": 0.08,
+        "cycle_time": 0.41
+      }
+    },
+    {
+      "id": "INC-2025076",
+      "date": "2026-02-14 06:00",
+      "machine_id": "M-16",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 9.4,
+      "cost_inr": 22200.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": 0.14,
+        "rpm": -0.1,
+        "coolant_pressure": -1.62,
+        "voltage": 0.03,
+        "process_temp": 0.63,
+        "cycle_time": 0.46
+      }
+    },
+    {
+      "id": "INC-2025077",
+      "date": "2026-02-16 06:00",
+      "machine_id": "M-10",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 7.6,
+      "cost_inr": 63400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.37,
+        "rpm": -0.83,
+        "coolant_pressure": -0.05,
+        "voltage": -0.21,
+        "process_temp": 0.03,
+        "cycle_time": 0.94
+      }
+    },
+    {
+      "id": "INC-2025078",
+      "date": "2026-02-19 06:00",
+      "machine_id": "M-22",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 3.2,
+      "cost_inr": 19400.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.21,
+        "rpm": 0.08,
+        "coolant_pressure": -1.35,
+        "voltage": -0.15,
+        "process_temp": 0.97,
+        "cycle_time": -0.37
+      }
+    },
+    {
+      "id": "INC-2025079",
+      "date": "2026-02-19 06:00",
+      "machine_id": "M-22",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 19.0,
+      "cost_inr": 43500.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.02,
+        "rpm": -0.14,
+        "coolant_pressure": 0.37,
+        "voltage": 1.19,
+        "process_temp": -0.74,
+        "cycle_time": 0.11
+      }
+    },
+    {
+      "id": "INC-2025080",
+      "date": "2026-02-21 06:00",
+      "machine_id": "M-07",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 34.3,
+      "cost_inr": 75400.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.41,
+        "rpm": -0.8,
+        "coolant_pressure": 0.72,
+        "voltage": -0.14,
+        "process_temp": 0.12,
+        "cycle_time": 0.72
+      }
+    },
+    {
+      "id": "INC-2025081",
+      "date": "2026-03-01 06:00",
+      "machine_id": "M-16",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 31.2,
+      "cost_inr": 74000.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.22,
+        "rpm": -0.73,
+        "coolant_pressure": -0.32,
+        "voltage": 0.49,
+        "process_temp": -0.18,
+        "cycle_time": 0.88
+      }
+    },
+    {
+      "id": "INC-2025082",
+      "date": "2026-03-03 06:00",
+      "machine_id": "M-10",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 2.5,
+      "cost_inr": 36100.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.32,
+        "rpm": 0.2,
+        "coolant_pressure": -0.26,
+        "voltage": 0.77,
+        "process_temp": -0.04,
+        "cycle_time": 0.08
+      }
+    },
+    {
+      "id": "INC-2025083",
+      "date": "2026-03-04 06:00",
+      "machine_id": "M-15",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 13.2,
+      "cost_inr": 41000.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": -0.41,
+        "rpm": 0.12,
+        "coolant_pressure": 0.2,
+        "voltage": 1.15,
+        "process_temp": 0.24,
+        "cycle_time": 0.56
+      }
+    },
+    {
+      "id": "INC-2025084",
+      "date": "2026-03-04 06:00",
+      "machine_id": "M-23",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 22.8,
+      "cost_inr": 28300.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.13,
+        "rpm": 0.25,
+        "coolant_pressure": -1.48,
+        "voltage": 0.56,
+        "process_temp": 0.33,
+        "cycle_time": 0.48
+      }
+    },
+    {
+      "id": "INC-2025085",
+      "date": "2026-03-10 06:00",
+      "machine_id": "M-13",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 0.7,
+      "cost_inr": 18300.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.1,
+        "rpm": -0.3,
+        "coolant_pressure": -2.2,
+        "voltage": -0.09,
+        "process_temp": 0.69,
+        "cycle_time": 0.25
+      }
+    },
+    {
+      "id": "INC-2025086",
+      "date": "2026-03-15 06:00",
+      "machine_id": "M-17",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 18.4,
+      "cost_inr": 26300.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.45,
+        "rpm": 0.42,
+        "coolant_pressure": -1.56,
+        "voltage": -0.05,
+        "process_temp": 0.69,
+        "cycle_time": -0.14
+      }
+    },
+    {
+      "id": "INC-2025087",
+      "date": "2026-03-16 06:00",
+      "machine_id": "M-16",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 27.1,
+      "cost_inr": 47200.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.19,
+        "rpm": -0.01,
+        "coolant_pressure": -0.03,
+        "voltage": 0.56,
+        "process_temp": 0.02,
+        "cycle_time": -0.17
+      }
+    },
+    {
+      "id": "INC-2025088",
+      "date": "2026-03-17 06:00",
+      "machine_id": "M-09",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 6.9,
+      "cost_inr": 63100.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.07,
+        "rpm": -0.56,
+        "coolant_pressure": 0.17,
+        "voltage": -0.08,
+        "process_temp": -0.39,
+        "cycle_time": 0.38
+      }
+    },
+    {
+      "id": "INC-2025089",
+      "date": "2026-03-18 06:00",
+      "machine_id": "M-10",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 30.6,
+      "cost_inr": 153800.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.24,
+        "rpm": -1.35,
+        "coolant_pressure": -0.0,
+        "voltage": -0.17,
+        "process_temp": 0.13,
+        "cycle_time": 1.22
+      }
+    },
+    {
+      "id": "INC-2025090",
+      "date": "2026-03-19 06:00",
+      "machine_id": "M-01",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 46.2,
+      "cost_inr": 325800.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.18,
+        "rpm": -0.14,
+        "coolant_pressure": -0.24,
+        "voltage": 0.26,
+        "process_temp": 0.59,
+        "cycle_time": 0.46
+      }
+    },
+    {
+      "id": "INC-2025091",
+      "date": "2026-03-21 06:00",
+      "machine_id": "M-22",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 96.3,
+      "cost_inr": 128300.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 0.96,
+        "rpm": 0.1,
+        "coolant_pressure": 0.77,
+        "voltage": -0.3,
+        "process_temp": 1.19,
+        "cycle_time": 0.88
+      }
+    },
+    {
+      "id": "INC-2025092",
+      "date": "2026-03-23 06:00",
+      "machine_id": "M-05",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 5.8,
+      "cost_inr": 62600.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.31,
+        "rpm": -1.2,
+        "coolant_pressure": -0.09,
+        "voltage": -0.19,
+        "process_temp": 0.68,
+        "cycle_time": 0.23
+      }
+    },
+    {
+      "id": "INC-2025093",
+      "date": "2026-03-25 06:00",
+      "machine_id": "M-13",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 19.0,
+      "cost_inr": 93500.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.49,
+        "rpm": -0.22,
+        "coolant_pressure": 0.04,
+        "voltage": 0.26,
+        "process_temp": 0.95,
+        "cycle_time": 0.93
+      }
+    },
+    {
+      "id": "INC-2025094",
+      "date": "2026-03-27 06:00",
+      "machine_id": "M-19",
+      "component": "bearing",
+      "root_cause": "Lubrication starvation",
+      "confirmed": false,
+      "downtime_h": 16.6,
+      "cost_inr": 312500.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.59,
+        "rpm": -0.65,
+        "coolant_pressure": 0.44,
+        "voltage": 0.68,
+        "process_temp": 1.19,
+        "cycle_time": 1.1
+      }
+    },
+    {
+      "id": "INC-2025095",
+      "date": "2026-03-29 06:00",
+      "machine_id": "M-18",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 7.7,
+      "cost_inr": 63500.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.01,
+        "rpm": -1.36,
+        "coolant_pressure": -0.2,
+        "voltage": 0.3,
+        "process_temp": -0.14,
+        "cycle_time": 0.76
+      }
+    },
+    {
+      "id": "INC-2025096",
+      "date": "2026-03-31 06:00",
+      "machine_id": "M-16",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 5.7,
+      "cost_inr": 62600.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.55,
+        "rpm": -1.16,
+        "coolant_pressure": 0.01,
+        "voltage": -0.2,
+        "process_temp": -0.12,
+        "cycle_time": 1.37
+      }
+    },
+    {
+      "id": "INC-2025097",
+      "date": "2026-03-31 06:00",
+      "machine_id": "M-24",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 13.4,
+      "cost_inr": 24000.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.33,
+        "rpm": -0.25,
+        "coolant_pressure": -1.28,
+        "voltage": 0.65,
+        "process_temp": 1.0,
+        "cycle_time": -0.12
+      }
+    },
+    {
+      "id": "INC-2025098",
+      "date": "2026-03-31 06:00",
+      "machine_id": "M-16",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 2.0,
+      "cost_inr": 18900.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.14,
+        "rpm": 0.31,
+        "coolant_pressure": -1.92,
+        "voltage": 0.46,
+        "process_temp": 1.32,
+        "cycle_time": 0.12
+      }
+    },
+    {
+      "id": "INC-2025099",
+      "date": "2026-04-01 06:00",
+      "machine_id": "M-09",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 6.1,
+      "cost_inr": 37700.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.2,
+        "rpm": 0.45,
+        "coolant_pressure": -0.29,
+        "voltage": 1.34,
+        "process_temp": -0.01,
+        "cycle_time": -0.13
+      }
+    },
+    {
+      "id": "INC-2025100",
+      "date": "2026-04-05 06:00",
+      "machine_id": "M-22",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 28.0,
+      "cost_inr": 72600.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.05,
+        "rpm": -1.18,
+        "coolant_pressure": -0.32,
+        "voltage": -0.46,
+        "process_temp": -0.18,
+        "cycle_time": 1.24
+      }
+    },
+    {
+      "id": "INC-2025101",
+      "date": "2026-04-05 06:00",
+      "machine_id": "M-12",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 5.3,
+      "cost_inr": 37400.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": 0.17,
+        "rpm": 0.34,
+        "coolant_pressure": -0.13,
+        "voltage": 0.96,
+        "process_temp": 0.18,
+        "cycle_time": -0.22
+      }
+    },
+    {
+      "id": "INC-2025102",
+      "date": "2026-04-07 06:00",
+      "machine_id": "M-07",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 2.0,
+      "cost_inr": 60900.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.27,
+        "rpm": -1.09,
+        "coolant_pressure": -0.12,
+        "voltage": -0.3,
+        "process_temp": 0.22,
+        "cycle_time": 0.72
+      }
+    },
+    {
+      "id": "INC-2025103",
+      "date": "2026-04-09 06:00",
+      "machine_id": "M-13",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 4.3,
+      "cost_inr": 61900.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.02,
+        "rpm": -1.21,
+        "coolant_pressure": 0.02,
+        "voltage": -0.04,
+        "process_temp": -0.1,
+        "cycle_time": 0.68
+      }
+    },
+    {
+      "id": "INC-2025104",
+      "date": "2026-04-14 06:00",
+      "machine_id": "M-17",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 20.6,
+      "cost_inr": 69300.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.25,
+        "rpm": -0.92,
+        "coolant_pressure": 0.36,
+        "voltage": -0.49,
+        "process_temp": -0.02,
+        "cycle_time": 0.68
+      }
+    },
+    {
+      "id": "INC-2025105",
+      "date": "2026-04-14 06:00",
+      "machine_id": "M-14",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 9.7,
+      "cost_inr": 39400.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.16,
+        "rpm": -0.17,
+        "coolant_pressure": 0.26,
+        "voltage": 1.04,
+        "process_temp": -0.25,
+        "cycle_time": 0.5
+      }
+    },
+    {
+      "id": "INC-2025106",
+      "date": "2026-04-15 06:00",
+      "machine_id": "M-04",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 3.6,
+      "cost_inr": 61600.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.32,
+        "rpm": -1.29,
+        "coolant_pressure": 0.23,
+        "voltage": -0.21,
+        "process_temp": 0.44,
+        "cycle_time": 0.73
+      }
+    },
+    {
+      "id": "INC-2025107",
+      "date": "2026-04-16 06:00",
+      "machine_id": "M-09",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 24.3,
+      "cost_inr": 70900.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.09,
+        "rpm": -1.35,
+        "coolant_pressure": 0.04,
+        "voltage": 0.07,
+        "process_temp": 0.11,
+        "cycle_time": 0.63
+      }
+    },
+    {
+      "id": "INC-2025108",
+      "date": "2026-04-17 06:00",
+      "machine_id": "M-20",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 4.8,
+      "cost_inr": 37200.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -1.12,
+        "rpm": 0.01,
+        "coolant_pressure": -0.55,
+        "voltage": 1.06,
+        "process_temp": 0.44,
+        "cycle_time": 0.18
+      }
+    },
+    {
+      "id": "INC-2025109",
+      "date": "2026-04-18 06:00",
+      "machine_id": "M-23",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 6.8,
+      "cost_inr": 63100.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.03,
+        "rpm": -1.16,
+        "coolant_pressure": -0.19,
+        "voltage": -0.16,
+        "process_temp": -0.18,
+        "cycle_time": 1.16
+      }
+    },
+    {
+      "id": "INC-2025110",
+      "date": "2026-04-20 06:00",
+      "machine_id": "M-03",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 25.2,
+      "cost_inr": 71400.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.02,
+        "rpm": -0.83,
+        "coolant_pressure": -0.1,
+        "voltage": 0.04,
+        "process_temp": 0.05,
+        "cycle_time": 0.94
+      }
+    },
+    {
+      "id": "INC-2025111",
+      "date": "2026-04-28 06:00",
+      "machine_id": "M-18",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 48.3,
+      "cost_inr": 81700.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.1,
+        "rpm": -1.32,
+        "coolant_pressure": -0.26,
+        "voltage": 0.51,
+        "process_temp": 0.02,
+        "cycle_time": 0.71
+      }
+    },
+    {
+      "id": "INC-2025112",
+      "date": "2026-04-29 06:00",
+      "machine_id": "M-14",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 9.1,
+      "cost_inr": 144100.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.46,
+        "rpm": -0.79,
+        "coolant_pressure": 0.14,
+        "voltage": -0.11,
+        "process_temp": 0.81,
+        "cycle_time": 0.92
+      }
+    },
+    {
+      "id": "INC-2025113",
+      "date": "2026-04-29 06:00",
+      "machine_id": "M-17",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 43.2,
+      "cost_inr": 54500.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": -0.07,
+        "rpm": -0.44,
+        "coolant_pressure": -0.38,
+        "voltage": 1.11,
+        "process_temp": 0.22,
+        "cycle_time": 0.03
+      }
+    },
+    {
+      "id": "INC-2025114",
+      "date": "2026-04-30 06:00",
+      "machine_id": "M-24",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 42.7,
+      "cost_inr": 104200.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.04,
+        "rpm": -0.47,
+        "coolant_pressure": -0.1,
+        "voltage": -0.44,
+        "process_temp": 1.17,
+        "cycle_time": 1.15
+      }
+    },
+    {
+      "id": "INC-2025115",
+      "date": "2026-05-03 06:00",
+      "machine_id": "M-23",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 17.2,
+      "cost_inr": 25800.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": 0.25,
+        "rpm": -0.19,
+        "coolant_pressure": -1.91,
+        "voltage": -1.01,
+        "process_temp": 0.72,
+        "cycle_time": 0.05
+      }
+    },
+    {
+      "id": "INC-2025116",
+      "date": "2026-05-03 06:00",
+      "machine_id": "M-15",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 13.2,
+      "cost_inr": 91000.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": 0.27,
+        "rpm": 0.17,
+        "coolant_pressure": 0.2,
+        "voltage": 1.05,
+        "process_temp": 0.3,
+        "cycle_time": 0.53
+      }
+    },
+    {
+      "id": "INC-2025117",
+      "date": "2026-05-04 06:00",
+      "machine_id": "M-08",
+      "component": "bearing",
+      "root_cause": "Lubrication starvation",
+      "confirmed": false,
+      "downtime_h": 16.0,
+      "cost_inr": 92200.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.25,
+        "rpm": -0.46,
+        "coolant_pressure": 0.48,
+        "voltage": 0.39,
+        "process_temp": 1.13,
+        "cycle_time": 0.44
+      }
+    },
+    {
+      "id": "INC-2025118",
+      "date": "2026-05-05 06:00",
+      "machine_id": "M-22",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 29.3,
+      "cost_inr": 98200.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.44,
+        "rpm": -0.11,
+        "coolant_pressure": 0.02,
+        "voltage": -0.06,
+        "process_temp": 1.06,
+        "cycle_time": 0.68
+      }
+    },
+    {
+      "id": "INC-2025119",
+      "date": "2026-05-06 06:00",
+      "machine_id": "M-21",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 28.8,
+      "cost_inr": 318000.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.46,
+        "rpm": -0.13,
+        "coolant_pressure": -0.04,
+        "voltage": -0.13,
+        "process_temp": 1.14,
+        "cycle_time": 0.72
+      }
+    },
+    {
+      "id": "INC-2025120",
+      "date": "2026-05-06 06:00",
+      "machine_id": "M-21",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 19.7,
+      "cost_inr": 68900.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.11,
+        "rpm": -1.23,
+        "coolant_pressure": -0.47,
+        "voltage": 0.29,
+        "process_temp": -0.22,
+        "cycle_time": 1.0
+      }
+    },
+    {
+      "id": "INC-2025121",
+      "date": "2026-05-09 06:00",
+      "machine_id": "M-13",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 1.6,
+      "cost_inr": 60700.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.47,
+        "rpm": -1.4,
+        "coolant_pressure": -0.18,
+        "voltage": -0.23,
+        "process_temp": -0.25,
+        "cycle_time": 1.02
+      }
+    },
+    {
+      "id": "INC-2025122",
+      "date": "2026-05-15 06:00",
+      "machine_id": "M-16",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 2.3,
+      "cost_inr": 19000.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": -0.08,
+        "rpm": 0.1,
+        "coolant_pressure": -1.77,
+        "voltage": 0.11,
+        "process_temp": 0.67,
+        "cycle_time": 0.09
+      }
+    },
+    {
+      "id": "INC-2025123",
+      "date": "2026-05-17 06:00",
+      "machine_id": "M-20",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 8.6,
+      "cost_inr": 308900.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.4,
+        "rpm": -0.18,
+        "coolant_pressure": -0.33,
+        "voltage": 0.05,
+        "process_temp": 1.0,
+        "cycle_time": 0.72
+      }
+    },
+    {
+      "id": "INC-2025124",
+      "date": "2026-05-20 06:00",
+      "machine_id": "M-22",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 3.6,
+      "cost_inr": 19600.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.24,
+        "rpm": 0.15,
+        "coolant_pressure": -0.9,
+        "voltage": -0.07,
+        "process_temp": 1.0,
+        "cycle_time": 0.21
+      }
+    },
+    {
+      "id": "INC-2025125",
+      "date": "2026-05-24 06:00",
+      "machine_id": "M-13",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 5.4,
+      "cost_inr": 20400.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": 0.02,
+        "rpm": -0.22,
+        "coolant_pressure": -1.23,
+        "voltage": -0.05,
+        "process_temp": 0.67,
+        "cycle_time": 0.03
+      }
+    },
+    {
+      "id": "INC-2025126",
+      "date": "2026-05-24 06:00",
+      "machine_id": "M-13",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 13.7,
+      "cost_inr": 41200.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.03,
+        "rpm": -0.18,
+        "coolant_pressure": 0.01,
+        "voltage": 0.58,
+        "process_temp": 0.03,
+        "cycle_time": 0.33
+      }
+    },
+    {
+      "id": "INC-2025127",
+      "date": "2026-05-28 06:00",
+      "machine_id": "M-18",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 65.5,
+      "cost_inr": 114500.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 1.6,
+        "rpm": 0.04,
+        "coolant_pressure": 0.35,
+        "voltage": 0.3,
+        "process_temp": 1.4,
+        "cycle_time": 1.12
+      }
+    },
+    {
+      "id": "INC-2025128",
+      "date": "2026-05-29 06:00",
+      "machine_id": "M-17",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 17.5,
+      "cost_inr": 312900.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.35,
+        "rpm": 0.04,
+        "coolant_pressure": 0.05,
+        "voltage": 0.09,
+        "process_temp": 0.96,
+        "cycle_time": 0.57
+      }
+    },
+    {
+      "id": "INC-2025129",
+      "date": "2026-05-30 06:00",
+      "machine_id": "M-04",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 25.6,
+      "cost_inr": 46500.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": -0.23,
+        "rpm": -0.62,
+        "coolant_pressure": 0.04,
+        "voltage": 0.99,
+        "process_temp": -0.4,
+        "cycle_time": 0.31
+      }
+    },
+    {
+      "id": "INC-2025130",
+      "date": "2026-05-31 06:00",
+      "machine_id": "M-09",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 18.7,
+      "cost_inr": 148400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.28,
+        "rpm": -1.09,
+        "coolant_pressure": 0.48,
+        "voltage": 0.58,
+        "process_temp": -0.26,
+        "cycle_time": 1.11
+      }
+    },
+    {
+      "id": "INC-2025131",
+      "date": "2026-06-02 06:00",
+      "machine_id": "M-23",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 32.0,
+      "cost_inr": 74400.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.15,
+        "rpm": -0.84,
+        "coolant_pressure": -0.24,
+        "voltage": -0.16,
+        "process_temp": -0.15,
+        "cycle_time": 0.57
+      }
+    },
+    {
+      "id": "INC-2025132",
+      "date": "2026-06-02 06:00",
+      "machine_id": "M-01",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 28.2,
+      "cost_inr": 97700.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.36,
+        "rpm": -0.48,
+        "coolant_pressure": -0.32,
+        "voltage": 0.17,
+        "process_temp": 0.88,
+        "cycle_time": 0.91
+      }
+    },
+    {
+      "id": "INC-2025133",
+      "date": "2026-06-04 06:00",
+      "machine_id": "M-12",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 21.1,
+      "cost_inr": 44500.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.26,
+        "rpm": -0.18,
+        "coolant_pressure": 0.03,
+        "voltage": 0.81,
+        "process_temp": 0.38,
+        "cycle_time": 0.08
+      }
+    },
+    {
+      "id": "INC-2025134",
+      "date": "2026-06-05 06:00",
+      "machine_id": "M-21",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 0.9,
+      "cost_inr": 18400.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.01,
+        "rpm": -0.01,
+        "coolant_pressure": -1.43,
+        "voltage": -0.12,
+        "process_temp": 1.24,
+        "cycle_time": 0.24
+      }
+    },
+    {
+      "id": "INC-2025135",
+      "date": "2026-06-06 06:00",
+      "machine_id": "M-05",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 4.8,
+      "cost_inr": 87100.0,
+      "technician_note": "loose terminal on spindle amp, burnt lug. retightened + replaced contactor",
+      "pattern_z": {
+        "vibration": -0.01,
+        "rpm": 0.14,
+        "coolant_pressure": 0.33,
+        "voltage": 1.27,
+        "process_temp": 0.21,
+        "cycle_time": 0.36
+      }
+    },
+    {
+      "id": "INC-2025136",
+      "date": "2026-06-10 06:00",
+      "machine_id": "M-19",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 42.0,
+      "cost_inr": 323900.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.42,
+        "rpm": 0.33,
+        "coolant_pressure": -0.01,
+        "voltage": -0.62,
+        "process_temp": 1.3,
+        "cycle_time": 0.83
+      }
+    },
+    {
+      "id": "INC-2025137",
+      "date": "2026-06-12 06:00",
+      "machine_id": "M-18",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 8.7,
+      "cost_inr": 143900.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.04,
+        "rpm": -1.38,
+        "coolant_pressure": 0.61,
+        "voltage": 0.16,
+        "process_temp": -0.37,
+        "cycle_time": 0.96
+      }
+    },
+    {
+      "id": "INC-2025138",
+      "date": "2026-06-15 06:00",
+      "machine_id": "M-09",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 5.6,
+      "cost_inr": 37500.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.14,
+        "rpm": 0.56,
+        "coolant_pressure": -0.29,
+        "voltage": 0.31,
+        "process_temp": 0.12,
+        "cycle_time": -0.0
+      }
+    },
+    {
+      "id": "INC-2025139",
+      "date": "2026-06-19 06:00",
+      "machine_id": "M-22",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 4.1,
+      "cost_inr": 61900.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.62,
+        "rpm": -0.99,
+        "coolant_pressure": 0.48,
+        "voltage": -0.56,
+        "process_temp": 0.45,
+        "cycle_time": 0.63
+      }
+    },
+    {
+      "id": "INC-2025140",
+      "date": "2026-06-20 06:00",
+      "machine_id": "M-21",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 43.6,
+      "cost_inr": 104600.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 2.09,
+        "rpm": 0.09,
+        "coolant_pressure": -0.06,
+        "voltage": 0.33,
+        "process_temp": 1.06,
+        "cycle_time": 0.62
+      }
+    },
+    {
+      "id": "INC-2025141",
+      "date": "2026-06-21 06:00",
+      "machine_id": "M-07",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 7.1,
+      "cost_inr": 308200.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.23,
+        "rpm": -0.58,
+        "coolant_pressure": 0.61,
+        "voltage": -0.11,
+        "process_temp": 0.72,
+        "cycle_time": 0.9
+      }
+    },
+    {
+      "id": "INC-2025142",
+      "date": "2026-06-23 06:00",
+      "machine_id": "M-13",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 11.3,
+      "cost_inr": 310100.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 0.92,
+        "rpm": -0.45,
+        "coolant_pressure": -0.15,
+        "voltage": -0.16,
+        "process_temp": 0.92,
+        "cycle_time": 1.14
+      }
+    },
+    {
+      "id": "INC-2025143",
+      "date": "2026-06-29 06:00",
+      "machine_id": "M-24",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 2.4,
+      "cost_inr": 36100.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.12,
+        "rpm": 0.16,
+        "coolant_pressure": -0.3,
+        "voltage": 1.05,
+        "process_temp": -0.18,
+        "cycle_time": 0.42
+      }
+    },
+    {
+      "id": "INC-2025144",
+      "date": "2026-07-01 06:00",
+      "machine_id": "M-20",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 27.6,
+      "cost_inr": 72400.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.16,
+        "rpm": -1.11,
+        "coolant_pressure": -0.42,
+        "voltage": 0.05,
+        "process_temp": -0.13,
+        "cycle_time": 1.01
+      }
+    },
+    {
+      "id": "INC-2025145",
+      "date": "2026-07-02 06:00",
+      "machine_id": "M-11",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 2.2,
+      "cost_inr": 19000.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": -0.26,
+        "rpm": 0.27,
+        "coolant_pressure": -1.43,
+        "voltage": -0.16,
+        "process_temp": 1.25,
+        "cycle_time": 0.01
+      }
+    },
+    {
+      "id": "INC-2025146",
+      "date": "2026-07-02 06:00",
+      "machine_id": "M-23",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 5.6,
+      "cost_inr": 20500.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": -0.11,
+        "rpm": 0.03,
+        "coolant_pressure": -1.87,
+        "voltage": -0.11,
+        "process_temp": 0.85,
+        "cycle_time": 0.56
+      }
+    },
+    {
+      "id": "INC-2025147",
+      "date": "2026-07-04 06:00",
+      "machine_id": "M-03",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 30.3,
+      "cost_inr": 73600.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.05,
+        "rpm": -0.63,
+        "coolant_pressure": -0.03,
+        "voltage": 0.13,
+        "process_temp": 0.37,
+        "cycle_time": 0.89
+      }
+    },
+    {
+      "id": "INC-2025148",
+      "date": "2026-07-04 06:00",
+      "machine_id": "M-12",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 4.6,
+      "cost_inr": 62100.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.75,
+        "rpm": -1.04,
+        "coolant_pressure": -0.38,
+        "voltage": 0.41,
+        "process_temp": -0.02,
+        "cycle_time": 0.71
+      }
+    },
+    {
+      "id": "INC-2025149",
+      "date": "2026-07-05 06:00",
+      "machine_id": "M-21",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 30.4,
+      "cost_inr": 73700.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.32,
+        "rpm": -0.87,
+        "coolant_pressure": 0.22,
+        "voltage": 0.31,
+        "process_temp": 0.61,
+        "cycle_time": 0.79
+      }
+    },
+    {
+      "id": "INC-2025150",
+      "date": "2026-07-06 06:00",
+      "machine_id": "M-05",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 6.0,
+      "cost_inr": 62700.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.3,
+        "rpm": -1.34,
+        "coolant_pressure": -0.13,
+        "voltage": 0.33,
+        "process_temp": 0.22,
+        "cycle_time": 0.4
+      }
+    },
+    {
+      "id": "INC-2025151",
+      "date": "2026-07-14 06:00",
+      "machine_id": "M-24",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 0.8,
+      "cost_inr": 48300.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.07,
+        "rpm": -0.26,
+        "coolant_pressure": -1.51,
+        "voltage": -0.1,
+        "process_temp": 0.43,
+        "cycle_time": -0.23
+      }
+    },
+    {
+      "id": "INC-2025152",
+      "date": "2026-07-14 06:00",
+      "machine_id": "M-04",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 23.9,
+      "cost_inr": 150700.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.55,
+        "rpm": -1.57,
+        "coolant_pressure": 0.04,
+        "voltage": 0.2,
+        "process_temp": 0.29,
+        "cycle_time": 0.43
+      }
+    },
+    {
+      "id": "INC-2025153",
+      "date": "2026-07-14 06:00",
+      "machine_id": "M-16",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 9.2,
+      "cost_inr": 22100.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.03,
+        "rpm": 0.23,
+        "coolant_pressure": -1.84,
+        "voltage": -0.33,
+        "process_temp": 1.2,
+        "cycle_time": 0.43
+      }
+    },
+    {
+      "id": "INC-2025154",
+      "date": "2026-07-15 06:00",
+      "machine_id": "M-09",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 9.8,
+      "cost_inr": 144400.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.13,
+        "rpm": -1.3,
+        "coolant_pressure": 0.1,
+        "voltage": 0.05,
+        "process_temp": 0.35,
+        "cycle_time": 0.43
+      }
+    },
+    {
+      "id": "INC-2025155",
+      "date": "2026-07-17 06:00",
+      "machine_id": "M-23",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 8.4,
+      "cost_inr": 308800.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.34,
+        "rpm": -0.37,
+        "coolant_pressure": 0.06,
+        "voltage": 0.01,
+        "process_temp": 0.78,
+        "cycle_time": 0.92
+      }
+    },
+    {
+      "id": "INC-2025156",
+      "date": "2026-07-17 06:00",
+      "machine_id": "M-01",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 14.0,
+      "cost_inr": 66300.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": -0.4,
+        "rpm": -1.13,
+        "coolant_pressure": 0.11,
+        "voltage": 0.1,
+        "process_temp": 0.42,
+        "cycle_time": 0.44
+      }
+    },
+    {
+      "id": "INC-2025157",
+      "date": "2026-07-18 06:00",
+      "machine_id": "M-08",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 4.5,
+      "cost_inr": 87000.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.46,
+        "rpm": 0.09,
+        "coolant_pressure": 0.63,
+        "voltage": 0.18,
+        "process_temp": 0.64,
+        "cycle_time": 1.04
+      }
+    },
+    {
+      "id": "INC-2025158",
+      "date": "2026-07-21 06:00",
+      "machine_id": "M-07",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 16.4,
+      "cost_inr": 67400.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.23,
+        "rpm": -1.56,
+        "coolant_pressure": 0.76,
+        "voltage": 0.11,
+        "process_temp": 0.31,
+        "cycle_time": 0.97
+      }
+    },
+    {
+      "id": "INC-2025159",
+      "date": "2026-07-23 06:00",
+      "machine_id": "M-13",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 25.6,
+      "cost_inr": 46500.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.06,
+        "rpm": 0.35,
+        "coolant_pressure": -0.29,
+        "voltage": 0.57,
+        "process_temp": 0.53,
+        "cycle_time": 0.54
+      }
+    },
+    {
+      "id": "INC-2025160",
+      "date": "2026-07-27 06:00",
+      "machine_id": "M-18",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 12.7,
+      "cost_inr": 90700.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.54,
+        "rpm": 0.03,
+        "coolant_pressure": 0.05,
+        "voltage": -0.21,
+        "process_temp": 1.36,
+        "cycle_time": 1.0
+      }
+    },
+    {
+      "id": "INC-2025161",
+      "date": "2026-07-28 06:00",
+      "machine_id": "M-17",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 6.7,
+      "cost_inr": 88000.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.5,
+        "rpm": 0.27,
+        "coolant_pressure": 0.15,
+        "voltage": 0.22,
+        "process_temp": 0.55,
+        "cycle_time": 0.95
+      }
+    },
+    {
+      "id": "INC-2025162",
+      "date": "2026-07-28 06:00",
+      "machine_id": "M-17",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 2.2,
+      "cost_inr": 19000.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": 0.64,
+        "rpm": -0.17,
+        "coolant_pressure": -1.68,
+        "voltage": 0.29,
+        "process_temp": 1.19,
+        "cycle_time": 0.29
+      }
+    },
+    {
+      "id": "INC-2025163",
+      "date": "2026-07-31 06:00",
+      "machine_id": "M-20",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 14.7,
+      "cost_inr": 24600.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.14,
+        "rpm": -0.37,
+        "coolant_pressure": -1.89,
+        "voltage": 0.19,
+        "process_temp": 0.81,
+        "cycle_time": 0.34
+      }
+    },
+    {
+      "id": "INC-2025164",
+      "date": "2026-08-01 06:00",
+      "machine_id": "M-15",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 8.5,
+      "cost_inr": 63800.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.97,
+        "rpm": -0.88,
+        "coolant_pressure": 0.19,
+        "voltage": -0.25,
+        "process_temp": -0.09,
+        "cycle_time": 0.48
+      }
+    },
+    {
+      "id": "INC-2025165",
+      "date": "2026-08-01 06:00",
+      "machine_id": "M-15",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 34.7,
+      "cost_inr": 100600.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.06,
+        "rpm": -0.24,
+        "coolant_pressure": -0.07,
+        "voltage": -0.3,
+        "process_temp": 0.47,
+        "cycle_time": 0.39
+      }
+    },
+    {
+      "id": "INC-2025166",
+      "date": "2026-08-03 06:00",
+      "machine_id": "M-22",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 13.2,
+      "cost_inr": 24000.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": 0.12,
+        "rpm": 0.01,
+        "coolant_pressure": -1.34,
+        "voltage": 0.34,
+        "process_temp": 0.8,
+        "cycle_time": 0.3
+      }
+    },
+    {
+      "id": "INC-2025167",
+      "date": "2026-08-04 06:00",
+      "machine_id": "M-21",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 18.4,
+      "cost_inr": 93300.0,
+      "technician_note": "spindle seized in roughing, outer race pitting. replaced bearings, regreased",
+      "pattern_z": {
+        "vibration": 2.07,
+        "rpm": 0.32,
+        "coolant_pressure": -0.07,
+        "voltage": -0.35,
+        "process_temp": 1.01,
+        "cycle_time": 0.24
+      }
+    },
+    {
+      "id": "INC-2025168",
+      "date": "2026-08-13 06:00",
+      "machine_id": "M-24",
+      "component": "bearing",
+      "root_cause": "Spindle misalignment",
+      "confirmed": false,
+      "downtime_h": 15.3,
+      "cost_inr": 311900.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.15,
+        "rpm": 0.18,
+        "coolant_pressure": 0.02,
+        "voltage": -0.15,
+        "process_temp": 1.19,
+        "cycle_time": 0.49
+      }
+    },
+    {
+      "id": "INC-2025169",
+      "date": "2026-08-14 06:00",
+      "machine_id": "M-09",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 5.9,
+      "cost_inr": 37700.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.17,
+        "rpm": -0.27,
+        "coolant_pressure": 0.16,
+        "voltage": 0.69,
+        "process_temp": 0.67,
+        "cycle_time": -0.08
+      }
+    },
+    {
+      "id": "INC-2025170",
+      "date": "2026-08-15 06:00",
+      "machine_id": "M-20",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 12.9,
+      "cost_inr": 65800.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.62,
+        "rpm": -1.44,
+        "coolant_pressure": 0.16,
+        "voltage": -0.35,
+        "process_temp": -0.3,
+        "cycle_time": 0.85
+      }
+    },
+    {
+      "id": "INC-2025171",
+      "date": "2026-08-16 06:00",
+      "machine_id": "M-23",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 20.9,
+      "cost_inr": 27400.0,
+      "technician_note": "through-spindle coolant lost, seal leak. replaced rotary union seal",
+      "pattern_z": {
+        "vibration": -0.39,
+        "rpm": 0.34,
+        "coolant_pressure": -1.88,
+        "voltage": 0.06,
+        "process_temp": 1.01,
+        "cycle_time": 0.28
+      }
+    },
+    {
+      "id": "INC-2025172",
+      "date": "2026-08-18 06:00",
+      "machine_id": "M-22",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 121.9,
+      "cost_inr": 139900.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 0.85,
+        "rpm": 0.44,
+        "coolant_pressure": 0.17,
+        "voltage": -0.13,
+        "process_temp": 0.59,
+        "cycle_time": 0.29
+      }
+    },
+    {
+      "id": "INC-2025173",
+      "date": "2026-08-20 06:00",
+      "machine_id": "M-05",
+      "component": "electrical",
+      "root_cause": "Loose power terminal",
+      "confirmed": false,
+      "downtime_h": 2.5,
+      "cost_inr": 36100.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.14,
+        "rpm": -0.12,
+        "coolant_pressure": -0.32,
+        "voltage": 0.83,
+        "process_temp": 0.57,
+        "cycle_time": 0.0
+      }
+    },
+    {
+      "id": "INC-2025174",
+      "date": "2026-08-24 06:00",
+      "machine_id": "M-19",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 4.0,
+      "cost_inr": 306800.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.21,
+        "rpm": 0.36,
+        "coolant_pressure": 0.14,
+        "voltage": 0.01,
+        "process_temp": 0.72,
+        "cycle_time": 0.33
+      }
+    },
+    {
+      "id": "INC-2025175",
+      "date": "2026-08-27 06:00",
+      "machine_id": "M-17",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 2.4,
+      "cost_inr": 141100.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.12,
+        "rpm": -1.18,
+        "coolant_pressure": 0.08,
+        "voltage": 0.18,
+        "process_temp": 0.17,
+        "cycle_time": 0.87
+      }
+    },
+    {
+      "id": "INC-2025176",
+      "date": "2026-08-28 06:00",
+      "machine_id": "M-24",
+      "component": "coolant",
+      "root_cause": "Coolant pump wear",
+      "confirmed": true,
+      "downtime_h": 12.0,
+      "cost_inr": 23400.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.31,
+        "rpm": -0.66,
+        "coolant_pressure": -1.8,
+        "voltage": -0.26,
+        "process_temp": 0.7,
+        "cycle_time": 0.02
+      }
+    },
+    {
+      "id": "INC-2025177",
+      "date": "2026-08-28 06:00",
+      "machine_id": "M-16",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 1.5,
+      "cost_inr": 140700.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.31,
+        "rpm": -1.15,
+        "coolant_pressure": 0.01,
+        "voltage": -0.18,
+        "process_temp": 0.25,
+        "cycle_time": 0.73
+      }
+    },
+    {
+      "id": "INC-2025178",
+      "date": "2026-09-02 06:00",
+      "machine_id": "M-03",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 32.9,
+      "cost_inr": 154800.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": -0.28,
+        "rpm": -1.1,
+        "coolant_pressure": 0.54,
+        "voltage": -0.19,
+        "process_temp": 0.45,
+        "cycle_time": 1.21
+      }
+    },
+    {
+      "id": "INC-2025179",
+      "date": "2026-09-03 06:00",
+      "machine_id": "M-21",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 26.3,
+      "cost_inr": 71800.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": -0.22,
+        "rpm": -0.51,
+        "coolant_pressure": 0.01,
+        "voltage": -0.06,
+        "process_temp": 0.03,
+        "cycle_time": 0.98
+      }
+    },
+    {
+      "id": "INC-2025180",
+      "date": "2026-09-06 06:00",
+      "machine_id": "M-13",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 46.9,
+      "cost_inr": 106100.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.4,
+        "rpm": -0.09,
+        "coolant_pressure": 0.38,
+        "voltage": -0.22,
+        "process_temp": 0.59,
+        "cycle_time": 1.04
+      }
+    },
+    {
+      "id": "INC-2025181",
+      "date": "2026-09-08 06:00",
+      "machine_id": "M-19",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 22.6,
+      "cost_inr": 45200.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.3,
+        "rpm": -0.34,
+        "coolant_pressure": 0.35,
+        "voltage": 1.13,
+        "process_temp": 0.63,
+        "cycle_time": -0.27
+      }
+    },
+    {
+      "id": "INC-2025182",
+      "date": "2026-09-13 06:00",
+      "machine_id": "M-09",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 27.0,
+      "cost_inr": 152100.0,
+      "technician_note": "rpm hunting under load, belt cracked. replaced belt, adjusted tension",
+      "pattern_z": {
+        "vibration": 0.09,
+        "rpm": -1.2,
+        "coolant_pressure": -0.5,
+        "voltage": -0.2,
+        "process_temp": 0.44,
+        "cycle_time": 0.66
+      }
+    },
+    {
+      "id": "INC-2025183",
+      "date": "2026-09-14 06:00",
+      "machine_id": "M-20",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 3.2,
+      "cost_inr": 36500.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.24,
+        "rpm": 0.28,
+        "coolant_pressure": 0.32,
+        "voltage": 0.75,
+        "process_temp": 0.08,
+        "cycle_time": 0.41
+      }
+    },
+    {
+      "id": "INC-2025184",
+      "date": "2026-09-15 06:00",
+      "machine_id": "M-11",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 8.7,
+      "cost_inr": 21900.0,
+      "technician_note": "coolant filter clogged, tank dirty. cleaned tank, replaced filter",
+      "pattern_z": {
+        "vibration": -0.21,
+        "rpm": -0.24,
+        "coolant_pressure": -1.4,
+        "voltage": 0.49,
+        "process_temp": 0.55,
+        "cycle_time": -0.68
+      }
+    },
+    {
+      "id": "INC-2025185",
+      "date": "2026-09-15 06:00",
+      "machine_id": "M-23",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 3.4,
+      "cost_inr": 86500.0,
+      "technician_note": "VIB ALARM 9.2 mm/s, spindle hot. replaced spindle bearing pair, checked preload",
+      "pattern_z": {
+        "vibration": 1.08,
+        "rpm": -0.08,
+        "coolant_pressure": 0.18,
+        "voltage": -0.05,
+        "process_temp": 0.69,
+        "cycle_time": 0.85
+      }
+    },
+    {
+      "id": "INC-2025186",
+      "date": "2026-09-15 06:00",
+      "machine_id": "M-01",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 54.3,
+      "cost_inr": 329400.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.1,
+        "rpm": -0.06,
+        "coolant_pressure": -0.2,
+        "voltage": 0.8,
+        "process_temp": 1.15,
+        "cycle_time": 0.55
+      }
+    },
+    {
+      "id": "INC-2025187",
+      "date": "2026-09-18 06:00",
+      "machine_id": "M-21",
+      "component": "coolant",
+      "root_cause": "Clogged coolant filter",
+      "confirmed": false,
+      "downtime_h": 5.6,
+      "cost_inr": 20500.0,
+      "technician_note": "COOLANT PRESSURE LOW, parts hot, size drift. pump impeller worn - replaced pump",
+      "pattern_z": {
+        "vibration": -0.14,
+        "rpm": -0.5,
+        "coolant_pressure": -1.86,
+        "voltage": -0.2,
+        "process_temp": 1.17,
+        "cycle_time": -0.03
+      }
+    },
+    {
+      "id": "INC-2025188",
+      "date": "2026-09-19 06:00",
+      "machine_id": "M-07",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 2.7,
+      "cost_inr": 36200.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": -0.26,
+        "rpm": -0.42,
+        "coolant_pressure": -0.33,
+        "voltage": 0.96,
+        "process_temp": 0.04,
+        "cycle_time": 0.44
+      }
+    },
+    {
+      "id": "INC-2025189",
+      "date": "2026-09-21 06:00",
+      "machine_id": "M-13",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 30.8,
+      "cost_inr": 48900.0,
+      "technician_note": "SERVO ALARM OVERVOLTAGE, X-axis stopped. replaced power module",
+      "pattern_z": {
+        "vibration": 0.29,
+        "rpm": 0.06,
+        "coolant_pressure": 0.02,
+        "voltage": 0.38,
+        "process_temp": -0.29,
+        "cycle_time": 0.32
+      }
+    },
+    {
+      "id": "INC-2025190",
+      "date": "2026-09-21 06:00",
+      "machine_id": "M-13",
+      "component": "drive",
+      "root_cause": "Drive belt slip / wear",
+      "confirmed": true,
+      "downtime_h": 36.5,
+      "cost_inr": 76400.0,
+      "technician_note": "encoder alarm, spindle stopped. replaced spindle motor encoder, aligned",
+      "pattern_z": {
+        "vibration": 0.44,
+        "rpm": -1.05,
+        "coolant_pressure": 0.21,
+        "voltage": -0.11,
+        "process_temp": -0.01,
+        "cycle_time": 0.6
+      }
+    },
+    {
+      "id": "INC-2025191",
+      "date": "2026-09-26 06:00",
+      "machine_id": "M-17",
+      "component": "electrical",
+      "root_cause": "Servo power module fault",
+      "confirmed": true,
+      "downtime_h": 4.2,
+      "cost_inr": 86900.0,
+      "technician_note": "drive tripped repeatedly, voltage spikes. replaced servo amplifier",
+      "pattern_z": {
+        "vibration": 0.08,
+        "rpm": -0.09,
+        "coolant_pressure": -0.08,
+        "voltage": 1.15,
+        "process_temp": 0.2,
+        "cycle_time": -0.15
+      }
+    },
+    {
+      "id": "INC-2025192",
+      "date": "2026-09-28 06:00",
+      "machine_id": "M-02",
+      "component": "drive",
+      "root_cause": "Spindle encoder fault",
+      "confirmed": false,
+      "downtime_h": 16.9,
+      "cost_inr": 67600.0,
+      "technician_note": "SPDL SPEED DROP, belt slipping. replaced drive belt + tensioner",
+      "pattern_z": {
+        "vibration": 0.54,
+        "rpm": -1.04,
+        "coolant_pressure": -0.02,
+        "voltage": 0.46,
+        "process_temp": 0.41,
+        "cycle_time": 0.77
+      }
+    },
+    {
+      "id": "INC-2025193",
+      "date": "2026-09-29 06:00",
+      "machine_id": "M-20",
+      "component": "bearing",
+      "root_cause": "Spindle bearing degradation",
+      "confirmed": true,
+      "downtime_h": 3.5,
+      "cost_inr": 86600.0,
+      "technician_note": "SPDL NOISY + HI VIB, FRONT BRG FAILED. REPL BRG SET + SEALS, RUNOUT 3um OK",
+      "pattern_z": {
+        "vibration": 1.07,
+        "rpm": -0.23,
+        "coolant_pressure": -0.68,
+        "voltage": 0.36,
+        "process_temp": 0.33,
+        "cycle_time": 1.0
+      }
+    },
+    {
+      "id": "INC-2025194",
+      "date": "2026-09-30 06:00",
+      "machine_id": "M-15",
+      "component": "bearing",
+      "root_cause": "Lubrication starvation",
+      "confirmed": false,
+      "downtime_h": 7.1,
+      "cost_inr": 308200.0,
+      "technician_note": "brg failure - grinding noise, chatter marks on parts. replaced brg, scrapped batch",
+      "pattern_z": {
+        "vibration": 1.14,
+        "rpm": -0.34,
+        "coolant_pressure": -0.06,
+        "voltage": 0.08,
+        "process_temp": 1.08,
+        "cycle_time": 1.33
+      }
+    }
+  ]
+}

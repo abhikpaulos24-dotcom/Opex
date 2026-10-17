@@ -1,0 +1,26 @@
+# Secrets — never commit real keys
+.env
+*.json.key
+service-account*.json
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node
+frontend/node_modules/
+# frontend/dist is committed on purpose: the start scripts can run without Node.js
+
+# Local runtime data
+data/opex.db
+data/opex.db-*
+storage/
+
+# Large raw file — fetched by `python -m pipeline.download_data`
+data/raw/azure_pdm/PdM_telemetry.csv
+
+# OS / IDE
+.DS_Store
+.idea/workspace.xml

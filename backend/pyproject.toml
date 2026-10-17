@@ -1,0 +1,16 @@
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+# errors, warnings, imports, bugbear, modern syntax, simplifications
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+# FastAPI's `Depends(...)` in defaults is the framework's intended style.
+ignore = ["B008"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["app", "pipeline"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
