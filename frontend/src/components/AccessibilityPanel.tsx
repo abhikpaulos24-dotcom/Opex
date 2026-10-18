@@ -1,3 +1,4 @@
+import { BookOpenText, RotateCcw } from "lucide-react";
 import { useSession, type Prefs } from "../lib/session";
 import { Dialog, Segmented } from "./ui";
 
@@ -6,34 +7,54 @@ export const LANGUAGES = [
   { value: "ta", label: "தமிழ்" }, { value: "kn", label: "ಕನ್ನಡ" }, { value: "mr", label: "मराठी" },
 ];
 
+/** One tap for people with dyslexia: the OpenDyslexic typeface, wider spacing and larger text together. */
+const EASY_READING: Pick<Prefs, "font" | "spacing" | "text"> = { font: "opendyslexic", spacing: "wide", text: "l" };
+const STANDARD: Pick<Prefs, "font" | "spacing" | "text"> = { font: "atkinson", spacing: "normal", text: "m" };
+
 export function AccessibilitySettings() {
   const { prefs, setPref } = useSession();
+  const easyOn = prefs.font === EASY_READING.font && prefs.spacing === EASY_READING.spacing;
+  const apply = (p: typeof EASY_READING) => { setPref("font", p.font); setPref("spacing", p.spacing); setPref("text", p.text); };
+
   return (
     <div className="stack">
-      <Field label="Colours">
-        <Segmented<Prefs["theme"]> label="Colours" value={prefs.theme} onChange={(v) => setPref("theme", v)}
-          options={[{ value: "system", label: "Match device" }, { value: "light", label: "Light" }, { value: "dark", label: "Dark" }, { value: "contrast", label: "High contrast" }]} />
+      <div className="card quiet tight row between">
+        <div className="row" style={{ gap: 12 }}>
+          <BookOpenText aria-hidden style={{ color: "var(--brand)" }} />
+          <div>
+            <b>Easier reading</b>
+            <div className="small muted">OpenDyslexic letters, wider spacing and larger text in one go. Change any of them below.</div>
+          </div>
+        </div>
+        {easyOn
+          ? <button className="btn small" onClick={() => apply(STANDARD)}><RotateCcw size={16} aria-hidden /> Back to standard</button>
+          : <button className="btn small primary" onClick={() => apply(EASY_READING)}>Turn on</button>}
+      </div>
+
+      <Field label="Reading font" hint="Atkinson Hyperlegible tells similar letters apart. Lexend is wide and even. OpenDyslexic has heavy bottoms so letters don't flip or swap.">
+        <Segmented<Prefs["font"]> label="Reading font" value={prefs.font} onChange={(v) => setPref("font", v)}
+          options={[{ value: "atkinson", label: "Atkinson Hyperlegible" }, { value: "lexend", label: "Lexend" }, { value: "opendyslexic", label: "OpenDyslexic" }]} />
       </Field>
       <Field label="Text size">
         <Segmented<Prefs["text"]> label="Text size" value={prefs.text} onChange={(v) => setPref("text", v)}
           options={[{ value: "m", label: "Normal" }, { value: "l", label: "Large" }, { value: "xl", label: "Extra large" }]} />
       </Field>
-      <Field label="Reading font" hint="Atkinson Hyperlegible is designed for low vision; Lexend can help with dyslexia.">
-        <Segmented<Prefs["font"]> label="Reading font" value={prefs.font} onChange={(v) => setPref("font", v)}
-          options={[{ value: "atkinson", label: "Atkinson Hyperlegible" }, { value: "lexend", label: "Lexend" }]} />
-      </Field>
       <Field label="Letter and line spacing">
         <Segmented<Prefs["spacing"]> label="Spacing" value={prefs.spacing} onChange={(v) => setPref("spacing", v)}
           options={[{ value: "normal", label: "Normal" }, { value: "wide", label: "Wide" }]} />
+      </Field>
+      <Field label="Colours">
+        <Segmented<Prefs["theme"]> label="Colours" value={prefs.theme} onChange={(v) => setPref("theme", v)}
+          options={[{ value: "system", label: "Match device" }, { value: "light", label: "Paper" }, { value: "dark", label: "Dark" }, { value: "contrast", label: "High contrast" }]} />
       </Field>
       <Field label="Motion">
         <Segmented<Prefs["motion"]> label="Motion" value={prefs.motion} onChange={(v) => setPref("motion", v)}
           options={[{ value: "full", label: "Animations on" }, { value: "reduce", label: "Reduce motion" }]} />
       </Field>
-      <label className="row"><input type="checkbox" checked={prefs.simple} onChange={(e) => setPref("simple", e.target.checked)} />
-        <span><b>Simple words</b><br /><span className="small muted">Shorter AI explanations in everyday language.</span></span></label>
-      <label className="row"><input type="checkbox" checked={prefs.focus} onChange={(e) => setPref("focus", e.target.checked)} />
-        <span><b>Focus mode</b><br /><span className="small muted">Hide extra panels; show only what needs attention.</span></span></label>
+      <label className="check"><input type="checkbox" checked={prefs.simple} onChange={(e) => setPref("simple", e.target.checked)} />
+        <span><b>Simple words</b><span className="small muted">Shorter AI explanations in everyday language.</span></span></label>
+      <label className="check"><input type="checkbox" checked={prefs.focus} onChange={(e) => setPref("focus", e.target.checked)} />
+        <span><b>Focus mode</b><span className="small muted">Hide extra panels; show only what needs attention.</span></span></label>
       <label className="field">Language for AI answers and read-aloud
         <select value={prefs.language} onChange={(e) => setPref("language", e.target.value)}>
           {LANGUAGES.map((l) => <option key={l.value} value={l.value}>{l.label}</option>)}
@@ -51,15 +72,15 @@ function Field({ label, hint, children }: { label: string; hint?: string; childr
     <div>
       <p style={{ fontWeight: 700, marginBottom: 6 }}>{label}</p>
       {children}
-      {hint && <p className="small muted" style={{ marginTop: 6 }}>{hint}</p>}
+      {hint && <p className="small muted measure" style={{ marginTop: 6 }}>{hint}</p>}
     </div>
   );
 }
 
 export function AccessibilityPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
   return (
-    <Dialog open={open} onClose={onClose} title="Display and accessibility">
-      <p className="muted">Changes apply instantly and are saved to your account.</p>
+    <Dialog open={open} onClose={onClose} title="Display and reading">
+      <p className="muted">Changes apply straight away and are saved to your account.</p>
       <AccessibilitySettings />
     </Dialog>
   );

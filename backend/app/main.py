@@ -16,7 +16,7 @@ from app.core.config import get_settings
 from app.core.logging_setup import setup_logging
 from app.core.paths import FRONTEND_DIST
 from app.db.seed import seed
-from app.db.session import SessionLocal, init_db
+from app.db.session import SessionLocal, engine, init_db
 
 settings = get_settings()
 setup_logging(settings.log_level, json_logs=settings.is_production)
@@ -45,7 +45,7 @@ async def lifespan(_: FastAPI):
     log.info(
         "OpEx ready (Gemini: %s, database: %s)",
         "on" if settings.gemini_enabled else "off - rule-based fallback",
-        "Supabase" if settings.database_url else "local SQLite",
+        "Supabase" if engine.dialect.name == "postgresql" else "local SQLite",
     )
     yield
 

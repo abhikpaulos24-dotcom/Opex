@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { Loading } from "./components/ui";
 import { useSession } from "./lib/session";
 import Actions from "./pages/Actions";
 import Copilot from "./pages/Copilot";
-import DataModels from "./pages/DataModels";
 import Learning from "./pages/Learning";
 import Login from "./pages/Login";
 import Machine from "./pages/machine";
@@ -15,7 +14,7 @@ import Simulation from "./pages/simulation";
 
 const TITLES: Record<string, string> = {
   "/": "Overview", "/actions": "Actions", "/copilot": "Ask OpEx", "/simulation": "5-year simulation",
-  "/learning": "Learning log", "/data": "Data & models", "/settings": "Settings", "/login": "Sign in",
+  "/learning": "Learning log", "/settings": "Settings", "/login": "Sign in",
 };
 
 export default function App() {
@@ -29,7 +28,7 @@ export default function App() {
     document.getElementById("main")?.focus({ preventScroll: true });
   }, [location.pathname]);
 
-  if (user === undefined) return <Loading label="Starting OpEx" />;
+  if (user === undefined) return <div style={{ padding: 24 }}><Loading label="Opening OpEx" /></div>;
   if (user === null) {
     return (
       <Routes>
@@ -47,10 +46,9 @@ export default function App() {
         <Route path="/copilot" element={<Copilot />} />
         <Route path="/simulation" element={<Simulation />} />
         <Route path="/learning" element={<Learning />} />
-        <Route path="/data" element={<DataModels />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/login" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<div className="card"><h1>Page not found</h1><a href="/">Go to the overview</a></div>} />
+        <Route path="*" element={<div className="card"><h1>That page isn't here</h1><p className="muted">The link may be old, or the machine may have been renamed.</p><Link className="btn primary" to="/">Back to the overview</Link></div>} />
       </Routes>
     </Layout>
   );

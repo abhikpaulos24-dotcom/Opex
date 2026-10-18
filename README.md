@@ -107,20 +107,18 @@ The numbers in brackets refer to the sections of the original idea document.
 
 | Role | Typical person | Can do |
 |---|---|---|
-| **Plant manager** | Plant head, operations manager | Everything: priorities, factory economics, user accounts, demo controls, audit log, BigQuery export |
-| **Maintenance engineer** | Maintenance in-charge | Approve, reject or modify any recommendation (stops, part swaps, speed changes); write investigations; add SOPs |
-| **Machine operator** | Shop-floor operator | Acknowledge alerts; approve low-risk actions (tool change, standby, closer monitoring, sensor recalibration); ask the copilot |
-| **Viewer** | Visitor, judge, auditor | Read everything, ask the copilot, run simulations |
+| **Plant manager** | Plant head, operations manager | Everything an engineer can do, plus priorities, factory economics, demo controls, audit log, BigQuery export, and adds managers and engineers |
+| **Maintenance engineer** | Maintenance in-charge, shift engineer | Approve, reject or modify any recommendation (stops, part swaps, speed changes); acknowledge alerts; write investigations; add SOPs; ask the copilot |
 
-Permissions are enforced on the server (`backend/app/auth/security.py`), not just hidden in the UI. Every decision and setting change goes to the `audit_log` table.
+The full explanation of every role, what it can and cannot do, and why, is in [ROLES.md](ROLES.md). Permissions are enforced on the server (`backend/app/auth/security.py`), not just hidden in the UI. Every decision and setting change goes to the `audit_log` table.
 
-**Demo accounts** (created on first start when `DEMO_MODE=true`) all use the password `OpEx-demo-2026`:
+**Signing in.** Everyone signs in with **Google** (single sign-on); OpEx stores no passwords for real people. A person can sign in once a manager has added their Google email; any other Google account is turned away. The first manager account is created automatically from `MASTER_ADMIN_EMAIL` and cannot be demoted or switched off through the app. Setup: [AUDIT.md step 2b](AUDIT.md).
+
+**Demo accounts** (only when `DEMO_MODE=true`, and the only accounts that use a password) all use the password `OpEx-demo-2026`:
 - `manager@opex.demo`
 - `engineer@opex.demo`
-- `operator@opex.demo`
-- `viewer@opex.demo`
 
-There is also a one-click **Explore as a guest** button.
+On the sign-in page you pick one of these accounts from a list and click **Log in**; there is nothing to type.
 
 ## 3. Architecture
 
@@ -181,11 +179,9 @@ The analytics are deterministic and fast (a full 24-machine overview takes about
 
 ```
 .
-├── README.md, HOW_TO_RUN.md, AUDIT.md   ← start here
+├── README.md, HOW_TO_RUN.md, AUDIT.md, ROLES.md ← start here
 ├── .env.example / .env                  ← settings and keys (AUDIT.md explains each)
-├── start.command / start.sh / start.bat ← one-click start (macOS / Linux / Windows)
-├── Dockerfile, docker-compose.yml       ← one container for Cloud Run or Docker Desktop
-├── deploy/deploy_cloud_run.sh           ← one command to go live on Google Cloud
+├── Dockerfile, docker-compose.yml       ← one container: Docker Desktop, Render or Cloud Run
 ├── database/                            ← SQL to run in Supabase
 │   ├── 01_schema.sql                    ← all tables
 │   ├── 02_security.sql                  ← lock tables away from Supabase's public API
@@ -347,7 +343,7 @@ The OEE gain is modest on purpose. Material shortages and set-ups (17.5% of plan
 
 | Table | Holds | Why it exists |
 |---|---|---|
-| `app_users` | email, name, role, bcrypt hash, accessibility preferences | Sign-in, roles, per-person display settings |
+| `app_users` | email, name, role, accessibility preferences (a password hash only for demo accounts) | Sign-in, roles, per-person display settings |
 | `alerts` | one open alert per machine + kind | No alarm floods; auto-resolve |
 | `incidents` | critical risks and breakdowns + JSON snapshot of what the AI saw + report | Investigations and audit |
 | `recommendations` | priced options, weights, chosen action, agent trace | Explainability of every suggestion |
@@ -368,7 +364,7 @@ The SQL scripts are in `database/`. If the tables are missing, the app runs them
 | **Physics-informed health index + transferable RUL model** | No public 5-year CNC run-to-failure data exists. We transfer what really transfers (degradation shape, error spread) and say so |
 | **Shared random draws in the simulator** | Makes with-vs-without a fair counterfactual and enables "Rewind the factory" |
 | **Realistic, not flattering, assumptions** | Model misses, false alarms, people not following advice, stock-outs and minor stops are all included, and results land inside published US DOE ranges |
-| **Own sign-in (bcrypt + signed httpOnly cookie) instead of Supabase Auth** | Works the same on Supabase and offline SQLite, roles are enforced server-side, and there's one less service to configure |
+| **Google sign-in (free) + our own session cookie instead of Supabase Auth** | People use the account they already have. OpEx verifies Google's signed token on the server, then issues its own httpOnly cookie, so it works the same on Supabase and offline SQLite and roles are enforced server-side |
 | **In-memory hybrid search instead of pgvector** | The corpus is about 250 chunks; numpy answers in milliseconds. Move to pgvector at about 100k chunks |
 | **Free Gemini API key by default, Vertex AI when you scale** | An AI Studio key costs nothing and takes 2 minutes. Vertex AI (no free tier) adds data residency, IAM and higher quotas for production |
 | **`gemini-3.5-flash-lite` as the default model** | Its free tier allows many more requests per day than `gemini-3.8-flash`. OpEx gives Gemini computed facts, so a lighter model is enough |
@@ -397,8 +393,8 @@ Built to WCAG 2.2 AA, with shop floors, older workers, low literacy and neurodiv
 
 ## 11. Security and privacy
 
-- Passwords are hashed with bcrypt. Sessions are signed JWTs in an httpOnly, SameSite=Lax cookie (Secure in production), valid for 12 h. Sign-in is rate-limited.
-- Roles are checked on every request on the server. Approving stops and part swaps needs an engineer or manager.
+- Sign-in is Google single sign-on: the server verifies Google's signed ID token (right app, not expired, email verified). Demo accounts use bcrypt-hashed passwords and exist only in demo mode. Sessions are signed JWTs in an httpOnly, SameSite=Lax cookie (Secure in production), valid for 12 h. Sign-in is rate-limited.
+- Roles are checked on every request on the server. Only managers can manage people, priorities and costs; engineers approve and reject actions.
 - The AI never actuates machines; a human decision is recorded for every action.
 - Supabase tables have Row Level Security on and no public grants (`02_security.sql`). The database is reachable only through the backend.
 - Secrets live in `.env` locally and in Cloud Run environment variables in production. `.env` is git-ignored, and keys are never sent to the browser.
@@ -442,13 +438,14 @@ All plant economics are in one file (`backend/app/plant/factory.py`), and a plan
 
 ## 14. Running, keys, tests, deployment
 
-- **Run it:** [HOW_TO_RUN.md](HOW_TO_RUN.md). Double-click `start.command` (macOS) or `start.bat` (Windows).
+- **Run it:** [HOW_TO_RUN.md](HOW_TO_RUN.md): Docker Desktop (`docker compose up --build`) or a few terminal lines.
 - **Add keys** (Supabase, Gemini, Google Cloud): [AUDIT.md](AUDIT.md), step by step.
 - **Developer mode:** `cd backend && ../.venv/bin/uvicorn app.main:app --reload`, plus `cd frontend && npm run dev` (http://localhost:5173).
-- **Tests:** `cd backend && ../.venv/bin/python -m pytest -q` (32 tests, about 15 s). They cover every API route for every role (`tests/test_flows.py`), simulator determinism and benefit, the scripted live scenario, permissions, the decision flow, uploads, and the free fallbacks when no Gemini or Google Cloud keys are set.
+- **Tests:** `cd backend && ../.venv/bin/python -m pytest -q` (38 tests, about 17 s). They cover every API route for every role (`tests/test_flows.py`), simulator determinism and benefit, the scripted live scenario, permissions, the decision flow, uploads, and the free fallbacks when no Gemini or Google Cloud keys are set.
+- **Dev tools:** `.venv/bin/pip install -r backend/requirements-dev.txt` (tests and linting; the app itself needs only `requirements.txt`).
 - **Code style:** `cd backend && ../.venv/bin/ruff check app tests pipeline` and `cd frontend && npx tsc --noEmit`.
 - **Retrain:** `cd backend && ../.venv/bin/python -m pipeline.run_all`.
-- **Deploy:** `./deploy/deploy_cloud_run.sh` builds and deploys one Cloud Run service in `asia-south1` (Mumbai).
+- **Deploy:** free on Render + Supabase, or Cloud Run: [AUDIT.md step 4](AUDIT.md). It is one Docker image either way.
 
 Dataset credits:
 - AI4I 2020 (S. Matzka, UCI)

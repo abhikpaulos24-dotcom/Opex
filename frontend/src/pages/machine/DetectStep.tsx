@@ -19,7 +19,7 @@ export function DetectStep({ report }: { report: MachineReport }) {
   const shown = showAll ? anomalies : anomalies.slice(0, SHOWN_FIRST);
 
   return (
-    <Card title={<StepTitle step="detect" />} id="detect">
+    <Card title={<StepTitle step="detect" />} id="detect" className="step">
       {state === "breakdown" && <p><b>This machine has broken down</b> and is being repaired.</p>}
       {state === "maintenance" && (
         <p>
@@ -31,7 +31,7 @@ export function DetectStep({ report }: { report: MachineReport }) {
       {state === "idle" && (
         <p>This machine is idle.{report.state_detail.idle_waste && " Its spindle and coolant are still running while it waits."}</p>
       )}
-      {anomalies.length === 0 && state === "running" && <p className="muted">All signals are inside their normal ranges.</p>}
+      {anomalies.length === 0 && state === "running" && <p className="muted" style={{ margin: 0 }}>Every signal is inside its normal range. Nothing to flag.</p>}
 
       <ul className="stack" style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {shown.map((x) => (
@@ -46,8 +46,8 @@ export function DetectStep({ report }: { report: MachineReport }) {
         ))}
       </ul>
       {anomalies.length > SHOWN_FIRST && (
-        <button className="btn small" style={{ marginTop: 8 }} aria-expanded={showAll} onClick={() => setShowAll(!showAll)}>
-          {showAll ? "Show fewer" : `Show all ${anomalies.length} signals`}
+        <button className="btn small ghost" style={{ marginTop: 8 }} aria-expanded={showAll} onClick={() => setShowAll(!showAll)}>
+          {showAll ? "Show the main 3 only" : `Show all ${anomalies.length} signals`}
         </button>
       )}
       {anomalies.length > 0 && <p className="small muted" style={{ margin: "8px 0 0" }}>Green band = normal range. Line = reading now.</p>}
@@ -64,7 +64,7 @@ function DataHealth({ report }: { report: MachineReport }) {
     <div style={{ marginTop: 14, padding: 12, borderRadius: 10, background: "var(--surface-2)" }}>
       <div className="row between"><b><Term name="data_health" /> {dh.score}/100</b><span className="small muted">{dh.completeness_pct}% of readings present</span></div>
       {dh.issues.length === 0
-        ? <p className="small muted" style={{ margin: 0 }}>Sensors look trustworthy.</p>
+        ? <p className="small muted" style={{ margin: 0 }}>The sensors can be trusted.</p>
         : <ul className="small" style={{ margin: "4px 0 0", paddingLeft: 18 }}>{dh.issues.map((i) => <li key={i.text}>{i.text}</li>)}</ul>}
       {reduced && (
         <p className="small" style={{ margin: "6px 0 0" }}>

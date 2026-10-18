@@ -1,70 +1,71 @@
 # How to run OpEx
 
-This guide assumes no technical knowledge. Follow the steps for your computer. The first start takes about 5 minutes; after that it takes about 15 seconds.
+This guide assumes no technical knowledge. Pick **one** of the two ways below. Either way, the first start takes a few minutes and later starts take about 15 seconds.
 
 You do **not** need any keys or accounts to try OpEx. Keys are optional extras, explained in [AUDIT.md](AUDIT.md).
 
 ---
 
-## On a Mac
+## Way 1 (easiest): Docker Desktop
 
-1. **Get the OpEx folder.** If you have a link to the GitHub page, click the green **Code** button → **Download ZIP**, then double-click the ZIP to unzip it.
-2. Open the folder and **double-click `start.command`**.
-   - If the Mac says *"cannot be opened because it is from an unidentified developer"*:
-     1. **Right-click** (or Control-click) `start.command` and choose **Open**, then **Open** again.
-     2. You only need to do this once.
-3. A black Terminal window opens and shows progress. The first time, it:
-   - installs a small tool called *uv*, which installs the right version of Python,
-   - installs OpEx's packages,
-   - creates your settings file.
-4. After a short while, your web browser opens **http://localhost:8000** by itself.
-5. **Keep the Terminal window open** while you use OpEx. To stop OpEx, click the Terminal window and press `Ctrl + C`, or just close it.
+Docker runs OpEx in a sealed box, so you don't install Python or anything else.
 
-## On Windows
-
-1. Download and unzip the OpEx folder as above.
-2. **Double-click `start.bat`**.
-   - If Windows shows *"Windows protected your PC"*, click **More info** → **Run anyway**.
-3. A black window opens and installs everything the first time. Your browser then opens **http://localhost:8000**.
-4. Keep the window open while you use OpEx. Close it to stop.
-
-## On Linux
-
-Open a terminal in the OpEx folder and run:
+1. Install **Docker Desktop** from https://www.docker.com/products/docker-desktop and open it. Wait until it says it is running.
+2. Get the OpEx folder. From a GitHub page: green **Code** button → **Download ZIP**, then unzip it.
+3. Open a terminal in the OpEx folder:
+   - **Mac:** right-click the folder → *New Terminal at Folder*.
+   - **Windows:** open the folder, click the address bar, type `cmd`, press Enter.
+4. Create your settings file, then start OpEx:
 
 ```bash
-./start.sh
-```
-
-## With Docker Desktop (any computer)
-
-1. Install Docker Desktop from https://www.docker.com/products/docker-desktop and open it.
-2. In the OpEx folder, open a terminal and run:
-
-```bash
+cp .env.example .env
 docker compose up --build
 ```
 
-3. When it is ready, open **http://localhost:8080**.
+   (On Windows Command Prompt use `copy .env.example .env` for the first line.)
+
+5. When the text stops scrolling, open **http://localhost:8080**.
+6. To stop OpEx, click the terminal window and press `Ctrl + C`.
+
+## Way 2: Without Docker (needs Python 3.12 or newer)
+
+1. Install Python from https://www.python.org/downloads/ (on Windows, tick *Add Python to PATH*).
+2. Open a terminal in the OpEx folder (see above) and run these lines one at a time.
+
+**Mac or Linux**
+```bash
+cp .env.example .env
+python3 -m venv .venv
+.venv/bin/pip install -r backend/requirements.txt
+.venv/bin/uvicorn app.main:app --app-dir backend --port 8000
+```
+
+**Windows (Command Prompt)**
+```bash
+copy .env.example .env
+python -m venv .venv
+.venv\Scripts\pip install -r backend\requirements.txt
+.venv\Scripts\uvicorn app.main:app --app-dir backend --port 8000
+```
+
+3. Open **http://localhost:8000**. Keep the terminal open while you use OpEx, and press `Ctrl + C` to stop it.
+
+The web app and the trained AI models are already included, so you don't need Node.js or any training step.
 
 ---
 
 ## Signing in
 
-On the sign-in page you can:
-- click **Explore as a guest (read-only)**, or
-- click one of the demo accounts to fill in the form, then **Sign in**.
+Real people sign in with **Google** (the button on the sign-in page). That needs a one-time setup by the plant manager: [AUDIT.md, step 2b](AUDIT.md). The first manager then adds everyone else, using their Google emails in **Settings → People and roles**.
 
-All demo accounts use the password **`OpEx-demo-2026`**.
+To just try OpEx, you don't need Google. In demo mode the sign-in page has a list of demo accounts: choose one and click **Log in**. There is nothing to type.
 
 | Account | Role | What you can do |
 |---|---|---|
-| `manager@opex.demo` | Plant manager | Everything, including Settings → Demo controls |
-| `engineer@opex.demo` | Maintenance engineer | Approve or reject repairs and stops |
-| `operator@opex.demo` | Machine operator | Acknowledge alerts, approve small actions |
-| `viewer@opex.demo` | Viewer | Look around, ask questions, run simulations |
+| Priya Deshmukh | Plant manager | Everything, including Settings → Demo controls |
+| Arjun Nair | Maintenance engineer | Approve or reject any action, acknowledge alerts |
 
-To make the screen easier to read, click the **T** button at the top. You can choose larger text, dark or high-contrast colours, a reading-friendly font, simpler words, less motion, and the language for AI answers and read-aloud.
+To make the screen easier to read, click the **T** button at the top. You can choose larger text, dark or high-contrast colours, a reading-friendly font (including OpenDyslexic), simpler words, less motion, and the language for AI answers and read-aloud.
 
 A few things that help while you look around:
 - The numbers update by themselves every few seconds. The dot at the top is **green** while data is live. Click **Pause** (⏸) to stop the updates while you read, and **Resume** when you're done.
@@ -107,9 +108,9 @@ The free key allows a limited number of AI answers per day. If you use them up, 
 
 Full details (Vertex AI, Supabase and Google Cloud) are in [AUDIT.md](AUDIT.md).
 
-## Putting OpEx online
+## Putting OpEx online (free)
 
-Follow [AUDIT.md, step 4](AUDIT.md#step-4-google-cloud-project-to-put-opex-online-on-cloud-run). It comes down to installing `gcloud`, signing in, and running `./deploy/deploy_cloud_run.sh`, which gives you a public link.
+Follow [AUDIT.md, step 4](AUDIT.md#step-4-put-opex-online-for-free). It uses **Render** (free hosting) and **Supabase** (free database), and needs no Google Cloud project.
 
 ---
 
@@ -119,20 +120,20 @@ Follow [AUDIT.md, step 4](AUDIT.md#step-4-google-cloud-project-to-put-opex-onlin
 |---|---|
 | The browser didn't open | Open **http://localhost:8000** yourself. |
 | *"Address already in use"* / port 8000 busy | Another OpEx window is already running. Close it, or restart the computer. |
-| *"command not found: curl"* or the uv install fails | Install uv by hand from https://docs.astral.sh/uv/getting-started/installation/, then start again. |
-| The first start is slow | Normal. It downloads Python and packages (about 400 MB). Later starts are fast. |
-| *"Please sign in"* after a restart | Your `.env` has no `SECRET_KEY`. The start script adds one; see AUDIT.md step 1. |
+| *"python: command not found"* (Way 2) | Install Python from https://www.python.org/downloads/ and open a new terminal. On Mac try `python3` instead of `python`. |
+| *"Cannot connect to the Docker daemon"* (Way 1) | Open Docker Desktop and wait until it says it is running. |
+| The first start is slow | Normal. It downloads packages (a few hundred MB). Later starts are fast. |
+| *"Please sign in"* after every restart | Your `.env` has no `SECRET_KEY`, so logins are forgotten on restart. Add one (AUDIT.md step 1). |
 | Supabase error on start | Check `DATABASE_URL` (AUDIT.md step 2), especially the password and special characters. Remove the line to fall back to the local database. |
 | Gemini answers still say "Rule-based" | Check the key, save `.env`, restart. **Data & models → Google Cloud services** shows whether Gemini is on. If it worked earlier today, the free daily limit may be used up; it resets the next day. |
 | The numbers stopped changing | Look at the top bar. If it says **Paused**, click Resume (▶). If it says **Connection lost**, the OpEx window was closed or the computer slept; start OpEx again. |
 | A machine says "stopped for a short routine job" | Normal: it's changing a tool. Its forecast still shows, based on its last minutes of cutting. |
-| I want a clean start | Stop OpEx, delete `data/opex.db`, start again. This only resets the local database. |
-| Windows: `start.bat` closes immediately | Open *Command Prompt*, go to the folder (`cd path\to\opex`) and run `start.bat` to read the message. |
+| I want a clean start | Stop OpEx, delete `data/opex.db`, start again (with Docker: `docker compose down -v`). This only resets the local database. |
 
 ## For developers
 
 ```bash
-# backend with auto-reload (uses .venv created by the start script)
+# backend with auto-reload (uses the .venv from Way 2; also run: .venv/bin/pip install -r backend/requirements-dev.txt)
 cd backend && ../.venv/bin/uvicorn app.main:app --reload --port 8000
 ```
 
@@ -142,7 +143,7 @@ cd frontend && npm install && npm run dev
 ```
 
 ```bash
-# tests: 32 tests, every API route for every role (about 15 s)
+# tests: every API route for every role, plus Google sign-in and the admin roles (38 tests, about 17 s)
 cd backend && ../.venv/bin/python -m pytest -q
 ```
 

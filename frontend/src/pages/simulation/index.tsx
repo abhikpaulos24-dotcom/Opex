@@ -49,7 +49,7 @@ export default function Simulation() {
           </div>
         </div>
         <details style={{ marginTop: 12 }}>
-          <summary style={{ cursor: "pointer", fontWeight: 600 }}>Advanced assumptions</summary>
+          <summary style={{ cursor: "pointer", fontWeight: 600 }}>Assumptions you can change</summary>
           <div className="grid grid-3" style={{ marginTop: 10 }}>
             <label className="field">People follow the advice: {pct(adoption)}
               <input type="range" min={0.5} max={1} step={0.05} value={adoption} onChange={(e) => setAdoption(Number(e.target.value))} />
@@ -64,7 +64,7 @@ export default function Simulation() {
         </details>
         <div className="row" style={{ marginTop: 14 }}>
           <button className="btn primary" onClick={() => start.mutate()} disabled={start.isPending} style={{ fontSize: "1.05rem" }}>
-            <Play size={20} aria-hidden /> {start.isPending ? "Simulating…" : `Simulate ${years} year${years === "1" ? "" : "s"}`}
+            <Play size={20} aria-hidden /> {start.isPending ? "Running both factories…" : `Run ${years} year${years === "1" ? "" : "s"}`}
           </button>
           {start.isPending && <span className="muted" role="status">Simulating {(Number(years) * 8760 * 24 * 2 / 1e6).toFixed(1)} million machine-hours (two factories × 24 machines)…</span>}
         </div>

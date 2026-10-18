@@ -10,3 +10,4 @@ data/opex.db*
 storage
 pitch
 data/raw/azure_pdm/PdM_telemetry.csv
+new-env/

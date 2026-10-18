@@ -31,7 +31,11 @@ class Settings(BaseSettings):
     # --- Demo behaviour ---
     demo_mode: bool = True  # seed demo users + show demo controls
     demo_password: str = "OpEx-demo-2026"
-    allow_signup: bool = True
+    allow_signup: bool = False  # retired: a Google account must always be added by a manager first
+
+    # --- Sign-in: Google (free). The email below becomes the first plant manager and can never be demoted. ---
+    google_oauth_client_id: str = ""
+    master_admin_email: str = "srihithapulapa1@gmail.com"
     live_plant_speed: float = 10.0  # plant minutes per real minute
 
     # --- Gemini (Vertex AI or Gemini API key) ---
@@ -56,9 +60,13 @@ class Settings(BaseSettings):
         return self.env.lower() == "production"
 
     @property
+    def local_database_url(self) -> str:
+        return f"sqlite:///{DATA_DIR / 'opex.db'}"
+
+    @property
     def sqlalchemy_url(self) -> str:
         if not self.database_url:
-            return f"sqlite:///{DATA_DIR / 'opex.db'}"
+            return self.local_database_url
         # Supabase gives "postgresql://..."; SQLAlchemy needs the psycopg 3 driver name.
         url = self.database_url
         for prefix in ("postgres://", "postgresql://"):

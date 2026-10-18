@@ -37,7 +37,11 @@ def overview(user: User = Depends(current_user), db: Session = Depends(get_db)):
     alerts.sync(db, all_machine_reports(), plant.minute, data["plant_time"])
     learning.check_outcomes(db)
     open_alerts = db.scalars(select(Alert).where(Alert.status == "open").order_by(Alert.created_at.desc())).all()
-    return {**data, "alerts": [_alert_out(a) for a in open_alerts[:20]], "open_alert_count": len(open_alerts)}
+    return {
+        **data,
+        "alerts": [_alert_out(a) for a in open_alerts[:20]],
+        "open_alert_count": len(open_alerts),
+    }
 
 
 @router.get("/machines/{machine_id}")
@@ -101,7 +105,7 @@ def _alert_out(a: Alert) -> dict:
 
 
 @router.get("/alerts")
-def list_alerts(status: str = "open", _: User = Depends(current_user), db: Session = Depends(get_db)):
+def list_alerts(status: str = "open", user: User = Depends(current_user), db: Session = Depends(get_db)):
     query = select(Alert).order_by(Alert.created_at.desc()).limit(100)
     if status != "all":
         query = query.where(Alert.status == status)
@@ -147,7 +151,7 @@ def list_incidents(_: User = Depends(current_user), db: Session = Depends(get_db
 
 
 @router.get("/incidents/{incident_id}")
-def incident_detail(incident_id: str, _: User = Depends(current_user), db: Session = Depends(get_db)):
+def incident_detail(incident_id: str, user: User = Depends(current_user), db: Session = Depends(get_db)):
     incident = db.get(Incident, incident_id)
     if not incident:
         raise HTTPException(404, "Incident not found.")

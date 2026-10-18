@@ -38,7 +38,7 @@ Free-tier details: https://cloud.google.com/free
    - Files starting with a dot are hidden.
      - **Mac:** press `Cmd + Shift + .` in Finder to show them.
      - **Windows:** in File Explorer, click View → Show → Hidden items.
-   - Can't find `.env`? Copy **`.env.example`** and rename the copy to `.env`. The start script also creates it for you.
+   - Can't find `.env`? Copy **`.env.example`** and rename the copy to `.env`. (HOW_TO_RUN.md shows the copy command.)
 3. Open `.env` with a plain text editor: **TextEdit** on Mac, **Notepad** on Windows.
    - On Mac, if TextEdit shows formatting, choose Format → Make Plain Text.
 4. Each line looks like `NAME=value`. Paste your value right after the `=`. No spaces, no quote marks.
@@ -51,7 +51,7 @@ Free-tier details: https://cloud.google.com/free
 ## Step 1: `SECRET_KEY` (session security)
 
 **What it is:** a long random password the server uses to sign logins.
-**Do I need it?** It's already filled in if you used the start script. You must set one before putting OpEx online.
+**Do I need it?** Optional on your own computer (logins are then forgotten whenever you restart). **Required** before putting OpEx online.
 
 1. To make a new one, open Terminal (Mac) or PowerShell (Windows) and paste:
    ```bash
@@ -89,7 +89,36 @@ Changing it logs everyone out once. Nothing else happens.
    3. Replace `[YOUR-PASSWORD]` (including the brackets) with the database password from step 2.
       - If the password contains `@ # / ? %` or spaces, replace each one with its code: `@`→`%40`, `#`→`%23`, `/`→`%2F`, `?`→`%3F`, `%`→`%25`, space→`%20`.
 5. Paste the whole line after `DATABASE_URL=`.
-6. Restart OpEx. The start window should say `database: Supabase/Postgres connected`. In Supabase → **Table Editor** you will see `app_users` with 4 demo accounts.
+6. Restart OpEx. The start-up text should say `database: Supabase/Postgres connected`. In Supabase → **Table Editor** you will see `app_users` with 4 demo accounts.
+
+---
+
+## Step 2b: Google sign-in (`GOOGLE_OAUTH_CLIENT_ID`) and the first manager
+
+**What it is:** how people sign in. They click "Sign in with Google", so there are no passwords to hand out. It is free.
+**Do I need it?** To try OpEx, no: demo mode has demo accounts you pick from a list. For real people, yes.
+
+1. Go to **https://console.cloud.google.com** → pick your project (or create one, as in step 4.1). No billing is needed for this.
+2. Left menu → **APIs & Services → OAuth consent screen** (also called *Google Auth platform*).
+   - User type **External**, app name `OpEx`, your email as support and developer contact. Save.
+   - While the app is in **Testing**, add the Google emails of the people who will sign in under **Test users**. Click **Publish app** when you want anyone to be able to try (basic sign-in needs no Google review).
+3. **APIs & Services → Credentials → Create credentials → OAuth client ID** → type **Web application**.
+   - **Authorised JavaScript origins**: add `http://localhost:8000` (running on your computer) and, once online, your Cloud Run link (`https://opex-…run.app`). No redirect URI is needed.
+   - Click **Create**, then copy the **Client ID** (it ends in `.apps.googleusercontent.com`). It is not a secret.
+4. In `.env`:
+   ```
+   GOOGLE_OAUTH_CLIENT_ID=1234567890-abc….apps.googleusercontent.com
+   MASTER_ADMIN_EMAIL=srihithapulapa1@gmail.com
+   ```
+5. Restart OpEx. The sign-in page now shows the Google button.
+
+**Who can do what:**
+- The **first plant manager** is the Google account in `MASTER_ADMIN_EMAIL`. Sign in with it, open **Settings → People and roles**, and add everyone else by their Google email, as a manager or an engineer. It can never be demoted or switched off from the app.
+- A Google account nobody added is turned away. Managers add people one by one.
+
+**If you use Supabase and created the tables earlier:** run `database/05_two_roles.sql` once in the SQL Editor (it moves everyone onto the two roles). New projects don't need it.
+
+**For real use, set `DEMO_MODE=false`.** That removes the demo accounts and the password form, so Google is the only way in.
 
 ---
 
@@ -107,7 +136,7 @@ Changing it logs everyone out once. Nothing else happens.
    GEMINI_API_KEY=AIza...your key...
    GOOGLE_GENAI_USE_VERTEXAI=false
    ```
-5. Restart OpEx. The start window says `Gemini via API key`.
+5. Restart OpEx. The start-up text says `Gemini: on`.
 6. Check it: on **Data & models → Google Cloud services**, Gemini shows **on**. In **Ask OpEx**, answers now say "Gemini · grounded on plant tools". On a machine page, **Photo check of a part** now gives a verdict.
 
 The free key has a daily limit. When it runs out (or Gemini is busy), OpEx answers that question with its rule-based version, labelled "Rule-based", and tries Gemini again on the next question. Nothing breaks.
@@ -142,22 +171,50 @@ Note: the `gemini-2.5-*` models retire on Vertex AI on 20 Oct 2026, so don't use
 
 ---
 
-## Step 4: Google Cloud project (to put OpEx online on Cloud Run)
+## Step 4: Put OpEx online for free
 
-1. Go to **https://console.cloud.google.com** → top bar project picker → **New project** → name it `opex` → **Create**.
-2. **Billing:** left menu → **Billing** → link a billing account. Cloud Run needs one even when you stay inside its free allowance. OpEx shuts down when nobody is using it, so at demo scale it usually stays free or costs a few rupees a month (see *What it costs* at the top). To be safe, set a budget alert: **Billing → Budgets & alerts → Create budget**, e.g. ₹500.
-3. **Install the gcloud tool:** https://cloud.google.com/sdk/docs/install. Then in Terminal:
+OpEx is one Docker container, so any host that runs a Dockerfile can run it. Pick one.
+
+### Option A: Render + Supabase (free, no Google Cloud project)
+
+1. Put the OpEx folder on **GitHub** (a private repository is fine). `.env` is git-ignored, so your keys are **not** uploaded.
+2. Set up the free **Supabase** database (step 2) and keep its `DATABASE_URL`. This matters: Render's free hosting erases local files whenever it goes to sleep, so without Supabase every person you added would be forgotten.
+3. Go to **https://render.com** → sign in with GitHub → **New → Web Service** → choose your OpEx repository.
+   - **Language / Runtime:** Docker (Render finds the `Dockerfile`).
+   - **Instance type:** Free.
+4. Under **Environment**, add these variables (the same names as in `.env`; paste each value yourself):
+
+   | Name | Value |
+   |---|---|
+   | `ENV` | `production` |
+   | `SECRET_KEY` | a long random text (step 1) |
+   | `DATABASE_URL` | from Supabase (step 2) |
+   | `GOOGLE_OAUTH_CLIENT_ID` | from step 2b |
+   | `MASTER_ADMIN_EMAIL` | `srihithapulapa1@gmail.com` |
+   | `GEMINI_API_KEY` | from step 3A (optional) |
+   | `DEMO_MODE` | `false` for real use, `true` to keep the demo accounts |
+
+5. Click **Create Web Service**. After a few minutes Render shows your link (`https://…onrender.com`).
+6. Add that link to **Authorised JavaScript origins** in your Google client (step 2b), or the Google button will fail.
+
+Good to know: the free service goes to sleep after 15 minutes without visitors and takes about a minute to wake. The live plant simulation starts over each time it wakes; your people, decisions and settings stay safe in Supabase.
+
+### Option B: Google Cloud Run (needs a Google Cloud project with billing)
+
+1. Create a project at **https://console.cloud.google.com** (name `opex`). Link a billing account (**Billing**); Cloud Run needs one even inside its free allowance. Set a budget alert (**Billing → Budgets & alerts**), e.g. ₹500.
+2. Install the gcloud tool (https://cloud.google.com/sdk/docs/install), then in Terminal:
    ```bash
    gcloud auth login
    gcloud config set project opex-123456
+   gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com
    ```
-4. In `.env`, set `GOOGLE_CLOUD_PROJECT=opex-123456` and a real `SECRET_KEY` (step 1).
-5. Deploy from the OpEx folder:
+3. From the OpEx folder, deploy (replace the values with your own, as in the table above):
    ```bash
-   ./deploy/deploy_cloud_run.sh
+   gcloud run deploy opex --source . --region asia-south1 --allow-unauthenticated \
+     --memory 2Gi --cpu 2 --min-instances 0 --max-instances 1 \
+     --set-env-vars "ENV=production,SECRET_KEY=...,DATABASE_URL=...,GOOGLE_OAUTH_CLIENT_ID=...,GEMINI_API_KEY=..."
    ```
-   The script switches on the needed Google services, builds the app and deploys **one Cloud Run service** in Mumbai (`asia-south1`). After about 5 minutes it prints the public link (`https://opex-…run.app`).
-   - Settings from `.env` are copied into Cloud Run. The `.env` file itself is never uploaded.
+   `--max-instances 1` keeps one shared live plant. It scales to zero when nobody is visiting. The command prints your public link (`https://opex-…run.app`).
 
 ---
 
@@ -217,9 +274,9 @@ Cloud Run runs as the **Compute Engine default service account** (`PROJECT_NUMBE
 
 | Setting | Meaning | Default |
 |---|---|---|
-| `DEMO_MODE` | Creates 4 demo accounts, the guest button and demo controls | `true` (keep it on for judging) |
+| `DEMO_MODE` | Creates 2 demo accounts (pick one and log in) and the demo controls. Set `false` for real use | `true` (keep it on for judging) |
 | `DEMO_PASSWORD` | Password of the demo accounts. Only used when they are first created | `OpEx-demo-2026` |
-| `ALLOW_SIGNUP` | People can create read-only accounts themselves | `true` |
+| `MASTER_ADMIN_EMAIL` | The Google account that becomes the first plant manager | `srihithapulapa1@gmail.com` |
 | `LIVE_PLANT_SPEED` | Plant minutes per real minute. `10` makes demos lively; `1` is real time | `10` |
 | `ENV` | `production` on Cloud Run (the deploy script sets it) | `development` |
 | `LOG_LEVEL` | `INFO` normally, `DEBUG` when troubleshooting | `INFO` |
@@ -233,6 +290,7 @@ Cloud Run runs as the **Compute Engine default service account** (`PROJECT_NUMBE
 |---|---|---|---|
 | `SECRET_KEY` | Yes, online | Step 1 (random) | `Xy7…48 chars` |
 | `DATABASE_URL` | Optional | Supabase → Connect → Session pooler | `postgresql://postgres.abc:pass@aws-0-ap-south-1.pooler.supabase.com:5432/postgres` |
+| `GOOGLE_OAUTH_CLIENT_ID` | For real sign-in | Google Cloud → APIs & Services → Credentials (step 2b) | `1234…apps.googleusercontent.com` |
 | `GEMINI_API_KEY` | Option A | aistudio.google.com → Get API key | `AIza…` |
 | `GOOGLE_GENAI_USE_VERTEXAI` | Option B | `true` to use Vertex AI | `true` |
 | `GOOGLE_CLOUD_PROJECT` | Option B / deploy | Cloud Console project ID | `opex-123456` |

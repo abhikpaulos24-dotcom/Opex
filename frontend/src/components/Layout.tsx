@@ -1,4 +1,4 @@
-import { Bell, BookOpenCheck, Brain, Database, Factory, ListChecks, LogOut, Menu, MessageCircle, Pause, Play, Settings as SettingsIcon, Type, X } from "lucide-react";
+import { Bell, BookOpenCheck, ChevronDown, Factory, LineChart, ListChecks, LogOut, Menu, MessageCircle, Pause, Play, Settings as SettingsIcon, Type, X } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { useLive } from "../lib/live";
@@ -7,14 +7,17 @@ import { useSession } from "../lib/session";
 import type { Alert } from "../lib/types";
 import { AccessibilityPanel } from "./AccessibilityPanel";
 
-const NAV = [
-  { to: "/", label: "Overview", icon: Factory },
-  { to: "/actions", label: "Actions", icon: ListChecks },
-  { to: "/copilot", label: "Ask OpEx", icon: MessageCircle },
-  { to: "/simulation", label: "5-year simulation", icon: Brain },
-  { to: "/learning", label: "Learning log", icon: BookOpenCheck },
-  { to: "/data", label: "Data & models", icon: Database },
-  { to: "/settings", label: "Settings", icon: SettingsIcon },
+// Shallow navigation, grouped by what a person is doing: running today's shift, or understanding the system.
+const NAV: { group: string; items: { to: string; label: string; icon: typeof Factory }[] }[] = [
+  { group: "Today", items: [
+    { to: "/", label: "Overview", icon: Factory },
+    { to: "/actions", label: "Actions", icon: ListChecks },
+    { to: "/copilot", label: "Ask OpEx", icon: MessageCircle },
+  ] },
+  { group: "Understand", items: [
+    { to: "/simulation", label: "5-year simulation", icon: LineChart },
+    { to: "/learning", label: "Learning log", icon: BookOpenCheck },
+  ] },
 ];
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -41,55 +44,64 @@ export function Layout({ children }: { children: ReactNode }) {
     }
     const fresh = data.alerts.filter((a) => !seen.current!.has(a.id) && ["critical", "high"].includes(a.severity));
     seen.current = ids;
-    // Toasts stay until dismissed (no time limit to read them); at most 3 on screen.
-    if (fresh.length) setToasts((t) => [...t, ...fresh].slice(-3));
+    // Toasts stay until dismissed (no time limit to read them); at most 3 on screen, one per machine and title.
+    if (fresh.length) {
+      setToasts((t) => {
+        const merged = [...t];
+        for (const a of fresh) if (!merged.some((x) => x.machine_id === a.machine_id && x.title === a.title)) merged.push(a);
+        return merged.slice(-3);
+      });
+    }
   }, [data]);
 
   const riskCount = data?.risks.filter((r) => ["critical", "high"].includes(r.severity)).length ?? 0;
+  const dismiss = (id: string) => setToasts((all) => all.filter((x) => x.id !== id));
 
   return (
     <div className={`shell ${prefs.focus ? "focus-mode" : ""}`}>
       <a className="skip-link" href="#main">Skip to main content</a>
       <header className="topbar">
-        <button className="btn icon-btn ghost menu-button" aria-label="Open menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
-          <Menu aria-hidden />
+        <button className="btn icon-btn ghost menu-button" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <X aria-hidden /> : <Menu aria-hidden />}
         </button>
         <Link to="/" className="brand" aria-label="OpEx home">
           <img src="/opex-mark.png" alt="" />
-          <span><strong>OpEx</strong><small>Team OpEx · Operations copilot</small></span>
+          <strong>OpEx</strong>
         </Link>
         <span className="spacer" />
         <LiveStatus updatedAt={overview.dataUpdatedAt} failed={overview.isError} />
         {data && (
-          <div className="clock" aria-label={`Plant time ${data.plant_time.replace("T", " ")}, ${data.shift}`}>
+          <div className="plant" aria-label={`Plant time ${data.plant_time.replace("T", " ")}, ${data.shift}`}>
             <b>{data.plant_time.slice(11, 16)} · {data.shift}</b>
             <span>Sahyadri Precision · Unit 2 (demo)</span>
           </div>
         )}
-        <Link to="/actions" className="btn icon-btn ghost" aria-label={`${data?.open_alert_count ?? 0} open alerts`}>
+        <Link to="/actions" className="btn icon-btn ghost" aria-label={`${data?.open_alert_count ?? 0} open alerts`} title="Open alerts">
           <Bell aria-hidden />
           {!!data?.open_alert_count && <span className="badge sev-high">{data.open_alert_count}</span>}
         </Link>
-        <button className="btn icon-btn ghost" onClick={() => setA11yOpen(true)} aria-label="Display and accessibility settings" title="Display and accessibility">
+        <button className="btn icon-btn ghost a11y-btn" onClick={() => setA11yOpen(true)} aria-label="Display and reading settings" title="Display and reading">
           <Type aria-hidden />
         </button>
-        <div className="row" style={{ gap: 6 }}>
-          <span className="small muted user-name" style={{ textAlign: "right", lineHeight: 1.2 }}>
-            {user?.full_name}<br />{user?.role_label}
-          </span>
-          <button className="btn icon-btn ghost top-sign-out" onClick={signOut} aria-label="Sign out" title="Sign out"><LogOut aria-hidden /></button>
-        </div>
+        <UserMenu name={user?.full_name ?? ""} role={user?.role_label ?? ""} onDisplay={() => setA11yOpen(true)} onSignOut={signOut} />
       </header>
 
       <aside className={`sidebar ${menuOpen ? "open" : ""}`}>
         <nav aria-label="Main">
-          {NAV.map(({ to, label, icon: Icon }) => (
-            <NavLink key={to} to={to} end={to === "/"} className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
-              <Icon size={20} aria-hidden /> {label}
-              {to === "/actions" && riskCount > 0 && <span className="badge sev-critical count" aria-label={`${riskCount} urgent`}>{riskCount}</span>}
-            </NavLink>
+          {NAV.map((g) => (
+            <div key={g.group} style={{ display: "contents" }}>
+              <div className="nav-group" aria-hidden>{g.group}</div>
+              {g.items.map(({ to, label, icon: Icon }) => (
+                <NavLink key={to} to={to} end={to === "/"} className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}>
+                  <Icon size={20} aria-hidden /> {label}
+                  {to === "/actions" && riskCount > 0 && <span className="badge sev-critical count" aria-label={`${riskCount} urgent`}>{riskCount}</span>}
+                </NavLink>
+              ))}
+            </div>
           ))}
-          <button className="nav-link menu-sign-out" onClick={signOut}><LogOut size={20} aria-hidden /> Sign out</button>
+          <div className="nav-group" aria-hidden>You</div>
+          <NavLink to="/settings" className={({ isActive }) => `nav-link ${isActive ? "active" : ""}`}><SettingsIcon size={20} aria-hidden /> Settings</NavLink>
+          <button className="nav-link" style={{ border: 0, background: "none", font: "inherit", cursor: "pointer", width: "100%" }} onClick={signOut}><LogOut size={20} aria-hidden /> Sign out</button>
         </nav>
       </aside>
 
@@ -97,20 +109,52 @@ export function Layout({ children }: { children: ReactNode }) {
 
       <div className="toasts" aria-live="assertive" role="status">
         {toasts.map((t) => (
-          <div key={t.id} className="toast" style={{ borderColor: `var(--${t.severity})` }}>
+          <div key={t.id} className="toast" style={{ "--toast-color": `var(--${t.severity})` } as React.CSSProperties}>
             <div className="row between">
-              <strong className={`badge sev-${t.severity}`}>{t.severity === "critical" ? "Critical" : "High"}</strong>
-              <button className="btn icon-btn ghost" style={{ minHeight: 36, minWidth: 36 }} aria-label="Dismiss"
-                onClick={() => setToasts((all) => all.filter((x) => x.id !== t.id))}><X size={18} aria-hidden /></button>
+              <strong className={`badge sev-${t.severity}`}>{t.severity === "critical" ? "Critical · act now" : "High · act today"}</strong>
+              <button className="btn icon-btn ghost" style={{ minHeight: 36, minWidth: 36 }} aria-label="Dismiss" onClick={() => dismiss(t.id)}><X size={18} aria-hidden /></button>
             </div>
             <p style={{ margin: "6px 0 2px", fontWeight: 700 }}>{t.title}</p>
             <p className="small muted" style={{ margin: 0 }}>{t.message}</p>
-            <Link className="btn small" style={{ marginTop: 8 }} to={`/machines/${t.machine_id}`}
-              onClick={() => setToasts((all) => all.filter((x) => x.id !== t.id))}>Open {t.machine_id}</Link>
+            <Link className="btn small primary" style={{ marginTop: 10 }} to={`/machines/${t.machine_id}`} onClick={() => dismiss(t.id)}>Open {t.machine_id}</Link>
           </div>
         ))}
       </div>
       <AccessibilityPanel open={a11yOpen} onClose={() => setA11yOpen(false)} />
+    </div>
+  );
+}
+
+function initials(name: string): string {
+  return name.split(/\s+/).filter(Boolean).slice(0, 2).map((p) => p[0]?.toUpperCase()).join("") || "?";
+}
+
+/** Who is signed in, and the two things people look for under their name. */
+function UserMenu({ name, role, onDisplay, onSignOut }: { name: string; role: string; onDisplay: () => void; onSignOut: () => void }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!open) return;
+    const onDoc = (e: MouseEvent) => { if (!ref.current?.contains(e.target as Node)) setOpen(false); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
+  }, [open]);
+  return (
+    <div className="menu" ref={ref}>
+      <button className="btn ghost" style={{ padding: "6px 8px", gap: 6 }} aria-haspopup="menu" aria-expanded={open} aria-label={`Account: ${name}, ${role}`} onClick={() => setOpen(!open)}>
+        <span aria-hidden style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--brand-soft)", color: "var(--brand-strong)", display: "grid", placeItems: "center", fontWeight: 700, fontSize: "0.85rem" }}>{initials(name)}</span>
+        <ChevronDown size={16} aria-hidden />
+      </button>
+      {open && (
+        <div className="menu-panel" role="menu">
+          <div className="who"><b>{name}</b>{role}</div>
+          <button className="menu-item" role="menuitem" onClick={() => { setOpen(false); onDisplay(); }}><Type size={18} aria-hidden /> Display and reading</button>
+          <Link className="menu-item" role="menuitem" to="/settings" onClick={() => setOpen(false)}><SettingsIcon size={18} aria-hidden /> Settings</Link>
+          <button className="menu-item" role="menuitem" onClick={onSignOut}><LogOut size={18} aria-hidden /> Sign out</button>
+        </div>
+      )}
     </div>
   );
 }

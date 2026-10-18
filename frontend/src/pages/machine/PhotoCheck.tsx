@@ -23,7 +23,7 @@ const VERDICT = {
   reject: { label: "Reject this part", css: "sev-critical", icon: OctagonAlert },
 };
 
-/** Operator takes a photo of a finished part; Gemini looks for visible defects and links them to this machine. */
+/** Anyone on the floor takes a photo of a finished part; Gemini looks for visible defects and links them to this machine. */
 export function PhotoCheck({ machineId }: { machineId: string }) {
   const { prefs, config } = useSession();
   const [file, setFile] = useState<File | null>(null);
@@ -59,7 +59,7 @@ export function PhotoCheck({ machineId }: { machineId: string }) {
         </button>
       </div>
       {preview && <img src={preview} alt="The part you selected" style={{ maxWidth: 240, maxHeight: 180, borderRadius: 10, marginTop: 10, objectFit: "cover" }} />}
-      {check.isPending && <Loading label="Gemini is looking at the photo" />}
+      {check.isPending && <Loading label="Looking at the photo for burrs, chatter, burns and cracks" />}
       {check.error ? <ErrorBox error={check.error} /> : null}
       {r && !r.available && <p role="status" className="banner sev-info" style={{ marginTop: 10 }}><span className="text">{r.message}</span></p>}
       {r?.available && <Verdict result={r} />}

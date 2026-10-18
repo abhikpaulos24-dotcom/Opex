@@ -1,4 +1,4 @@
-import { AlertCircle, AlertTriangle, CheckCircle2, HelpCircle, Loader2, OctagonAlert, OctagonX, Pause, Play, Square, Volume2, Wrench } from "lucide-react";
+import { AlertCircle, AlertTriangle, CheckCircle2, HelpCircle, Inbox, Loader2, OctagonAlert, OctagonX, Pause, Play, Sparkles, Square, Volume2, Wrench } from "lucide-react";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { canSpeak, speak } from "../lib/speech";
 import { useSession } from "../lib/session";
@@ -11,12 +11,12 @@ export const SEVERITY: Record<string, { label: string; plain: string; icon: type
   low: { label: "OK", plain: "No action", icon: CheckCircle2 },
 };
 
-export function SeverityBadge({ level }: { level: string }) {
+export function SeverityBadge({ level, short }: { level: string; short?: boolean }) {
   const s = SEVERITY[level] ?? SEVERITY.low;
   const Icon = s.icon;
   return (
     <span className={`badge sev-${level}`}>
-      <Icon size={15} aria-hidden /> {s.label} · {s.plain}
+      <Icon size={15} aria-hidden /> {short ? s.plain : <>{s.label} · {s.plain}</>}
     </span>
   );
 }
@@ -35,13 +35,14 @@ export function StateBadge({ state }: { state: string }) {
   return <span className={`badge ${s.cls}`}><Icon size={14} aria-hidden /> {s.label}</span>;
 }
 
+/** A boxed block. Use it for things a person acts on; plain sections are calmer for everything else. */
 export function Card({ title, sub, icon, actions, children, className = "", id }: {
   title?: ReactNode; sub?: ReactNode; icon?: ReactNode; actions?: ReactNode; children: ReactNode; className?: string; id?: string;
 }) {
   return (
-    <section id={id} className={`card ${className}`} aria-labelledby={id ? `${id}-title` : undefined}>
+    <section id={id} className={`card ${className}`} aria-labelledby={id && title ? `${id}-title` : undefined}>
       {(title || actions) && (
-        <div className="row between" style={{ marginBottom: sub ? 2 : 10 }}>
+        <div className="row between" style={{ marginBottom: sub ? 2 : 12 }}>
           {title && <h2 id={id ? `${id}-title` : undefined}>{icon}{title}</h2>}
           {actions && <div className="row">{actions}</div>}
         </div>
@@ -49,6 +50,58 @@ export function Card({ title, sub, icon, actions, children, className = "", id }
       {sub && <p className="sub">{sub}</p>}
       {children}
     </section>
+  );
+}
+
+/** A heading and its content with no box around it. Most of a page should be sections, not cards. */
+export function Section({ title, sub, icon, actions, children, className = "", id }: {
+  title: ReactNode; sub?: ReactNode; icon?: ReactNode; actions?: ReactNode; children: ReactNode; className?: string; id?: string;
+}) {
+  return (
+    <section id={id} className={`section ${className}`} aria-labelledby={id ? `${id}-title` : undefined}>
+      <div className="section-head">
+        <div>
+          <h2 id={id ? `${id}-title` : undefined}>{icon}{title}</h2>
+          {sub && <p className="sub">{sub}</p>}
+        </div>
+        {actions && <div className="row">{actions}</div>}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+/** Detail that is one click away. The summary says what is inside and how much. */
+export function More({ label, hint, children, open, id }: { label: ReactNode; hint?: ReactNode; children: ReactNode; open?: boolean; id?: string }) {
+  return (
+    <details className="more" open={open} id={id}>
+      <summary>{label}{hint && <span className="hint"> · {hint}</span>}</summary>
+      <div className="body">{children}</div>
+    </details>
+  );
+}
+
+/** An empty state that says what would be here and what to do about it. */
+export function EmptyState({ icon, title, hint, action }: { icon?: ReactNode; title: ReactNode; hint?: ReactNode; action?: ReactNode }) {
+  return (
+    <div className="empty" role="status">
+      <span className="icon" aria-hidden>{icon ?? <Inbox size={20} />}</span>
+      <div>
+        <b>{title}</b>
+        {hint && <p>{hint}</p>}
+        {action && <div style={{ marginTop: 10 }}>{action}</div>}
+      </div>
+    </div>
+  );
+}
+
+/** Marks text that an AI wrote, so it is never mistaken for a measurement. */
+export function AiTag({ source, children }: { source?: string; children?: ReactNode }) {
+  const gemini = source === undefined || source === "gemini";
+  return (
+    <span className="ai-note" title={gemini ? "Written by Gemini from live plant data" : "Rule-based, without Gemini"}>
+      <Sparkles size={14} aria-hidden /> {children ?? (gemini ? "Written by AI" : "Rule-based (no Gemini key)")}
+    </span>
   );
 }
 
@@ -62,17 +115,33 @@ export function Stat({ label, value, hint, big }: { label: ReactNode; value: Rea
   );
 }
 
+/** Say what is being done, not just "Loading". */
 export function Loading({ label = "Loading" }: { label?: string }) {
   return (
-    <div role="status" className="row muted" style={{ padding: 20 }}>
+    <div role="status" className="loading">
       <Loader2 className="spin" size={20} aria-hidden /> {label}…
     </div>
   );
 }
 
-export function ErrorBox({ error }: { error: unknown }) {
-  const message = error instanceof Error ? error.message : "Something went wrong.";
-  return <div role="alert" className="banner sev-critical"><OctagonAlert aria-hidden /><span className="text">{message}</span></div>;
+const FRIENDLY: Record<number, string> = {
+  401: "Your session has ended. Sign in again to continue.",
+  403: "Your role can't do that. A plant manager can change roles in Settings.",
+  404: "We couldn't find that. It may have been removed.",
+  429: "OpEx is busy right now. Give it a few seconds and try again.",
+};
+
+export function ErrorBox({ error, retry }: { error: unknown; retry?: () => void }) {
+  const status = (error as { status?: number })?.status;
+  const raw = error instanceof Error ? error.message : "";
+  const message = (status && FRIENDLY[status]) || (raw && !/^Request failed/.test(raw) ? raw : "That didn't go through. Check the connection and try again.");
+  return (
+    <div role="alert" className="banner sev-critical">
+      <OctagonAlert aria-hidden />
+      <span className="text">{message}</span>
+      {retry && <button className="btn small" onClick={retry}>Try again</button>}
+    </div>
+  );
 }
 
 export function ReadAloud({ text, label = "Read aloud" }: { text: string; label?: string }) {
@@ -135,6 +204,7 @@ export function PageSkeleton({ label, blocks = 3 }: { label: string; blocks?: nu
   return (
     <div className="stack" role="status" aria-label={`${label}…`}>
       <div className="skeleton" style={{ minHeight: 56, maxWidth: 420 }} />
+      <p className="small muted" style={{ margin: 0 }}>{label}…</p>
       {Array.from({ length: blocks }, (_, i) => <div key={i} className="skeleton" />)}
     </div>
   );

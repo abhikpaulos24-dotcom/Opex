@@ -27,14 +27,14 @@ export function SensorChart({ machineId, ranges }: { machineId: string; ranges: 
   const label = SIGNALS.find((s) => s.key === signal)?.label ?? signal;
 
   return (
-    <Card title="Sensor history (last 3 plant hours)" id="sensors" className="optional"
+    <Card title="Sensor history" sub="The last 3 plant hours. The shaded band is the normal operating range." id="sensors" className="optional"
       actions={<button className="btn small" onClick={() => setAsTable(!asTable)}>{asTable ? "Show chart" : "Show as table"}</button>}>
       <label className="field" style={{ maxWidth: 320, marginBottom: 10 }}>Signal
         <select value={signal} onChange={(e) => setSignal(e.target.value)}>
           {SIGNALS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
         </select>
       </label>
-      {band && <p className="small muted">Shaded band = normal operating range ({band[0]} – {band[1]}).</p>}
+      {band && <p className="small muted">Normal range for this signal: {band[0]} to {band[1]}.</p>}
       {asTable ? (
         <div className="table-wrap" style={{ maxHeight: 320 }}>
           <table>

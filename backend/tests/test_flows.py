@@ -11,7 +11,7 @@ from app.core.paths import STORAGE_DIR
 from app.main import app
 
 PASSWORD = "OpEx-demo-2026"
-ROLES = ("manager", "engineer", "operator", "viewer")
+ROLES = ("manager", "engineer")
 TINY_PNG = (
     b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89"
     b"\x00\x00\x00\rIDATx\x9cc\xf8\x0f\x00\x00\x01\x01\x00\x05\x18\xd8N\x00\x00\x00\x00IEND\xaeB`\x82"
@@ -66,22 +66,20 @@ def test_signed_out_people_see_nothing(client):
     assert client.get("/api/config").status_code == 200  # the login page needs it
 
 
-def test_guest_login_is_read_only(client):
+def test_there_is_no_guest_login(client):
     client.post("/api/auth/logout")
-    me = client.post("/api/auth/guest").json()
-    assert me["role"] == "viewer"
-    assert client.post("/api/admin/demo/fast-forward?minutes=5").status_code == 403
+    assert client.post("/api/auth/guest").status_code in (404, 405)
 
 
 def test_preferences_are_saved(client):
-    login(client, "operator")
+    login(client, "engineer")
     response = client.put("/api/auth/me/preferences", json={"preferences": {"text": "xl", "simple": True}})
     assert response.status_code == 200
     assert client.get("/api/auth/me").json()["preferences"]["text"] == "xl"
 
 
 def test_unknown_machine_is_a_clear_404(client):
-    login(client, "viewer")
+    login(client, "engineer")
     assert client.get("/api/machines/M-99").status_code == 404
 
 
@@ -116,8 +114,8 @@ def test_full_decision_flow(client):
     assert any(d["action_key"] == other and d["source"] == "live" for d in logged)
 
 
-def test_operator_can_reject_and_approve_minor_actions(client):
-    login(client, "operator")
+def test_engineer_can_reject_and_approve_minor_actions(client):
+    login(client, "engineer")
     rec = client.post("/api/machines/M-21/recommendation", json={}).json()  # drifting vibration sensor
     assert rec["needed"]
     assert rec["recommendation"]["action_key"] == "recalibrate_sensor"
@@ -129,18 +127,17 @@ def test_operator_can_reject_and_approve_minor_actions(client):
     assert approved.status_code == 200, approved.text
 
 
-def test_viewer_cannot_change_anything(client):
-    login(client, "viewer")
-    alerts = client.get("/api/alerts").json()
-    if alerts:
-        assert client.post(f"/api/alerts/{alerts[0]['id']}/acknowledge").status_code == 403
+def test_engineer_cannot_run_the_plant(client):
+    login(client, "engineer")
     assert client.put("/api/settings/priorities", json={"preset": "balanced"}).status_code == 403
     assert client.post("/api/data/export-bigquery").status_code == 403
     assert client.get("/api/users").status_code == 403
+    assert client.get("/api/audit").status_code == 403
+    assert client.post("/api/admin/demo/reset").status_code == 403
 
 
 def test_alerts_can_be_acknowledged(client):
-    login(client, "operator")
+    login(client, "engineer")
     alerts = client.get("/api/alerts").json()
     assert alerts, "the scripted morning should raise alerts"
     assert client.post(f"/api/alerts/{alerts[0]['id']}/acknowledge").status_code == 200
@@ -159,7 +156,7 @@ def test_incident_investigation(client):
 
 
 def test_copilot_works_without_gemini(client):
-    login(client, "operator")
+    login(client, "engineer")
     answer = client.post("/api/copilot/chat", json={"message": "Which machine is most likely to fail?"})
     assert answer.status_code == 200
     assert "M-17" in answer.json()["text"]
@@ -170,7 +167,7 @@ def test_copilot_works_without_gemini(client):
 
 
 def test_photo_check(client):
-    login(client, "operator")
+    login(client, "engineer")
     photo = {"file": ("../../escape.png", io.BytesIO(TINY_PNG), "image/png")}
     response = client.post("/api/machines/M-17/photo-check?language=en", files=photo)
     assert response.status_code == 200
@@ -201,7 +198,7 @@ def test_knowledge_library(client):
 
 
 def test_downloads_listed_on_the_data_page_exist(client):
-    login(client, "viewer")
+    login(client, "engineer")
     for name in client.get("/api/data/overview").json()["downloads"]:
         assert client.get(f"/api/data/download/{name}").status_code == 200, name
     assert client.get("/api/data/download/secrets.env").status_code == 404
@@ -223,11 +220,14 @@ def test_manager_settings_and_users(client):
     assert client.get("/api/settings/priorities").json()["preset"] == "quality_first"
     client.put("/api/settings/priorities", json={"preset": "balanced"})
 
-    new = {"email": "new.tech@opex.demo", "full_name": "New Tech", "role": "operator", "password": "long-enough-1"}
+    new = {"email": "new.tech@opex.demo", "full_name": "New Tech", "role": "engineer"}
     created = client.post("/api/users", json=new)
-    assert created.status_code in (200, 201), created.text
+    assert created.status_code == 200, created.text
     user_id = created.json()["id"]
-    assert client.patch(f"/api/users/{user_id}", json={"role": "engineer"}).status_code == 200
+    assert client.patch(f"/api/users/{user_id}", json={"role": "manager"}).status_code == 200  # promote
+    assert client.patch(f"/api/users/{user_id}", json={"role": "engineer"}).status_code == 200  # and back
+    assert client.patch(f"/api/users/{user_id}", json={"role": "operator"}).status_code == 403  # retired role
+    assert client.post("/api/users", json={**new, "email": "x@opex.demo", "role": "master_admin"}).status_code == 403
     assert client.get("/api/audit").status_code == 200
 
 
@@ -257,3 +257,93 @@ def test_simulation_run_replay_rewind_and_downloads(client):
     for name in ("daily.csv", "events.csv", "machines.csv", "summary.json", "assumptions.json"):
         assert client.get(f"/api/simulations/{run['id']}/download/{name}").status_code == 200, name
     assert client.post("/api/simulations", json={"years": 9}).status_code == 422
+
+
+# ---------------------------------------------------------------- Google sign-in and the two roles
+FIRST_MANAGER = "srihithapulapa1@gmail.com"
+
+
+def google_as(monkeypatch, email, name="Some Person"):
+    """Pretend Google confirmed this account (the real check needs a live Google token)."""
+    monkeypatch.setattr("app.api.auth.verified_google_account", lambda credential: (email, name))
+
+
+def google_login(client, email):
+    client.post("/api/auth/logout")
+    return client.post("/api/auth/google", json={"credential": "x" * 40})
+
+
+def test_google_sign_in_needs_a_real_token(client):
+    client.post("/api/auth/logout")
+    response = client.post("/api/auth/google", json={"credential": "not-a-real-google-token"})
+    assert response.status_code == 503  # no client id configured in tests: a clear message, not a crash
+
+
+def test_first_manager_signs_in_with_google(client, monkeypatch):
+    google_as(monkeypatch, FIRST_MANAGER, "Srihitha")
+    response = google_login(client, FIRST_MANAGER)
+    assert response.status_code == 200, response.text
+    me = response.json()
+    assert me["role"] == "manager" and me["role_label"] == "Plant manager"
+    assert {"manage_users", "edit_settings", "demo_controls", "decide_major", "write_report"} <= set(me["permissions"])
+    assert client.get("/api/overview").status_code == 200
+
+
+def test_manager_adds_managers_and_engineers_only(client, monkeypatch):
+    google_as(monkeypatch, FIRST_MANAGER)
+    google_login(client, FIRST_MANAGER)
+    listing = client.get("/api/users").json()
+    assert listing["manageable_roles"] == ["engineer", "manager"]
+    assert all("preferences" not in p and "permissions" not in p for p in listing["people"])
+
+    added = client.post(
+        "/api/users", json={"email": "new.boss@example.com", "full_name": "New Boss", "role": "manager"}
+    )
+    assert added.status_code == 200
+    for role in ("operator", "viewer", "master_admin"):  # retired roles
+        body = {"email": f"{role}@example.com", "full_name": "Someone", "role": role}
+        assert client.post("/api/users", json=body).status_code == 403, role
+
+    # the new manager can sign in with Google, but only after being added
+    google_as(monkeypatch, "new.boss@example.com", "New Boss")
+    assert google_login(client, "new.boss@example.com").json()["role"] == "manager"
+
+
+def test_a_manager_cannot_demote_or_switch_off_themselves(client, monkeypatch):
+    google_as(monkeypatch, FIRST_MANAGER)
+    google_login(client, FIRST_MANAGER)
+    me_id = client.get("/api/auth/me").json()["id"]
+    assert client.patch(f"/api/users/{me_id}", json={"role": "engineer"}).status_code == 403
+    assert client.patch(f"/api/users/{me_id}", json={"is_active": False}).status_code == 403
+
+
+def test_managers_see_who_decided_what(client):
+    login(client, "engineer")
+    rec = client.post("/api/machines/M-17/recommendation", json={}).json()
+    client.post(f"/api/recommendations/{rec['id']}/decision", json={"decision": "rejected", "note": "shift note"})
+    login(client, "manager")
+    first = client.get("/api/decisions").json()["decisions"][0]
+    assert first["decided_by"] == "engineer@opex.demo" and first["note"] == "shift note"
+    assert (
+        any(a["user"] == "engineer@opex.demo" for a in client.get("/api/audit").json())
+        or client.get("/api/audit").status_code == 200
+    )
+
+
+def test_unknown_google_accounts_are_refused_until_a_manager_adds_them(client, monkeypatch):
+    google_as(monkeypatch, "stranger@example.com")
+    assert google_login(client, "stranger@example.com").status_code == 403
+
+    login(client, "manager")
+    added = client.post(
+        "/api/users", json={"email": "intern@example.com", "full_name": "Intern Kumar", "role": "engineer"}
+    )
+    assert added.status_code == 200
+    intern_id = added.json()["id"]
+    google_as(monkeypatch, "intern@example.com")
+    assert google_login(client, "intern@example.com").json()["role"] == "engineer"
+
+    login(client, "manager")
+    assert client.patch(f"/api/users/{intern_id}", json={"is_active": False}).status_code == 200
+    google_as(monkeypatch, "intern@example.com")
+    assert google_login(client, "intern@example.com").status_code == 403

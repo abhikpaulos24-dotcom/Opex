@@ -9,19 +9,16 @@ from app.core.config import get_settings
 
 COOKIE_NAME = "opex_session"
 SESSION_HOURS = 12
-ROLES = ("manager", "engineer", "operator", "viewer")
 ROLE_LABELS = {
     "manager": "Plant manager",
     "engineer": "Maintenance engineer",
-    "operator": "Machine operator",
-    "viewer": "Viewer",
 }
 
-# Who may do what. Approving a stop or a part swap is a maintenance-engineer decision;
-# low-risk actions (tool change, standby, closer monitoring) can be approved by the operator.
+# Two roles. Engineers make the day-to-day decisions (approve or reject any action, write investigations,
+# add documents). Managers do all of that and also run the plant: people, priorities, costs and demo controls.
 PERMISSIONS = {
-    "acknowledge_alert": {"manager", "engineer", "operator"},
-    "decide_minor": {"manager", "engineer", "operator"},
+    "acknowledge_alert": {"manager", "engineer"},
+    "decide_minor": {"manager", "engineer"},
     "decide_major": {"manager", "engineer"},
     "manage_knowledge": {"manager", "engineer"},
     "write_report": {"manager", "engineer"},
@@ -29,6 +26,8 @@ PERMISSIONS = {
     "edit_settings": {"manager"},
     "demo_controls": {"manager"},
 }
+# Managers add and manage people in either role.
+MANAGEABLE_ROLES = {"manager": {"manager", "engineer"}}
 MINOR_ACTIONS = {
     "change_tool",
     "standby",
@@ -38,6 +37,10 @@ MINOR_ACTIONS = {
     "leave_idle_running",
     "ignore_sensor",
 }
+
+
+def manageable_roles(role: str) -> set[str]:
+    return MANAGEABLE_ROLES.get(role, set())
 
 
 def can(role: str, permission: str) -> bool:

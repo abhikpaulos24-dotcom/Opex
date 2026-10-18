@@ -8,7 +8,7 @@ import { StepTitle } from "./steps";
 export function WhyStep({ report }: { report: MachineReport }) {
   const { top, candidates, chain, memory } = report.root_cause;
   return (
-    <Card title={<StepTitle step="why" />} id="why">
+    <Card title={<StepTitle step="why" />} id="why" className="step">
       {top ? (
         <>
           <p><b>Most likely: {top.name}</b> <span className="muted">({pct(top.match)} pattern match)</span></p>
@@ -21,7 +21,7 @@ export function WhyStep({ report }: { report: MachineReport }) {
             ))}
           </div>
         </>
-      ) : <p className="muted">No fault pattern. The machine looks healthy.</p>}
+      ) : <p className="muted" style={{ margin: 0 }}>No fault pattern matches. The machine looks healthy.</p>}
 
       {chain.length > 1 && (
         <>
@@ -51,7 +51,7 @@ function Memory({ memory }: { memory: MachineReport["root_cause"]["memory"] }) {
       <p>{memory.sentence}</p>
       {matches.length > 0 && (
         <>
-          <button className="btn small" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Hide" : "Show"} similar incidents</button>
+          <button className="btn small ghost" aria-expanded={open} onClick={() => setOpen(!open)}>{open ? "Hide the" : "Show the"} {matches.length} similar incident{matches.length === 1 ? "" : "s"}</button>
           {open && (
             <div className="table-wrap"><table>
               <thead><tr><th>Date</th><th>Machine</th><th>Confirmed cause</th><th>Technician note</th><th>Downtime</th></tr></thead>

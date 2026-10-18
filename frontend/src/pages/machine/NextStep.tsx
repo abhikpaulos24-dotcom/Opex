@@ -8,7 +8,7 @@ const METHOD = { trend: "From the live damage trend", model: "From the NASA-trai
 export function NextStep({ report }: { report: MachineReport }) {
   const { prediction: p, components, quality, impact } = report;
   return (
-    <Card title={<StepTitle step="next" />} id="next">
+    <Card title={<StepTitle step="next" />} id="next" className="step">
       <div className="grid grid-3">
         <div className="stat big">
           <span className="label"><Term name="p_fail" /> in 8 h</span>
@@ -64,7 +64,7 @@ export function NextStep({ report }: { report: MachineReport }) {
 export function MaintenancePlan({ report }: { report: MachineReport }) {
   if (report.maintenance_plan.length === 0) return null;
   return (
-    <Card title="Maintenance plan and parts" id="plan">
+    <Card title="Maintenance plan and parts" id="plan" sub="What to inspect, which parts to have ready, and how long the job takes.">
       <ul style={{ paddingLeft: 18, margin: 0 }} className="stack">
         {report.maintenance_plan.map((m) => (
           <li key={m.component}>

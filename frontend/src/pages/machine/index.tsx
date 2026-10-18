@@ -1,6 +1,7 @@
 import { MessageCircle } from "lucide-react";
-import { Link, useParams } from "react-router-dom";
-import { ErrorBox, PageSkeleton, ReadAloud, SeverityBadge, StateBadge } from "../../components/ui";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { ErrorBox, More, PageSkeleton, ReadAloud, SeverityBadge, StateBadge } from "../../components/ui";
 import { useMachine } from "../../lib/queries";
 import { useSession } from "../../lib/session";
 import type { MachineReport } from "../../lib/types";
@@ -14,45 +15,60 @@ import { WhyStep } from "./WhyStep";
 
 export default function Machine() {
   const { id = "" } = useParams();
-  const { data: report, error } = useMachine(id);
+  const { data: report, error, refetch } = useMachine(id);
   const { prefs } = useSession();
-  if (error) return <ErrorBox error={error} />;
-  if (!report) return <PageSkeleton label={`Diagnosing ${id}`} blocks={4} />;
+  const { hash } = useLocation();
+  // Photo check and sensor history are tools, not steps: folded away until asked for (or linked to).
+  const [toolsOpen, setToolsOpen] = useState(hash === "#photo" || hash === "#sensors");
+  useEffect(() => {
+    if (hash === "#photo" || hash === "#sensors") {
+      setToolsOpen(true);
+      requestAnimationFrame(() => document.getElementById(hash.slice(1))?.scrollIntoView({ block: "start" }));
+    }
+  }, [hash]);
+
+  if (error) return <ErrorBox error={error} retry={() => refetch()} />;
+  if (!report) return <PageSkeleton label={`Reading ${id}'s sensors`} blocks={4} />;
 
   const m = report.machine;
   return (
-    <div className="stack">
+    <div className="stack-lg">
       <div className="page-head">
         <div>
-          <p className="small"><Link to="/">Overview</Link> / {m.id}</p>
+          <nav className="crumbs" aria-label="Breadcrumb"><Link to="/">Overview</Link><span aria-hidden>/</span><span>{m.id}</span></nav>
           <h1>{m.id} · {m.name}</h1>
           <div className="row">
             <StateBadge state={report.state} />
             <SeverityBadge level={report.prediction.severity} />
-            <span className="muted small">{m.product} · Line {m.line_id.slice(1)} · plant time {report.plant_time.slice(11)}</span>
+            <span className="muted small">{m.product} · Line {m.line_id.slice(1)} · plant time {report.plant_time.slice(11, 16)}</span>
           </div>
         </div>
         <div className="row">
           <ReadAloud text={spokenSummary(report, prefs.simple)} />
           <Link className="btn" to={`/copilot?q=${encodeURIComponent(`What is wrong with ${m.id} and what should I do?`)}`}>
-            <MessageCircle size={18} aria-hidden /> Ask OpEx about {m.id}
+            <MessageCircle size={18} aria-hidden /> Ask about {m.id}
           </Link>
         </div>
       </div>
 
       <RecommendationStrip machineId={m.id} />
       <StepNav />
-      <div className="grid grid-2" style={{ alignItems: "start" }}>
+      <div className="grid grid-2 start">
         <DetectStep report={report} />
         <WhyStep report={report} />
       </div>
-      <div className="grid grid-2" style={{ alignItems: "start" }}>
+      <div className="grid grid-2 start">
         <NextStep report={report} />
         <MaintenancePlan report={report} />
       </div>
       <DecideStep machineId={m.id} severity={report.prediction.severity} />
-      <PhotoCheck machineId={m.id} />
-      <SensorChart machineId={m.id} ranges={report.ranges} />
+
+      <More label="More tools for this machine" hint="photo check of a part, sensor history" open={toolsOpen} id="tools">
+        <div className="stack" style={{ marginTop: 8 }}>
+          <PhotoCheck machineId={m.id} />
+          <SensorChart machineId={m.id} ranges={report.ranges} />
+        </div>
+      </More>
     </div>
   );
 }

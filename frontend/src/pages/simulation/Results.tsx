@@ -88,7 +88,7 @@ export function Results({ run }: { run: SimRun }) {
             </button>
           ))}
         </div>
-        {rewind.isLoading && <Loading label="Rewinding" />}
+        {rewind.isLoading && <Loading label="Replaying that breakdown with OpEx watching" />}
         {rewind.data && (
           <div className="grid grid-2" style={{ marginTop: 12 }}>
             <Timeline title="Without AI" color="var(--without)" steps={rewind.data.without} />

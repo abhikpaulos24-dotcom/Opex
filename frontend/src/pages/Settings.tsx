@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FastForward, FlaskRound, RotateCcw, SlidersHorizontal, Users } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AccessibilitySettings } from "../components/AccessibilityPanel";
-import { Card, ConfirmDialog, ErrorBox, Segmented } from "../components/ui";
+import { Card, ConfirmDialog, EmptyState, ErrorBox, Segmented } from "../components/ui";
 import { api } from "../lib/api";
 import { titleCase } from "../lib/format";
 import { useSession } from "../lib/session";
@@ -18,8 +18,8 @@ export default function Settings() {
   const { can, user } = useSession();
   return (
     <div className="stack">
-      <div className="page-head"><div><h1>Settings</h1><p>Signed in as {user?.full_name} ({user?.role_label}).</p></div></div>
-      <Card title="Display and accessibility" id="a11y"><AccessibilitySettings /></Card>
+      <div className="page-head"><div><h1>Settings</h1><p>Signed in as {user?.full_name}, {user?.role_label}. Display settings are yours; the rest apply to the whole plant.</p></div></div>
+      <Card title="Display and reading" id="a11y" sub="Font, size, spacing, colours, motion and language. Saved to your account."><AccessibilitySettings /></Card>
       <Priorities editable={can("edit_settings")} />
       {can("edit_settings") && <Economics />}
       {can("demo_controls") && <DemoControls />}
@@ -63,7 +63,7 @@ function Economics() {
             <input type="number" step="any" min={0} value={values[k] ?? ""} onChange={(e) => setValues({ ...values, [k]: Number(e.target.value) })} />
           </label>
         ))}
-        <div><button className="btn primary" disabled={save.isPending}>Save</button>{save.isSuccess && <span className="small" role="status"> Saved.</span>}</div>
+        <div style={{ alignSelf: "end" }}><button className="btn primary" disabled={save.isPending}>{save.isPending ? "Saving…" : "Save"}</button>{save.isSuccess && <span className="small" role="status" style={{ marginLeft: 10 }}>Saved. Every rupee figure now uses these.</span>}</div>
       </form>
     </Card>
   );
@@ -116,31 +116,44 @@ function DemoControls() {
   );
 }
 
+type Person = { id: string; email: string; full_name: string; role: string; role_label: string; is_active: boolean };
+
+const ROLE_HELP: Record<string, string> = {
+  manager: "Plant manager: everything an engineer can do, plus people, plant priorities, costs and demo controls.",
+  engineer: "Maintenance engineer: approves or rejects any action, acknowledges alerts, writes investigations.",
+};
+
 function UsersCard() {
-  const { data, refetch } = useQuery({ queryKey: ["users"], queryFn: () => api("/api/users") });
-  const [form, setForm] = useState({ email: "", full_name: "", role: "operator", password: "" });
-  const create = useMutation({ mutationFn: () => api("/api/users", { body: form }), onSuccess: () => { setForm({ email: "", full_name: "", role: "operator", password: "" }); refetch(); } });
-  const update = useMutation({ mutationFn: ({ id, body }: any) => api(`/api/users/${id}`, { method: "PATCH", body }), onSuccess: () => refetch() });
+  const { user } = useSession();
+  const { data, refetch } = useQuery({ queryKey: ["users"], queryFn: () => api<{ manageable_roles: string[]; people: Person[] }>("/api/users") });
+  const roles = data?.manageable_roles ?? [];
+  const blank = { email: "", full_name: "", role: roles[0] ?? "engineer" };
+  const [form, setForm] = useState(blank);
+  const create = useMutation({ mutationFn: () => api("/api/users", { body: { ...form, role: form.role || roles[0] } }), onSuccess: () => { setForm(blank); refetch(); } });
+  const update = useMutation({ mutationFn: ({ id, body }: { id: string; body: object }) => api(`/api/users/${id}`, { method: "PATCH", body }), onSuccess: () => refetch() });
   return (
     <Card title="People and roles" icon={<Users aria-hidden />} id="users"
-      sub="Plant manager: everything. Maintenance engineer: approves repairs and stops. Operator: acknowledges alerts and approves small actions. Viewer: read-only.">
-      <div className="table-wrap"><table>
-        <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Active</th></tr></thead>
-        <tbody>{data?.map((u: any) => (
-          <tr key={u.id}><td>{u.full_name}</td><td>{u.email}</td>
-            <td><select aria-label={`Role for ${u.full_name}`} value={u.role} onChange={(e) => update.mutate({ id: u.id, body: { role: e.target.value } })}>
-              {["manager", "engineer", "operator", "viewer"].map((r) => <option key={r}>{r}</option>)}</select></td>
-            <td><input type="checkbox" aria-label={`${u.full_name} active`} checked={u.is_active} onChange={(e) => update.mutate({ id: u.id, body: { is_active: e.target.checked } })} /></td></tr>
-        ))}</tbody>
-      </table></div>
+      sub={roles.map((r) => ROLE_HELP[r]).join(" ")}>
+      {data?.people.length === 0 && <EmptyState title="Nobody added yet" hint="Add a person below. They sign in with their Google account, so there is no password to share." />}
+      {!!data?.people.length && (
+        <div className="table-wrap"><table>
+          <thead><tr><th>Name</th><th>Google account</th><th>Role</th><th>Active</th></tr></thead>
+          <tbody>{data.people.map((u) => (
+            <tr key={u.id}><td>{u.full_name}</td><td>{u.email}</td>
+              <td><select aria-label={`Role for ${u.full_name}`} value={u.role} disabled={u.id === user?.id} onChange={(e) => update.mutate({ id: u.id, body: { role: e.target.value } })}>
+                {roles.map((r) => <option key={r}>{r}</option>)}</select></td>
+              <td><input type="checkbox" aria-label={`${u.full_name} active`} checked={u.is_active} disabled={u.id === user?.id} onChange={(e) => update.mutate({ id: u.id, body: { is_active: e.target.checked } })} /></td></tr>
+          ))}</tbody>
+        </table></div>
+      )}
       <form className="grid grid-3" style={{ marginTop: 12 }} onSubmit={(e) => { e.preventDefault(); create.mutate(); }}>
-        <label className="field">Full name<input value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} required /></label>
-        <label className="field">Email<input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required /></label>
-        <label className="field">Role<select value={form.role} onChange={(e) => setForm({ ...form, role: e.target.value })}>
-          {["manager", "engineer", "operator", "viewer"].map((r) => <option key={r}>{r}</option>)}</select></label>
-        <label className="field">Temporary password<input type="password" minLength={8} value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} required /></label>
-        <div style={{ alignSelf: "end" }}><button className="btn primary" disabled={create.isPending}>Add person</button></div>
+        <label className="field">Full name<input value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} required minLength={2} /></label>
+        <label className="field">Their Google email<input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required /></label>
+        <label className="field">Role<select value={form.role || roles[0]} onChange={(e) => setForm({ ...form, role: e.target.value })}>
+          {roles.map((r) => <option key={r}>{r}</option>)}</select></label>
+        <div style={{ alignSelf: "end" }}><button className="btn primary" disabled={create.isPending || !roles.length}>Add person</button></div>
       </form>
+      <p className="small muted">They sign in with that Google account. There are no passwords to share.</p>
       {(create.error || update.error) ? <ErrorBox error={create.error || update.error} /> : null}
     </Card>
   );

@@ -15,9 +15,6 @@ export function speak(text: string, language = "en", rate = 1): void {
   window.speechSynthesis.speak(utterance);
 }
 
-export function stopSpeaking(): void {
-  if (canSpeak()) window.speechSynthesis.cancel();
-}
 
 export function canListen(): boolean {
   return typeof window !== "undefined" && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window);

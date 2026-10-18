@@ -30,25 +30,20 @@ def test_wrong_password_is_rejected():
         assert response.status_code == 401
 
 
-def test_operator_cannot_approve_a_repair_but_engineer_can():
+def test_engineer_can_approve_a_repair():
     with TestClient(app) as client:
-        login(client, "operator")
+        login(client, "engineer")
         rec = client.post("/api/machines/M-17/recommendation", json={}).json()
         assert rec["needed"]
-        denied = client.post(f"/api/recommendations/{rec['id']}/decision", json={"decision": "approved"})
-        assert denied.status_code == 403
-
-        client.post("/api/auth/logout")
-        login(client, "engineer")
         ok = client.post(f"/api/recommendations/{rec['id']}/decision", json={"decision": "approved", "note": "test"})
         assert ok.status_code == 200
         log = client.get("/api/decisions").json()
         assert any(d["machine_id"] == "M-17" and d["source"] == "live" for d in log["decisions"])
 
 
-def test_viewer_is_read_only():
+def test_engineer_cannot_run_the_plant():
     with TestClient(app) as client:
-        login(client, "viewer")
+        login(client, "engineer")
         assert client.get("/api/overview").status_code == 200
         assert client.put("/api/settings/priorities", json={"preset": "balanced"}).status_code == 403
         assert client.post("/api/admin/demo/reset").status_code == 403

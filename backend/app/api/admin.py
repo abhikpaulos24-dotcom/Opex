@@ -15,7 +15,7 @@ from app.auth.deps import current_user, require
 from app.core.config import get_settings
 from app.db.models import AuditLog, User
 from app.db.seed import DEMO_USERS
-from app.db.session import get_db
+from app.db.session import engine, get_db
 from app.integrations import bigquery
 from app.plant.factory import LINES, MACHINE_TYPES, MACHINES, MACHINES_BY_ID, PRODUCTS
 from app.plant.live import get_plant
@@ -70,8 +70,9 @@ def put_economics(values: dict, user: User = Depends(require("edit_settings")), 
 
 
 @router.get("/audit")
-def audit(_: User = Depends(require("manage_users")), db: Session = Depends(get_db)):
-    rows = db.scalars(select(AuditLog).order_by(AuditLog.at.desc()).limit(200)).all()
+def audit(user: User = Depends(require("manage_users")), db: Session = Depends(get_db)):
+    query = select(AuditLog).order_by(AuditLog.at.desc()).limit(200)
+    rows = db.scalars(query).all()
     return [
         {"at": r.at, "user": r.user_email, "action": r.action, "target": r.target, "details": r.details} for r in rows
     ]
@@ -122,14 +123,14 @@ def config():
     s = get_settings()
     return {
         "demo_mode": s.demo_mode,
-        "allow_signup": s.allow_signup,
+        "google_client_id": s.google_oauth_client_id or None,
         "gemini": gemini.enabled(),
         "gemini_model": s.gemini_model if gemini.enabled() else None,
         "bigquery": bigquery.enabled(),
         "cloud_storage": bool(s.gcs_bucket),
         "pubsub": bool(s.pubsub_alerts_topic),
-        "database": "supabase" if s.database_url else "local",
+        "database": "supabase" if engine.dialect.name == "postgresql" else "local",
         "live_speed": s.live_plant_speed,
-        "demo_accounts": [{"email": e, "role": r} for e, _, r in DEMO_USERS] if s.demo_mode else [],
+        "demo_accounts": [{"email": e, "full_name": n, "role": r} for e, n, r in DEMO_USERS] if s.demo_mode else [],
         "demo_password": s.demo_password if s.demo_mode else None,
     }

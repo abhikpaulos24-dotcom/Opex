@@ -35,3 +35,12 @@ export function titleCase(text: string): string {
 export function share(part: number, total: number): string {
   return total ? `${Math.round((100 * part) / total)}%` : "–";
 }
+
+/** A length of time in the words people use: "40 min", "3.5 h", "2 days 4 h". */
+export function spanOf(h: number | null | undefined): string {
+  if (h === null || h === undefined) return "–";
+  if (h < 24) return hours(h);
+  const days = Math.floor(h / 24);
+  const rest = Math.round(h - days * 24);
+  return `${days} day${days === 1 ? "" : "s"}${rest ? ` ${rest} h` : ""}`;
+}

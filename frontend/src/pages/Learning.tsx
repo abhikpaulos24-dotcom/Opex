@@ -14,7 +14,7 @@ const CAUSE_NAMES: Record<string, string> = {
 export default function Learning() {
   const { data, error } = useQuery({ queryKey: ["decisions"], queryFn: () => api("/api/decisions"), refetchInterval: useRefresh(15000) });
   if (error) return <ErrorBox error={error} />;
-  if (!data) return <PageSkeleton label="Loading the learning log" />;
+  if (!data) return <PageSkeleton label="Reading every decision and what came of it" />;
   const live = data.decisions.filter((d: any) => d.source === "live");
   const evaluated = data.decisions.filter((d: any) => d.outcome_status !== "pending");
   const successes = evaluated.filter((d: any) => d.outcome_status === "success").length;
@@ -24,16 +24,14 @@ export default function Learning() {
       <div className="page-head">
         <div>
           <h1>Learning log</h1>
-          <p>Prediction → recommendation → human decision → what actually happened. Every outcome updates how much OpEx trusts each action next time.</p>
+          <p>What OpEx predicted, what it suggested, what a person decided, and what actually happened. Every outcome changes how much OpEx trusts that action next time.</p>
         </div>
       </div>
-      <div className="card">
-        <div className="grid grid-stats">
-          <Stat label="Decisions recorded" value={data.decisions.length} hint={`${live.length} live, the rest from the 90-day pilot (demo data)`} />
-          <Stat label="Checked outcomes" value={evaluated.length} hint={`${share(successes, evaluated.length)} worked`} />
-          <Stat label="Followed the AI" value={share(data.agreement.followed_ai, live.length)} hint="live decisions that approved the recommendation" />
-          <Stat label="Waiting for outcome" value={data.totals.pending ?? 0} hint="checked 2 plant hours after the decision" />
-        </div>
+      <div className="kpi-strip" aria-label="Learning in numbers">
+        <Stat label="Decisions recorded" value={data.decisions.length} hint={`${live.length} live, the rest from the 90-day pilot (demo data)`} />
+        <Stat label="Checked outcomes" value={evaluated.length} hint={`${share(successes, evaluated.length)} worked`} />
+        <Stat label="Followed the AI" value={share(data.agreement.followed_ai, live.length)} hint="live decisions that approved the recommendation" />
+        <Stat label="Waiting for outcome" value={data.totals.pending ?? 0} hint="checked 2 plant hours after the decision" />
       </div>
 
       <Card title="What has worked here" icon={<Scale aria-hidden />} id="learned"

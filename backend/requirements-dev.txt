@@ -1,0 +1,5 @@
+# Only for working on OpEx (tests and code checks). The app itself needs requirements.txt.
+-r requirements.txt
+pytest>=7.4.0
+httpx>=0.25.0   # lets the tests call the API
+ruff>=0.6.0

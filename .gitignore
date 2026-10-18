@@ -11,7 +11,7 @@ __pycache__/
 
 # Node
 frontend/node_modules/
-# frontend/dist is committed on purpose: the start scripts can run without Node.js
+# frontend/dist is committed on purpose: running OpEx locally does not need Node.js
 
 # Local runtime data
 data/opex.db
@@ -24,3 +24,7 @@ data/raw/azure_pdm/PdM_telemetry.csv
 # OS / IDE
 .DS_Store
 .idea/workspace.xml
+
+backend/abc
+
+backend/new-env/

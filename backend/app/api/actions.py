@@ -87,7 +87,7 @@ def decide(recommendation_id: str, body: DecisionIn, user: User = Depends(curren
 
 
 @router.get("/decisions")
-def decision_log(_: User = Depends(current_user), db: Session = Depends(get_db)):
+def decision_log(user: User = Depends(current_user), db: Session = Depends(get_db)):
     learning.check_outcomes(db)
     rows = db.scalars(select(Decision).order_by(Decision.decided_at.desc()).limit(60)).all()
     stats = learning.learned_stats(db)

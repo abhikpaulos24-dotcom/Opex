@@ -12,8 +12,8 @@ create table if not exists app_users (
     id              uuid primary key default gen_random_uuid(),
     email           varchar(255) not null unique,
     full_name       varchar(120) not null,
-    role            varchar(20)  not null default 'viewer'
-                    check (role in ('manager', 'engineer', 'operator', 'viewer')),
+    role            varchar(20)  not null default 'engineer'
+                    check (role in ('manager', 'engineer')),
     password_hash   varchar(255) not null,
     is_active       boolean      not null default true,
     preferences     jsonb        not null default '{}'::jsonb,   -- accessibility settings

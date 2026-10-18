@@ -10,6 +10,7 @@ import json
 import logging
 import re
 import threading
+import time
 from dataclasses import dataclass
 
 import numpy as np
@@ -21,6 +22,7 @@ from app.core.paths import KNOWLEDGE_DIR, MODELS_DIR, PROCESSED_DIR
 
 log = logging.getLogger(__name__)
 EMBED_CACHE = MODELS_DIR / "knowledge_embeddings.json"
+EMBED_BATCH = 40
 
 
 @dataclass
@@ -82,12 +84,23 @@ class KnowledgeIndex:
         keys = [hashlib.sha1(t.encode()).hexdigest() for t in texts]
         cache = json.loads(EMBED_CACHE.read_text()) if EMBED_CACHE.exists() else {}
         missing = [i for i, k in enumerate(keys) if k not in cache]
-        if missing:
-            vectors = gemini.embed([texts[i] for i in missing])
+        # Small batches, saved as we go: the free Gemini quota may run out part-way, and the next start continues.
+        for start in range(0, len(missing), EMBED_BATCH):
+            batch = missing[start : start + EMBED_BATCH]
+            vectors = gemini.embed([texts[i] for i in batch])
             if vectors is None:
+                log.info(
+                    "knowledge index: stopped at %d of %d passages (free Gemini quota?). Keyword search is used "
+                    "meanwhile; the rest is embedded on the next start.",
+                    len(keys) - len(missing) + start,
+                    len(keys),
+                )
+                EMBED_CACHE.write_text(json.dumps(cache))
                 return
-            for i, v in zip(missing, vectors, strict=False):
+            for i, v in zip(batch, vectors, strict=True):
                 cache[keys[i]] = v
+            time.sleep(1)  # stay well under the per-minute limit
+        if missing:
             EMBED_CACHE.write_text(json.dumps(cache))
         matrix = np.array([cache[k] for k in keys], dtype=np.float32)
         with self.lock:

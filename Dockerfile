@@ -1,4 +1,4 @@
-# One container = the whole product (web app + API + AI + simulator). Built for Cloud Run.
+# One container = the whole product (web app + API + AI + simulator). Runs on Render, Cloud Run or Docker Desktop.
 
 # 1) Build the React web app
 FROM node:22-alpine AS web

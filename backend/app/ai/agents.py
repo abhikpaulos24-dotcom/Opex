@@ -234,11 +234,7 @@ def investigation_report(incident: dict, decisions: list[dict], language: str = 
             f"₹{prediction.get('failure_cost_inr', 0):,.0f}.",
             "## Actions that were possible\nSee the options table recorded with the recommendation.",
             "## Action taken\n"
-            + (
-                f"{taken['decision']} - {taken['action_key']} by {taken['decided_by']}."
-                if taken
-                else "No decision recorded yet."
-            ),
+            + (f"{taken['decision']} - {taken['action_key']}." if taken else "No decision recorded yet."),
             "## Did it work\n" + (taken.get("outcome", {}).get("summary", "Being checked.") if taken else "Pending."),
         ]
     )

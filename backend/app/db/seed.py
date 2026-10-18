@@ -2,6 +2,7 @@
 closed-loop learning starts from. Runs only when the tables are empty."""
 
 import logging
+import secrets
 from datetime import timedelta
 
 import numpy as np
@@ -18,9 +19,10 @@ log = logging.getLogger(__name__)
 DEMO_USERS = [
     ("manager@opex.demo", "Priya Deshmukh", "manager"),
     ("engineer@opex.demo", "Arjun Nair", "engineer"),
-    ("operator@opex.demo", "Ravi Kumar", "operator"),
-    ("viewer@opex.demo", "Guest Viewer", "viewer"),
 ]
+
+# Earlier versions had five roles. Anyone left on a retired role is moved to the nearest of the two that remain.
+RETIRED_ROLES = {"master_admin": "manager", "operator": "engineer", "viewer": "engineer"}
 
 # (cause, action): (successes, trials) observed during the 90-day pilot (Jul-Oct 2026, demo data)
 PILOT_OUTCOMES = {
@@ -45,10 +47,37 @@ PILOT_OUTCOMES = {
 }
 
 
+def unusable_password() -> str:
+    """People sign in with Google, so their account needs no password. This one nobody can guess."""
+    return hash_password(secrets.token_urlsafe(32))
+
+
 def seed(db: Session) -> None:
     settings = get_settings()
-    if settings.demo_mode and not db.scalar(select(func.count()).select_from(User)):
-        for email, name, role in DEMO_USERS:
+    for old, new in RETIRED_ROLES.items():
+        for person in db.scalars(select(User).where(User.role == old)):
+            person.role = new
+            log.info("moved %s from retired role %s to %s", person.email, old, new)
+    for email in ("operator@opex.demo", "viewer@opex.demo", "guest@opex.demo"):  # retired demo accounts
+        retired = db.scalar(select(User).where(User.email == email))
+        if retired:
+            retired.is_active = False
+    master = settings.master_admin_email.lower()
+    if master and not db.scalar(select(User).where(User.email == master)):
+        db.add(
+            User(
+                email=master,
+                full_name="Plant manager",
+                role="manager",
+                password_hash=unusable_password(),
+                preferences={},
+            )
+        )
+        log.info("created the first manager account for %s", master)
+    if settings.demo_mode:
+        known = set(db.scalars(select(User.email)))
+        missing = [account for account in DEMO_USERS if account[0] not in known]
+        for email, name, role in missing:
             db.add(
                 User(
                     email=email,
@@ -58,7 +87,8 @@ def seed(db: Session) -> None:
                     preferences={},
                 )
             )
-        log.info("seeded %d demo accounts", len(DEMO_USERS))
+        if missing:
+            log.info("seeded %d demo accounts", len(missing))
 
     if not db.scalar(select(func.count()).select_from(Decision)):
         rng = np.random.default_rng(11)

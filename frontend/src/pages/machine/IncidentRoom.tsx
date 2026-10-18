@@ -21,9 +21,9 @@ export function IncidentRoom({ open, onClose, recommendationId, language, simple
     staleTime: Infinity,
   });
   return (
-    <Dialog open={open} onClose={onClose} title="AI incident room">
-      <p className="muted small">Three AI agents review the case before you decide. They only use facts OpEx has measured and priced.</p>
-      {q.isLoading && <Loading label="The agents are reviewing the case" />}
+    <Dialog open={open} onClose={onClose} title="Second opinion: AI incident room">
+      <p className="muted small measure">Three AI agents look at the case from different angles before you decide. They only use facts OpEx has measured and priced, and they can be wrong: treat this as a second opinion, not an order.</p>
+      {q.isLoading && <Loading label="Three agents are reviewing the evidence" />}
       {q.error ? <ErrorBox error={q.error} /> : null}
       <div className="stack">
         {q.data?.agents.map((ag) => (
